@@ -1,0 +1,188 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.container {
+    width: 800px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.top-nav {
+    text-align: right;
+    margin-bottom: 10px;
+}
+
+.top-nav a {
+    margin-left: 15px;
+    text-decoration: none;
+    color: #007bff;
+}
+
+h1 {
+    color: #333;
+}
+
+.search-form {
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.tabs {
+    display: flex;
+    margin-bottom: 15px;
+}
+
+.tab-button {
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    padding: 10px 20px;
+    cursor: pointer;
+    flex-grow: 1;
+}
+
+.tab-button.active {
+    background-color: #007bff;
+    color: white;
+    border-color: #007bff;
+}
+
+.form-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.form-row input[type="text"], .form-row input[type="date"] {
+    flex-grow: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.swap-icon {
+    margin: 0 10px;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+.options label {
+    margin-right: 20px;
+}
+
+.search-button {
+    width: 100%;
+    padding: 12px;
+    background-color: #ff8c00;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.search-button:hover {
+    background-color: #e67e00;
+}
+
+/* Login Page */
+.login-box {
+    width: 400px;
+    margin: 100px auto;
+    padding: 40px;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+.login-box .tabs {
+    justify-content: space-around;
+}
+
+.login-box input {
+    width: calc(100% - 22px);
+    padding: 10px;
+    margin-bottom: 15px;
+}
+
+.login-box .captcha {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.login-box .captcha input {
+    width: 60%;
+    margin-right: 10px;
+}
+
+.login-box .captcha-img {
+    width: 35%;
+    height: 40px;
+    background: #eee;
+    border: 1px solid #ccc;
+}
+
+.login-box .login-button {
+    width: 100%;
+}
+
+.login-links {
+    text-align: right;
+    margin-top: 15px;
+}
+
+.login-links a {
+    margin-left: 10px;
+}
+
+/* Tickets Page */
+.tickets-container {
+    width: 90%;
+    margin: 20px auto;
+}
+
+.query-info {
+    background: #eee;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.tickets-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.tickets-table th, .tickets-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+}
+
+.tickets-table th {
+    background-color: #f2f2f2;
+}
+
+.book-button {
+    background-color: #ff8c00;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+}

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>中国铁路12306</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="top-nav">
+                <a href="login.html">登录</a>
+                <a href="#">注册</a>
+            </div>
+            <h1>中国铁路12306</h1>
+        </header>
+        <main>
+            <div class="search-form">
+                <div class="tabs">
+                    <button class="tab-button active">单程</button>
+                    <button class="tab-button">往返</button>
+                    <button class="tab-button">中转换乘</button>
+                </div>
+                <form>
+                    <div class="form-row">
+                        <input type="text" placeholder="出发地">
+                        <span class="swap-icon">↔</span>
+                        <input type="text" placeholder="到达地">
+                    </div>
+                    <div class="form-row">
+                        <input type="date">
+                    </div>
+                    <div class="form-row options">
+                        <label><input type="checkbox"> 学生</label>
+                        <label><input type="checkbox"> 高铁/动车</label>
+                    </div>
+                    <button type="submit" class="search-button">查询</button>
+                </form>
+            </div>
+        </main>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
