@@ -1,0 +1,266 @@
+- type: Backend
+  id: API-POST-Register
+  route: POST /api/auth/register
+  description: 处理用户注册请求，支持手机号或邮箱注册。
+  input:
+    type: JSON
+    body:
+      type: string # 'phone' or 'email'
+      identifier: string # phone number or email address
+      verificationCode: string
+      password: string
+  output:
+    success:
+      statusCode: 201
+      body: { userId: "uuid", token: "jwt" }
+    error:
+      - statusCode: 400
+        body: { error: "Invalid input or format." }
+      - statusCode: 409
+        body: { error: "User already exists." }
+  dependencies:
+    - DB-FindUserByPhone
+    - DB-FindUserByEmail
+    - DB-FindVerificationCode
+    - DB-CreateUser
+  acceptanceCriteria:
+    - 当接收到合法且未注册的数据时，应返回 201 Created。
+    - 当手机号或邮箱已存在时，应返回 409 Conflict。
+  changeLog:
+    - date: "2025-10-19"
+      description: "初始创建。"
+
+- type: Backend
+  id: API-POST-Login
+  route: POST /api/auth/login
+  description: 处理用户登录请求。
+  input:
+    type: JSON
+    body:
+      identifier: string # username, phone number or email address
+      password: string
+      captcha: string # verification code from image
+  output:
+    success:
+      statusCode: 200
+      body: { userId: "uuid", token: "jwt" }
+    error:
+      - statusCode: 400
+        body: { error: "Invalid input or format." }
+      - statusCode: 401
+        body: { error: "Invalid credentials." }
+  dependencies:
+    - DB-FindUserByPhone
+    - DB-FindUserByEmail
+  acceptanceCriteria:
+    - 验证成功后返回用户信息和JWT。
+    - 验证失败返回401错误。
+  changeLog:
+    - date: "2025-10-19"
+      description: "初始创建。"
+
+- type: Backend
+  id: API-POST-PasswordResetRequest
+  route: POST /api/auth/password/request
+  description: 发起密码重置请求（发送验证码）。
+  input:
+    type: JSON
+    body:
+      type: string # 'phone' or 'email'
+      identifier: string
+  output:
+    success:
+      statusCode: 200
+      body: { message: "Verification code sent." }
+    error:
+      - statusCode: 404
+        body: { error: "User not found." }
+  dependencies:
+    - DB-FindUserByPhone
+    - DB-FindUserByEmail
+    - DB-SaveVerificationCode
+  acceptanceCriteria:
+    - 成功发送验证码到用户手机或邮箱。
+  changeLog:
+    - date: "2025-10-19"
+      description: "初始创建。"
+
+- type: Backend
+  id: API-POST-PasswordReset
+  route: POST /api/auth/password/reset
+  description: 重置用户密码。
+  input:
+    type: JSON
+    body:
+      identifier: string
+      verificationCode: string
+      newPassword: string
+  output:
+    success:
+      statusCode: 200
+      body: { message: "Password reset successful." }
+    error:
+      - statusCode: 400
+        body: { error: "Invalid verification code." }
+  dependencies:
+    - DB-FindVerificationCode
+    - DB-UpdateUserPassword
+  acceptanceCriteria:
+    - 成功重置密码。
+  changeLog:
+    - date: "2025-10-19"
+      description: "初始创建。"
+
+- type: Backend
+  id: API-GET-Trains
+  route: GET /api/trains
+  description: 查询车次列表。
+  input:
+    type: QueryParams
+    params:
+      from: string
+      to: string
+      date: string
+      isStudent: boolean
+  output:
+    success:
+      statusCode: 200
+      body: [{...}] # Array of train objects
+    error:
+      - statusCode: 400
+        body: { error: "Invalid query parameters." }
+  dependencies:
+    - DB-FindTrains
+  acceptanceCriteria:
+    - 返回符合条件的车次列表。
+  changeLog:
+    - date: "2025-10-19"
+      description: "初始创建。"
+
+- type: Backend
+  id: API-GET-Passengers
+  route: GET /api/user/passengers
+  description: 获取当前用户的常用乘客列表。
+  input:
+    type: Headers
+    headers:
+      Authorization: "Bearer {token}"
+  output:
+    success:
+      statusCode: 200
+      body: [{...}] # Array of passenger objects
+  dependencies:
+    - DB-FindPassengersByUserId
+  acceptanceCriteria:
+    - 返回当前登录用户的所有常用乘客。
+  changeLog:
+    - date: "2025-10-19"
+      description: "初始创建。"
+
+- type: Backend
+  id: API-POST-Passengers
+  route: POST /api/user/passengers
+  description: 添加新的常用乘客。
+  input:
+    type: JSON
+    body:
+      name: string
+      idCard: string
+      phone: string
+  output:
+    success:
+      statusCode: 201
+      body: { passengerId: "uuid" }
+  dependencies:
+    - DB-CreatePassenger
+  acceptanceCriteria:
+    - 成功添加乘客并返回乘客ID。
+  changeLog:
+    - date: "2025-10-19"
+      description: "初始创建。"
+
+- type: Backend
+  id: API-PUT-Passengers
+  route: PUT /api/user/passengers/{passengerId}
+  description: 更新常用乘客信息。
+  input:
+    type: JSON
+    body:
+      name: string
+      idCard: string
+      phone: string
+  output:
+    success:
+      statusCode: 200
+      body: { message: "Passenger updated." }
+  dependencies:
+    - DB-UpdatePassenger
+  acceptanceCriteria:
+    - 成功更新乘客信息。
+  changeLog:
+    - date: "2025-10-19"
+      description: "初始创建。"
+
+- type: Backend
+  id: API-DELETE-Passengers
+  route: DELETE /api/user/passengers/{passengerId}
+  description: 删除常用乘客。
+  input:
+    type: PathParams
+  output:
+    success:
+      statusCode: 200
+      body: { message: "Passenger deleted." }
+  dependencies:
+    - DB-DeletePassenger
+  acceptanceCriteria:
+    - 成功删除乘客。
+  changeLog:
+    - date: "2025-10-19"
+      description: "初始创建。"
+
+- type: Backend
+  id: API-POST-Orders
+  route: POST /api/orders
+  description: 创建新订单。
+  input:
+    type: JSON
+    body:
+      trainId: string
+      passengers: [{ passengerId: string, seatType: string, ticketType: string }]
+  output:
+    success:
+      statusCode: 201
+      body: { orderId: "uuid", paymentUrl: "url" }
+    error:
+      - statusCode: 400
+        body: { error: "Incomplete order information." }
+      - statusCode: 409
+        body: { error: "Tickets sold out." }
+  dependencies:
+    - DB-CreateOrder
+  acceptanceCriteria:
+    - 成功创建订单并返回订单ID和支付链接。
+  changeLog:
+    - date: "2025-10-19"
+      description: "初始创建。"
+
+- type: Backend
+  id: API-GET-Orders
+  route: GET /api/user/orders
+  description: 获取当前用户的订单列表。
+  input:
+    type: QueryParams
+    params:
+      status: string # 'upcoming' or 'historical'
+  output:
+    success:
+      statusCode: 200
+      body: [{...}] # Array of order objects
+  dependencies:
+    - DB-FindOrdersByUserId
+  acceptanceCriteria:
+    - 返回符合条件的订单列表。
+  changeLog:
+    - date: "2025-10-19"
+      description: "初始创建。"
