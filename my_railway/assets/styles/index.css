@@ -1,0 +1,31 @@
+.section-first{height:450px;position:relative}
+.fullSlide{position:relative;width:100%}
+.fullSlide .bd{position:relative;height:450px}
+.fullSlide .bd ul{list-style:none;margin:0;padding:0}
+.fullSlide .bd li{background-position:center center;background-repeat:no-repeat;height:450px}
+.fullSlide .bd a{display:block;height:450px}
+.fullSlide .hd{position:absolute;bottom:0;left:0;right:0;text-align:center}
+.fullSlide .hd ul{padding:10px 0;line-height:12px;overflow:hidden;margin:0}
+.fullSlide .hd li{display:inline-block;width:12px;height:12px;background:#fff;margin:0 6px;border-radius:20px;opacity:.6}
+.fullSlide .hd .on{opacity:1}
+.search-index{position:absolute;top:50px;left:50%;margin-left:-595px;z-index:100;width:510px;height:350px;background:#fff;box-shadow:0 6px 12px rgba(0,0,0,0.08)}
+.search-index .search-side{float:left;width:100px}
+.search-index .search-side ul{margin:0;padding:0;list-style:none}
+.search-index .search-side li{background:#3b99fc;border-bottom:1px solid #86bffb;height:116px}
+.search-index .search-side li.last{border-bottom:none;height:118px}
+.search-index .search-side a{display:block;height:115px;line-height:115px;color:#fff;border-left:3px solid #3b99fc;font-size:16px}
+.search-index .search-side .active a{background:#fff;color:#3b99fc}
+.search-index .search-main{float:left;width:410px;height:350px}
+.search-index .search-main-item{padding:32px 25px 0 25px;height:100%}
+.search-tab-hd{height:34px;border-bottom:2px solid #dedede}
+.search-tab-hd ul{margin:0;padding:0;list-style:none}
+.search-tab-hd li{float:left;width:80px;text-align:center}
+.search-tab-hd li a{display:block;height:32px;line-height:32px;color:#666;text-decoration:none}
+.search-tab-hd li.active a{color:#3b99fc;border-bottom:2px solid #3b99fc}
+.search-tab-bd{padding-top:20px}
+.ticket-form{position:relative}
+.member-form{position:relative}
+.query-form{position:relative}
+.swap-btn{margin-left:8px;height:30px;width:32px;border:1px solid #dedede;background:#fff;border-radius:50%;cursor:pointer}
+.section-services .services{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;padding:30px 0}
+.service-card{display:block;height:120px;background:#f5f7fa;border:1px solid #e6e6e6;text-align:center;line-height:120px;text-decoration:none;color:#3b99fc;font-size:16px;border-radius:6px}
