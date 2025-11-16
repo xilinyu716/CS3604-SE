@@ -12,8 +12,12 @@
   var resultList = document.getElementById('resultList')
   var trainFilter = document.querySelectorAll('.filters [data-train]')
   var seatFilter = document.querySelectorAll('.filters [data-seat]')
+  var passengerFilter = document.querySelectorAll('.filters [data-passenger]')
   var selectedTrainType = 'all'
   var selectedSeats = []
+  var dataset = null
+  var isStudent = false
+  var allowedForStudent = ['二等座','硬座','硬卧','无座']
   function nowStr(){
     var d = new Date()
     var m = d.getMonth()+1
@@ -22,6 +26,16 @@
     return d.getFullYear()+'-'+pad(m)+'-'+pad(day)
   }
   if(dateInput && !dateInput.value) dateInput.value = nowStr()
+  if(dateInput){
+    dateInput.min = nowStr()
+    function addDaysStr(n){
+      var d = new Date(); d.setDate(d.getDate()+n)
+      var m = d.getMonth()+1; var day = d.getDate()
+      function pad(x){return x<10?'0'+x:x}
+      return d.getFullYear()+'-'+pad(m)+'-'+pad(day)
+    }
+    dateInput.max = addDaysStr(30)
+  }
   function renderSuggest(target,val){
     if(!suggestBox) return
     if(!val){suggestBox.style.display='none';suggestBox.innerHTML='';return}
@@ -61,12 +75,31 @@
     {train:'G8311',from:'长沙南',to:'广州南',start:'14:15',arrive:'15:42',duration:'1:27',seats:{二等座:23,一等座:7}},
     {train:'G502',from:'北京西',to:'重庆西',start:'07:10',arrive:'18:45',duration:'11:35',seats:{二等座:9,一等座:0}}
   ]
+  function loadTickets(done){
+    try{
+      var xhr = new XMLHttpRequest()
+      xhr.open('GET','assets/data/tickets.json',true)
+      xhr.onreadystatechange = function(){
+        if(xhr.readyState===4){
+          if(xhr.status===200){
+            try{ dataset = JSON.parse(xhr.responseText) }catch(e){ dataset = null }
+          }
+          done && done()
+        }
+      }
+      xhr.send()
+    }catch(e){ done && done() }
+  }
   function applyFilters(items){
     var list = items.filter(function(it){
       var ok = true
       if(selectedTrainType!=='all') ok = ok && it.train.indexOf(selectedTrainType)===0
       if(selectedSeats.length>0){
         ok = ok && selectedSeats.some(function(s){ return (it.seats[s]||0)>0 })
+      }
+      if(isStudent){
+        var hasAllowed = Object.keys(it.seats).some(function(s){ return allowedForStudent.indexOf(s)>-1 && (it.seats[s]||0)>0 })
+        ok = ok && hasAllowed
       }
       return ok
     })
@@ -97,6 +130,11 @@
       var total = 0
       Object.keys(it.seats).forEach(function(k){ total += it.seats[k] })
       if(total<=0){ btn.disabled = true }
+      btn.addEventListener('click',function(){
+        var user = sessionStorage.getItem('user')
+        if(!user){ window.location.href = 'login.html'; return }
+        if(window.showToast){ window.showToast('已加入预订清单','success') }
+      })
       d.appendChild(left)
       d.appendChild(mid)
       d.appendChild(t1)
@@ -119,7 +157,8 @@
       window.location.href = url
       return
     }
-    var items = sample.filter(function(it){
+    var base = dataset || sample
+    var items = base.filter(function(it){
       var ok = true
       if(f) ok = ok && it.from.indexOf(f)>-1
       if(t) ok = ok && it.to.indexOf(t)>-1
@@ -128,7 +167,9 @@
     renderResults(applyFilters(items))
   }
   if(btn) btn.addEventListener('click',doQuery)
-  if(resultList && location.pathname.indexOf('tickets.html')>-1) renderResults(sample)
+  if(resultList && location.pathname.indexOf('tickets.html')>-1){
+    loadTickets(function(){ renderResults(applyFilters((dataset||sample))) })
+  }
   Array.prototype.forEach.call(trainFilter,function(p){
     p.addEventListener('click',function(){
       Array.prototype.forEach.call(trainFilter,function(x){x.classList.remove('active')})
@@ -140,9 +181,25 @@
   Array.prototype.forEach.call(seatFilter,function(p){
     p.addEventListener('click',function(){
       var v = p.getAttribute('data-seat')
+      if(isStudent && allowedForStudent.indexOf(v)===-1){ if(window.showToast){ window.showToast('学生票不可选该席别','error') } return }
       var i = selectedSeats.indexOf(v)
       if(i>=0){ selectedSeats.splice(i,1); p.classList.remove('active') }
       else{ selectedSeats.push(v); p.classList.add('active') }
+      doQuery()
+    })
+  })
+  Array.prototype.forEach.call(passengerFilter,function(p){
+    p.addEventListener('click',function(){
+      var v = p.getAttribute('data-passenger')
+      var toggled = p.classList.contains('active')
+      Array.prototype.forEach.call(passengerFilter,function(x){x.classList.remove('active')})
+      if(v==='student' && !toggled){ p.classList.add('active'); isStudent = true }
+      else { isStudent = false }
+      selectedSeats = selectedSeats.filter(function(s){ return allowedForStudent.indexOf(s)>-1 || !isStudent })
+      Array.prototype.forEach.call(seatFilter,function(el){
+        var sv = el.getAttribute('data-seat')
+        if(isStudent && allowedForStudent.indexOf(sv)===-1){ el.classList.remove('active') }
+      })
       doQuery()
     })
   })

@@ -8,6 +8,7 @@
   var clearBtn = document.querySelector('.history-clear')
   var history = []
   var currentIndex = -1
+  var jsonpTimer = null
   try{
     var raw = localStorage.getItem('search_history')
     if(raw){ history = JSON.parse(raw) || [] }
@@ -41,7 +42,8 @@
     items.forEach(function(it){
       var li = document.createElement('li')
       var i = document.createElement('i')
-      i.className = 'icon icon-huochepiao'
+      var icon = it.icon || 'icon-huochepiao'
+      i.className = 'icon ' + icon
       var span = document.createElement('span')
       span.className = 'list-txt'
       li.appendChild(i)
@@ -67,18 +69,61 @@
       var k = q.toUpperCase()
       return p.indexOf(k)>-1 || n.indexOf(k)>-1 || c.indexOf(k)>-1
     }).slice(0,8).map(function(st){
-      return {text: st.name+' '+st.code, url: 'tickets.html?from='+encodeURIComponent(st.name)}
+      return {text: st.name+' '+st.code, url: 'tickets.html?from='+encodeURIComponent(st.name), icon: 'icon-place'}
     })
     var base = []
     if(q){
       base = [
-        {text:'车票 '+q,url:'tickets.html'},
-        {text:'正晚点 '+q,url:'info.html'},
-        {text:'起售时间 '+q,url:'info.html'},
-        {text:'问答 '+q,url:'help.html'}
+        {text:'车票 '+q,url:'tickets.html', icon:'icon-huochepiao'},
+        {text:'正晚点 '+q,url:'info.html', icon:'icon-time'},
+        {text:'起售时间 '+q,url:'info.html', icon:'icon-time'},
+        {text:'问答 '+q,url:'help.html', icon:'icon-cycx'}
       ]
     }
     return s.concat(base)
+  }
+  function typeIcon(t){
+    if(t==='001') return 'icon-huochepiao'
+    if(t==='128') return 'icon-place'
+    if(t==='129') return 'icon-service'
+    if(t==='130') return 'icon-user'
+    if(t==='131') return 'icon-order'
+    return 'icon-cycx'
+  }
+  function jsonp(url, params, done, fail){
+    try{
+      var cbName = '__JSONP_SEARCH_CB_' + Date.now()
+      var qs = []
+      for(var k in params){ if(params.hasOwnProperty(k)){ qs.push(encodeURIComponent(k)+'='+encodeURIComponent(params[k])) } }
+      qs.push('callback='+cbName)
+      var src = url + (url.indexOf('?')>-1 ? '&' : '?') + qs.join('&')
+      var script = document.createElement('script')
+      var head = document.getElementsByTagName('head')[0] || document.body
+      window[cbName] = function(res){
+        if(jsonpTimer){ clearTimeout(jsonpTimer); jsonpTimer=null }
+        try{ done && done(res) } finally {
+          try{ delete window[cbName] }catch(e){ window[cbName]=undefined }
+          if(script && script.parentNode) script.parentNode.removeChild(script)
+        }
+      }
+      script.src = src
+      head.appendChild(script)
+      jsonpTimer = setTimeout(function(){
+        try{ delete window[cbName] }catch(e){ window[cbName]=undefined }
+        if(script && script.parentNode) script.parentNode.removeChild(script)
+        fail && fail()
+      }, 5000)
+    }catch(e){ fail && fail() }
+  }
+  function remoteQuery(q, done, fail){
+    if(!q){ fail && fail(); return }
+    jsonp('https://search.12306.cn/search/v1/h5/search', { keyword: q }, function(res){
+      var data = (res && res.data) || []
+      var items = data.slice(0,10).map(function(it){
+        return { text: it.word, url: it.url || 'index.html', icon: typeIcon(it.type) }
+      })
+      if(items.length>0){ done(items) } else { fail && fail() }
+    }, function(){ fail && fail() })
   }
   function handleSearch(){
     var q = input ? input.value.trim() : ''
@@ -86,8 +131,10 @@
       renderList([])
       return
     }
-    var items = querySuggestions(q)
-    renderList(items)
+    remoteQuery(q, function(items){ renderList(items) }, function(){
+      var items = querySuggestions(q)
+      renderList(items)
+    })
   }
   if(input){
     input.addEventListener('focus',function(){
@@ -115,6 +162,7 @@
           if(inputEl){
             inputEl.value = cur.textContent.trim()
           }
+          try{ cur.scrollIntoView({block:'nearest'}) }catch(e){}
         }
         return
       }
@@ -144,14 +192,24 @@
   if(btn){
     btn.addEventListener('click',function(){
       var q = input ? input.value.trim() : ''
-      var items = querySuggestions(q)
-      renderList(items)
-      var first = items[0]
-      if(first){
-        window.location.href = first.url
-        pushHistory({text:q,url:first.url})
-        if(input) input.value = ''
-      }
+      remoteQuery(q, function(items){
+        renderList(items)
+        var first = items[0]
+        if(first){
+          window.location.href = first.url
+          pushHistory({text:q,url:first.url})
+          if(input) input.value = ''
+        }
+      }, function(){
+        var items = querySuggestions(q)
+        renderList(items)
+        var first = items[0]
+        if(first){
+          window.location.href = first.url
+          pushHistory({text:q,url:first.url})
+          if(input) input.value = ''
+        }
+      })
     })
   }
   if(list){
