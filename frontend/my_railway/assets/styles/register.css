@@ -1,0 +1,4 @@
+.reg-box{background:#fff;border:1px solid #e6e6e6;border-radius:6px;margin:40px auto;padding:20px;width:720px;box-shadow:0 6px 12px rgba(0,0,0,0.06)}
+.reg-hd{font-size:18px;color:#3b99fc;margin-bottom:16px}
+.reg-form .form-row label{width:120px}
+.reg-form .form-actions{margin-top:20px}

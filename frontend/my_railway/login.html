@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>登录 - 中国铁路12306</title>
+  <link rel="stylesheet" href="assets/styles/common.css" />
+  <link rel="stylesheet" href="assets/styles/login.css" />
+</head>
+<body class="page-login">
+  <header class="header">
+    <div class="container">
+      <div class="header-left">
+        <a class="logo" href="index.html">中国铁路12306</a>
+      </div>
+      <div class="header-right">
+        <nav class="nav">
+          <a href="index.html">首页</a>
+          <a href="tickets.html">购票</a>
+          <a href="info.html">信息查询</a>
+          <a href="help.html">出行指南</a>
+          <a href="register.html">注册</a>
+          <a class="active" href="login.html">登录</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main class="content login-panel">
+    <div class="loginSlide">
+      <div class="bd">
+        <ul>
+          <li style="background-image:linear-gradient(120deg,#3b99fc,#86bffb)"><a></a></li>
+          <li style="background-image:linear-gradient(120deg,#2676e3,#6ea4f5)"><a></a></li>
+        </ul>
+      </div>
+      <div class="hd"><ul><li class="on"></li><li></li></ul></div>
+    </div>
+    <div class="login-box">
+      <ul class="login-hd">
+        <li class="login-hd-code active"><a>账号登录</a></li>
+        <li><a>短信登录</a></li>
+      </ul>
+      <div class="login-account">
+        <div class="login-item">
+          <span class="item-label">账</span>
+          <input id="loginUser" class="input" type="text" placeholder="用户名／邮箱／手机号" />
+        </div>
+        <div class="login-item">
+          <span class="item-label">密</span>
+          <input id="loginPwd" class="input" type="password" placeholder="请输入密码" />
+        </div>
+        <div class="login-remember">
+          <label class="check-inline"><input type="checkbox" id="remember" /> 记住登录</label>
+        </div>
+        <button id="loginSubmit" class="btn-primary w100">登录</button>
+        <div class="login-txt"><a href="register.html">立即注册</a><a href="#">找回密码</a></div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-copy">中国铁路12306</div>
+    </div>
+  </footer>
+
+  <script src="assets/scripts/main.js"></script>
+</body>
+</html>
