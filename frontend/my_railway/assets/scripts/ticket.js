@@ -80,19 +80,56 @@
     {train:'G8311',from:'长沙南',to:'广州南',start:'14:15',arrive:'15:42',duration:'1:27',seats:{二等座:23,一等座:7}},
     {train:'G502',from:'北京西',to:'重庆西',start:'07:10',arrive:'18:45',duration:'11:35',seats:{二等座:9,一等座:0}}
   ]
+  function transformApiTrains(arr){
+    return (arr||[]).map(function(x){
+      var seats = {}
+      ;(x.seats||[]).forEach(function(s){ seats[s.type] = s.available })
+      return {train: x.trainNumber, from: x.from, to: x.to, start: x.departureTime, arrive: x.arrivalTime, duration: x.duration, seats: seats}
+    })
+  }
   function loadTickets(done){
+    var f = qs('from')
+    var t = qs('to')
+    var d = qs('date')
+    if(!f && fromInput) f = fromInput.value.trim()
+    if(!t && toInput) t = toInput.value.trim()
+    if(!d && dateInput) d = dateInput.value
+    if(f || t || d){
+      try{
+        var url = (window.API_BASE||'') + '/api/trains/search' + '?' +
+          (f ? ('from='+encodeURIComponent(f)+'&') : '') +
+          (t ? ('to='+encodeURIComponent(t)+'&') : '') +
+          (d ? ('date='+encodeURIComponent(d)) : '')
+        var xhr = new XMLHttpRequest()
+        xhr.open('GET', url, true)
+        xhr.onreadystatechange = function(){
+          if(xhr.readyState===4){
+            if(xhr.status===200){
+              try{
+                var r = JSON.parse(xhr.responseText)
+                var arr = (((r||{}).data||{}).trains)||[]
+                dataset = transformApiTrains(arr)
+              }catch(e){ dataset = null }
+            }
+            done && done()
+          }
+        }
+        xhr.send()
+      }catch(e){ done && done() }
+      return
+    }
     try{
-      var xhr = new XMLHttpRequest()
-      xhr.open('GET','assets/data/tickets.json',true)
-      xhr.onreadystatechange = function(){
-        if(xhr.readyState===4){
-          if(xhr.status===200){
-            try{ dataset = JSON.parse(xhr.responseText) }catch(e){ dataset = null }
+      var xhr2 = new XMLHttpRequest()
+      xhr2.open('GET','assets/data/tickets.json',true)
+      xhr2.onreadystatechange = function(){
+        if(xhr2.readyState===4){
+          if(xhr2.status===200){
+            try{ dataset = JSON.parse(xhr2.responseText) }catch(e){ dataset = null }
           }
           done && done()
         }
       }
-      xhr.send()
+      xhr2.send()
     }catch(e){ done && done() }
   }
   function applyFilters(items){
@@ -170,14 +207,46 @@
       window.location.href = url
       return
     }
-    var base = dataset || sample
-    var items = base.filter(function(it){
-      var ok = true
-      if(f) ok = ok && it.from.indexOf(f)>-1
-      if(t) ok = ok && it.to.indexOf(t)>-1
-      return ok
-    })
-    renderResults(applyFilters(items))
+    var d = dateInput && dateInput.value ? dateInput.value : ''
+    try{
+      var url = (window.API_BASE||'') + '/api/trains/search' + '?' +
+        (f ? ('from='+encodeURIComponent(f)+'&') : '') +
+        (t ? ('to='+encodeURIComponent(t)+'&') : '') +
+        (d ? ('date='+encodeURIComponent(d)) : '')
+      var xhr = new XMLHttpRequest()
+      xhr.open('GET', url, true)
+      xhr.onreadystatechange = function(){
+        if(xhr.readyState===4){
+          if(xhr.status===200){
+            try{
+              var r = JSON.parse(xhr.responseText)
+              var arr = (((r||{}).data||{}).trains)||[]
+              var items = transformApiTrains(arr)
+              renderResults(applyFilters(items))
+              return
+            }catch(e){}
+          }
+          var base = dataset || sample
+          var items2 = base.filter(function(it){
+            var ok = true
+            if(f) ok = ok && it.from.indexOf(f)>-1
+            if(t) ok = ok && it.to.indexOf(t)>-1
+            return ok
+          })
+          renderResults(applyFilters(items2))
+        }
+      }
+      xhr.send()
+    }catch(e){
+      var base = dataset || sample
+      var items3 = base.filter(function(it){
+        var ok = true
+        if(f) ok = ok && it.from.indexOf(f)>-1
+        if(t) ok = ok && it.to.indexOf(t)>-1
+        return ok
+      })
+      renderResults(applyFilters(items3))
+    }
   }
   if(btn) btn.addEventListener('click',doQuery)
   if(resultList && location.pathname.indexOf('tickets.html')>-1){

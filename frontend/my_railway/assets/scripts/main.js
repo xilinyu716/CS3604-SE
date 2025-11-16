@@ -1,4 +1,5 @@
 ;(function(){
+  window.API_BASE = window.API_BASE || 'http://localhost:5000'
   function createToast(){
     var el = document.getElementById('j_toast')
     if(!el){
@@ -58,8 +59,22 @@
       var name = (u && u.value.trim()) || ''
       var pwd = (p && p.value.trim()) || ''
       if(name && pwd){
-        sessionStorage.setItem('user',name)
-        window.location.href = 'index.html'
+        var url = (window.API_BASE||'') + '/auth/signin'
+        try{
+          fetch(url, {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ phone: name, password: pwd })})
+            .then(function(r){ return r.json() })
+            .then(function(res){
+              if(res && res.success && res.data){
+                var userPhone = (res.data.user && res.data.user.phone) || name
+                sessionStorage.setItem('user', userPhone)
+                sessionStorage.setItem('token', res.data.token || '')
+                window.location.href = 'index.html'
+              }else{
+                if(window.showToast){ window.showToast((res && res.message) || '登录失败','error') }
+              }
+            })
+            .catch(function(){ if(window.showToast){ window.showToast('网络错误','error') } })
+        }catch(e){ if(window.showToast){ window.showToast('网络错误','error') } }
       }
     })
   }
