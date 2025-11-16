@@ -30,7 +30,7 @@
         <a class="info-card" href="tickets.html">余票查询</a>
         <a class="info-card" href="#onTime">正晚点</a>
         <a class="info-card" href="#saleTime">起售时间</a>
-        <a class="info-card" href="#">车站大屏</a>
+        <a class="info-card" href="#board">车站大屏</a>
         <a class="info-card" href="#agency">代售点</a>
         <a class="info-card" href="#schedule">时刻表</a>
       </div>
@@ -68,6 +68,45 @@
           <div class="form-actions"><button id="agBtn" class="btn-primary">查询</button></div>
         </div>
         <div id="agResult" class="result-list"></div>
+      </div>
+      <div id="board" style="margin-top:20px">
+        <div class="info-hd">车站大屏</div>
+        <div class="query-form">
+          <div class="form-row"><label>车站</label><input id="bdStation" type="text" placeholder="简拼/全拼/汉字" list="stations_datalist" /></div>
+          <div class="form-row"><label>方向</label>
+            <div class="filter-group">
+              <span class="pill active" data-dir="depart">出发</span>
+              <span class="pill" data-dir="arrive">到达</span>
+            </div>
+          </div>
+          <div class="form-row"><label>状态</label>
+            <div class="filter-group">
+              <span class="pill active" data-status="all">全部</span>
+              <span class="pill" data-status="ok">正点</span>
+              <span class="pill" data-status="delay">晚点</span>
+            </div>
+          </div>
+          <div class="form-row"><label>时间段</label>
+            <input id="bdStart" type="time" />
+            <span style="width:30px;text-align:center;color:#999">至</span>
+            <input id="bdEnd" type="time" />
+          </div>
+          <div class="form-row"><label>刷新</label>
+            <div class="filter-group">
+              <span class="pill active" data-auto="on">自动</span>
+              <span class="pill" data-auto="off">手动</span>
+            </div>
+          </div>
+          <div class="form-row"><label>仅未来</label>
+            <div class="filter-group">
+              <span class="pill active" data-future="off">关闭</span>
+              <span class="pill" data-future="on">开启</span>
+            </div>
+          </div>
+          <div class="form-actions"><button id="bdBtn" class="btn-primary">查看</button></div>
+        </div>
+        <div id="bdUpdate" class="update-tip"></div>
+        <div id="bdResult" class="result-list"></div>
       </div>
     </div>
   </main>

@@ -75,8 +75,11 @@
     if(q){
       base = [
         {text:'车票 '+q,url:'tickets.html', icon:'icon-huochepiao'},
-        {text:'正晚点 '+q,url:'info.html', icon:'icon-time'},
-        {text:'起售时间 '+q,url:'info.html', icon:'icon-time'},
+        {text:'正晚点 '+q,url:'info.html#onTime', icon:'icon-time'},
+        {text:'起售时间 '+q,url:'info.html#saleTime', icon:'icon-time'},
+        {text:'车站大屏 '+q,url:'info.html#board', icon:'icon-time'},
+        {text:'时刻表 '+q,url:'info.html#schedule', icon:'icon-service'},
+        {text:'代售点 '+q,url:'info.html#agency', icon:'icon-service'},
         {text:'问答 '+q,url:'help.html', icon:'icon-cycx'}
       ]
     }
@@ -89,6 +92,16 @@
     if(t==='130') return 'icon-user'
     if(t==='131') return 'icon-order'
     return 'icon-cycx'
+  }
+  function anchorUrl(text){
+    var t = (text||'')
+    if(t.indexOf('正晚点')>-1 || t.indexOf('晚点')>-1) return 'info.html#onTime'
+    if(t.indexOf('起售')>-1 || t.indexOf('开售')>-1) return 'info.html#saleTime'
+    if(t.indexOf('大屏')>-1 || t.indexOf('到达')>-1 || t.indexOf('出发')>-1) return 'info.html#board'
+    if(t.indexOf('时刻')>-1) return 'info.html#schedule'
+    if(t.indexOf('代售')>-1) return 'info.html#agency'
+    if(t.indexOf('票')>-1) return 'tickets.html'
+    return 'index.html'
   }
   function jsonp(url, params, done, fail){
     try{
@@ -120,7 +133,7 @@
     jsonp('https://search.12306.cn/search/v1/h5/search', { keyword: q }, function(res){
       var data = (res && res.data) || []
       var items = data.slice(0,10).map(function(it){
-        return { text: it.word, url: it.url || 'index.html', icon: typeIcon(it.type) }
+        return { text: it.word, url: it.url || anchorUrl(it.word||''), icon: typeIcon(it.type) }
       })
       if(items.length>0){ done(items) } else { fail && fail() }
     }, function(){ fail && fail() })

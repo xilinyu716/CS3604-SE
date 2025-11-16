@@ -2,3 +2,13 @@
 .info-hd{font-size:18px;color:#3b99fc;margin-bottom:16px}
 .info-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
 .info-card{display:block;height:100px;background:#f5f7fa;border:1px solid #e6e6e6;text-align:center;line-height:100px;text-decoration:none;color:#3b99fc;border-radius:6px}
+.result-list{margin-top:20px}
+.train-item{display:grid;grid-template-columns:120px 1fr 160px 120px;align-items:center;border:1px solid #e6e6e6;border-radius:6px;margin-bottom:12px;padding:12px}
+.train-no{color:#3b99fc;font-weight:600}
+.filter-group{display:flex;gap:8px}
+.pill{display:inline-block;height:28px;line-height:28px;padding:0 12px;border:1px solid #dedede;border-radius:20px;color:#666;cursor:pointer;background:#fff}
+.pill.active{color:#3b99fc;border-color:#3b99fc}
+.badge{display:inline-block;height:22px;line-height:22px;padding:0 8px;border-radius:11px;font-size:12px;color:#fff;background:#999}
+.badge.ok{background:#2fb06b}
+.badge.delay{background:#ff7043}
+.update-tip{color:#999;font-size:12px;margin:8px 0}

@@ -13,11 +13,16 @@
   var trainFilter = document.querySelectorAll('.filters [data-train]')
   var seatFilter = document.querySelectorAll('.filters [data-seat]')
   var passengerFilter = document.querySelectorAll('.filters [data-passenger]')
+  var extraFilter = document.querySelectorAll('.filters [data-extra]')
+  var sortFilter = document.querySelectorAll('.filters [data-sort]')
+  var resetBtn = document.getElementById('resetFilters')
   var selectedTrainType = 'all'
   var selectedSeats = []
   var dataset = null
   var isStudent = false
   var allowedForStudent = ['二等座','硬座','硬卧','无座']
+  var onlyAvailable = false
+  var sortBy = 'none'
   function nowStr(){
     var d = new Date()
     var m = d.getMonth()+1
@@ -101,8 +106,16 @@
         var hasAllowed = Object.keys(it.seats).some(function(s){ return allowedForStudent.indexOf(s)>-1 && (it.seats[s]||0)>0 })
         ok = ok && hasAllowed
       }
+      if(onlyAvailable){
+        var total = 0
+        Object.keys(it.seats).forEach(function(k){ total += (it.seats[k]||0) })
+        ok = ok && total>0
+      }
       return ok
     })
+    if(sortBy==='start'){
+      list.sort(function(a,b){ return (a.start||'').localeCompare(b.start||'') })
+    }
     return list
   }
   function renderResults(items){
@@ -203,4 +216,37 @@
       doQuery()
     })
   })
+  Array.prototype.forEach.call(extraFilter,function(p){
+    p.addEventListener('click',function(){
+      var v = p.getAttribute('data-extra')
+      var act = p.classList.contains('active')
+      if(v==='available'){ if(act){ p.classList.remove('active'); onlyAvailable=false } else { p.classList.add('active'); onlyAvailable=true } }
+      doQuery()
+    })
+  })
+  Array.prototype.forEach.call(sortFilter,function(p){
+    p.addEventListener('click',function(){
+      Array.prototype.forEach.call(sortFilter,function(x){x.classList.remove('active')})
+      p.classList.add('active')
+      sortBy = p.getAttribute('data-sort') || 'none'
+      doQuery()
+    })
+  })
+  if(resetBtn){
+    resetBtn.addEventListener('click',function(){
+      selectedTrainType = 'all'
+      selectedSeats = []
+      isStudent = false
+      onlyAvailable = false
+      sortBy = 'none'
+      Array.prototype.forEach.call(trainFilter,function(x){x.classList.remove('active')})
+      var all = document.querySelector('.filters [data-train="all"]')
+      if(all) all.classList.add('active')
+      Array.prototype.forEach.call(seatFilter,function(x){x.classList.remove('active')})
+      Array.prototype.forEach.call(passengerFilter,function(x){x.classList.remove('active')})
+      Array.prototype.forEach.call(extraFilter,function(x){x.classList.remove('active')})
+      Array.prototype.forEach.call(sortFilter,function(x){x.classList.remove('active')})
+      doQuery()
+    })
+  }
 })()
