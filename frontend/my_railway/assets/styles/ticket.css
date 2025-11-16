@@ -1,0 +1,11 @@
+.query-form{background:#fff;border:1px solid #e6e6e6;border-radius:6px;margin:20px 0;padding:20px}
+.result-list{margin-top:20px}
+.train-item{display:grid;grid-template-columns:120px 1fr 160px 160px 160px;align-items:center;border:1px solid #e6e6e6;border-radius:6px;margin-bottom:12px;padding:12px}
+.train-no{color:#3b99fc;font-weight:600}
+.seat-info{display:flex;gap:12px;color:#666}
+.buy-btn{justify-self:end}
+.buy-btn:disabled{opacity:.6;cursor:not-allowed}
+.filters{display:flex;justify-content:space-between;align-items:center;margin:12px 0}
+.filter-group{display:flex;gap:8px}
+.pill{display:inline-block;height:28px;line-height:28px;padding:0 12px;border:1px solid #dedede;border-radius:20px;color:#666;cursor:pointer;background:#fff}
+.pill.active{color:#3b99fc;border-color:#3b99fc}

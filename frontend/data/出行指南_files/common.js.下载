@@ -1,0 +1,857 @@
+// data-type="1"
+var href_baseUrl_1 = 'https://www.12306.cn/';
+var href_path_1 = 'index/';
+
+// data-type="2"
+var href_baseUrl_2 = 'https://kyfw.12306.cn/';
+var href_path_2 = 'otn/';
+
+// data-type="3"
+var href_baseUrl_3 = 'https://cx.12306.cn/';
+var href_path_3 = 'tlcx/';
+
+// data-type="4"
+var href_baseUrl_4 = 'https://www.12306.cn/';
+var href_path_4 = 'mormhweb/';
+
+// data-type="5"
+var href_baseUrl_5 = 'https://travel.12306.cn/';
+var href_path_5 = 'portal/';
+
+// data-type="6"
+var href_baseUrl_6 = 'https://dynamic.12306.cn/';
+var href_path_6 = 'otn/';
+
+// data-type="10"
+var href_baseUrl_10 = 'https://exservice.12306.cn/';
+var href_path_10 = 'excater/';
+
+
+
+var refreshImg = null;
+var _top_;
+var isDebug=false;//是否开启debug
+//二代证可购票
+var two_isOpenClick=['93','95','97','99'];
+//港澳台可购票
+var other_isOpenClick=['93','98','99','91','95','97'];
+
+function login_errorMsg(msg){
+	$('#login_errorMsg').html(msg).show();
+}
+function login_errorMsg_hide(){
+	$('#login_errorMsg').html('').hide();
+}
+
+function isNewChildRule(train_date){
+	//中老判断
+	if(is_country_flag_chn()){
+		return false;
+	}
+	train_date = train_date.replace('-', '').replace('-', '')
+	var year = train_date.substring(0,8);
+	if(year >= 20230101){
+		return true;
+	}
+	return false;
+}
+
+function is_country_flag_chn(c_flag){
+	if(!c_flag){
+		c_flag = country_flag
+	}
+	var cryFlagArr = c_flag.split('#');
+	for(var i =0 ; i < cryFlagArr.length; i++){
+		var cflagarr = cryFlagArr[i].split(',');
+		for(var j =0 ; j < cflagarr.length; j++){
+			if(cflagarr[j] && cflagarr[j] != 'CHN'){
+				return true;
+			}
+		}
+	}
+	return false;
+}
+
+function whichCountryStation(c_flag){
+	if(!c_flag){
+		c_flag = country_flag
+	}
+	var cryFlagArr = c_flag.split('#');
+	for(var i =0 ; i < cryFlagArr.length; i++){
+		var cflagarr = cryFlagArr[i].split(',');
+		for(var j =0 ; j < cflagarr.length; j++){
+			if(cflagarr[j] && cflagarr[j] != 'CHN'){
+				if(j == 0){
+					return "1";
+				}else{
+					return "2";
+				}
+			}
+		}
+	}
+	return "0";
+}
+
+function isHasFreeChild(feature_label){
+	if(feature_label && feature_label.length > 48){
+		if('Y' == feature_label.substring(48, 49)){
+			return true;
+		}
+	}
+	return false;
+}
+
+function ChangeDateFormat(timestamp) {
+    if (timestamp != null) {
+    	timestamp = timestamp.time;
+    	var date = new Date(timestamp);//时间戳为10位需*1000，时间戳为13位的话不需乘1000
+        var Y = date.getFullYear() + '-';
+        var M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '-';
+        var D = (date.getDate()< 10 ? '0'+(date.getDate()) : date.getDate());
+        return Y+M+D;
+    }
+
+    return "";
+}
+
+function getTrainDateYear(train_date, born_date){
+	if(train_date && train_date.length > 9){
+		train_date = train_date.substring(0,10).replace('-', '').replace('-', '');
+	}
+	if(born_date && born_date.length > 9){
+		born_date = born_date.substring(0,10).replace('-', '').replace('-', '');
+	}
+	//1:6岁以下，2：6-14岁，3：14岁以上
+	var age = jsGetAge(born_date, train_date);
+	if(age < 6){
+		return 1;
+	}else if(age < 14){
+		return 2;
+	}else{
+		return 3;
+	}
+	return 3;
+}
+
+function jsGetAge(strBirthday,policyDay){       
+    var returnAge;
+    var birthYear = strBirthday.substring(0,4);
+    var birthMonth = strBirthday.substring(4,6);
+    var birthDay = strBirthday.substring(6,8);
+    
+    var nowYear=policyDay.substring(0,4);
+    var nowMonth=policyDay.substring(4,6);
+    var nowDay=policyDay.substring(6,8);
+    
+    if(nowYear == birthYear){
+        returnAge = 0;
+    }
+    else{
+        var ageDiff = nowYear - birthYear ;
+        if(ageDiff > 0){
+            if(nowMonth == birthMonth) {
+                var dayDiff = nowDay - birthDay;
+                if(dayDiff <= 0)
+                {
+                    returnAge = ageDiff - 1;
+                }
+                else
+                {
+                    returnAge = ageDiff ;
+                }
+            }
+            else
+            {
+                var monthDiff = nowMonth - birthMonth;
+                if(monthDiff < 0)
+                {
+                    returnAge = ageDiff - 1;
+                }
+                else
+                {
+                    returnAge = ageDiff ;
+                }
+            }
+        }
+        else
+        {
+            returnAge = -1;
+        }
+    }
+    return returnAge;//返回周岁年龄
+}
+
+isCanGP=function(_type,tm){
+	if("B"!=_type){
+		var len=two_isOpenClick.length;
+		for(var i=0;i<len;i++){
+			if(tm==two_isOpenClick[i]){
+				return true;
+			}
+		}
+		return false;
+	}else{
+		var len=other_isOpenClick.length;
+        for(var i=0;i<len;i++){
+        	if(tm==other_isOpenClick[i]){
+				return true;
+			}
+		}
+        return false;
+	}
+}
+
+function initQn(){
+		if(qn_secStr){
+			$("#survey_link a").attr('href',qn_secStr); 
+			$("#survey_link").show();
+		}
+	}
+
+
+function initParams(str){
+	 var obj=new Object();
+	 var strArr=str.split("&");
+	 var param_map = {};
+	 for(var i = 0 ; i < strArr.length; i++){
+		 var par = strArr[i].split("=");
+		 param_map[par[0]] = par[1];
+	 }
+	 
+	 if(param_map['linktypeid']){
+		 obj.linktypeid=param_map['linktypeid'];
+	 }
+	 
+	 if(param_map['fs']){
+		 obj.fromStationText=param_map['fs'].split(",")[0];
+	     obj.fromStation=param_map['fs'].split(",")[1];
+	 }
+	 
+	 if(param_map['ts']){
+		 obj.toStationText=param_map['ts'].split(",")[0];
+	     obj.toStation=param_map['ts'].split(",")[1];
+	 }
+	 
+	 
+	 if(param_map['date']){
+		 obj.train_date=param_map['date'].split(",")[0];
+		 if(param_map['date'].split(",").length > 1){
+			 obj.back_train_date=param_map['date'].split(",")[1];
+		 }
+	 }
+	 
+	 if(param_map['flag']){
+		 obj.is_student=param_map['flag'].split(",")[0];
+	     obj.is_GDC=param_map['flag'].split(",")[1];
+	     obj.auto_query=param_map['flag'].split(",")[2];
+	 }
+    return obj;
+	
+}
+
+/*function initQnx(){
+	if(qnx_secStr){
+		$("#qnx_link a").attr('href',qnx_secStr); 
+		$("#qnx_link").show();
+	}
+}*/
+	
+/**
+ * 刷新验证码 登录状态下的验证码传入”randp“，非登录传入”sjrand“ 具体参看原otsweb中的传入参数
+ */
+
+function isLogin() {
+	if ("undefined"!=typeof(sessionInit)&&(sessionInit) && (null != sessionInit) ) {
+		$("#login_user").attr("href", ctx + "view/index.html");
+		$("#login_user").prev('span').html("您好，");
+		$("#login_user").html(sessionInit);
+		$("#regist_out").attr("href", ctx + "login/loginOut");
+		$("#regist_out").html("退出");
+		
+//		var memberId = sessionInit._CURRENT_USER.LoginUserDTO.member_id;
+//		if(memberId == null || memberId == ""){
+//			$("#isMember").css("display","none");
+//		}
+	} else {
+		$("#login_user").attr("href", ctx + "view/index.html");
+		$("#login_user").prev('span').html("您好，请&nbsp");
+		$("#login_user").html("登录");		
+		$("#regist_out").attr("href", ctx + "regist/init");
+		$("#regist_out").html("注册");
+	}
+};
+function loginAsyn(username){
+	if(username!=null){
+		$("#login_user").attr("href", ctx + "view/index.html");
+		$("#login_user").prev('span').html("意见反馈:<a class='cursor colorA' href='mailto:12306yjfk@rails.com.cn'>12306yjfk@rails.com.cn</a> 您好，");
+		$("#login_user").html(username);
+		$("#regist_out").attr("href", ctx + "login/loginOut");
+		$("#regist_out").html("退出");
+	}else{
+		$("#login_user").attr("href", ctx + "view/index.html");
+		$("#login_user").prev('span').html("意见反馈:<a class='cursor colorA' href='mailto:12306yjfk@rails.com.cn'>12306yjfk@rails.com.cn</a> 您好，请&nbsp");
+		$("#login_user").html("登录");	
+		$("#regist_out").attr("href", ctx + "regist/init");
+		$("#regist_out").html("注册");	
+	}
+};
+function _initGuideShow(_index){
+	var a_objs=$(".nav-list a");
+	a_objs.removeClass("on");
+	$("#js-xd").find(".nav-list").show();
+	$("#js-xd").unbind("mouseout");
+	$("#js-xd").unbind("mouseover");
+	$.each(a_objs,function(n){
+		if(n==_index){
+			$(a_objs[n]).addClass("on");
+			return;
+		}
+	});
+}
+
+
+//设置“我的12306”选中后的弹出层效果
+function checkHover(e,target){
+    if (getEvent(e).type=="mouseover")  {
+        return !contains(target,getEvent(e).relatedTarget||getEvent(e).fromElement) && !((getEvent(e).relatedTarget||getEvent(e).fromElement)===target);
+    } else {
+        return !contains(target,getEvent(e).relatedTarget||getEvent(e).toElement) && !((getEvent(e).relatedTarget||getEvent(e).toElement)===target);
+    }
+}
+function getEvent(e){
+    return e||window.event;
+}
+function contains(parentNode, childNode) {
+    if (parentNode.contains) {
+        return parentNode != childNode && parentNode.contains(childNode);
+    } else {
+        return !!(parentNode.compareDocumentPosition(childNode) & 16);
+    }
+}
+
+
+//设定页眉的选中（index=0时选中“首页”，1--车票 ，2--团购定制，3--会员 ,4商旅 ，5--站车 ，6 --出行指南 ，7--信息通知）
+function initPageTitle(index){
+	var hrefUrl=window.location.href;
+	if(hrefUrl.indexOf("/gonggao/")>-1){
+		index=6;
+	}else if(hrefUrl.indexOf("/queryTrainInfo")>-1 || hrefUrl.indexOf("/leftTicketPrice")>-1 || hrefUrl.indexOf("/userCommon")>-1 || hrefUrl.indexOf("/queryAgencySellTicket")>-1 || hrefUrl.indexOf("/czxx")>-1 || hrefUrl.indexOf("/zwdch")>-1 || hrefUrl.indexOf("/zzzcx")>-1){
+		index=7;
+	}else if(hrefUrl.indexOf("/leftTicket")>-1 || hrefUrl.indexOf("/confirmPassenger")>-1){
+		index=1;
+	}
+	$('.nav .nav-item').eq(index).addClass("active");
+	var objs=$('.nav .nav-item');
+	for(var k=0;k<objs.length;k++){
+		if(index!=k){
+			objs.eq(k).on("mouseenter",function(){
+				$(this).addClass("active");
+			}).on("mouseleave",function(){
+				$(this).removeClass("active");
+			});
+		}
+	}
+}
+
+
+function initNameNotice() {
+	$("#name_rule").mouseenter(function(ev) {
+		var Top = ev.pageY + 10;
+		var Left = ev.pageX;
+		$(".name-tips").eq(0).css({
+			top : Top,
+			left : Left
+		});
+		$(".name-tips").eq(0).show();
+
+	});
+	$("#name_rule").mouseleave(function() {
+		$(".name-tips").hide();
+	});
+}
+
+
+//点击复选框后面的识文字，触发事件
+clickCheckBoxName=function  () {
+	$("input[class='check']").each(function() {
+		var $checkbox = $(this);
+		var forId = $checkbox.next("label").attr('for');
+		var inputId = $checkbox.attr('id');
+		if (null == inputId ||"" == inputId || 'undefined' == inputId) {
+			var inputId="checkbox_"+generateMixed();
+			$checkbox.attr('id',inputId);
+		}
+		$checkbox.next("label").attr('for', inputId).css('cursor', 'pointer');
+	});
+};
+
+
+//退改说明:已完成订单和未完成订单共用
+ret_res_info =function(obj,trms_rank,flag) {
+		if(flag=="over"){
+			var html = new Array();
+			var rules = ticket_submit_order.ref_res_rules[trms_rank];
+			var bt_15d_value;
+			var _48h_15d_value;
+			var _24h_48H_value;
+			var lt_24h_value;
+			for(var i=0;i<rules.length;i++){
+				if(rules[i].title=="bt_15d"){
+					bt_15d_value=rules[i]
+				}else if(rules[i].title=="48h_15d"){
+					_48h_15d_value=rules[i]
+				}else if(rules[i].title=="24h_48H"){
+					_24h_48H_value=rules[i]
+				}else if(rules[i].title=="lt_24h"){
+					lt_24h_value=rules[i]
+				}
+			}
+			html.push("<tr>");
+			html.push("<td>"+bt_15d_value.refund_rule+"</td>");
+			html.push("<td>"+bt_15d_value.res_rule+"</td>");
+			
+			html.push("<td>"+_48h_15d_value.refund_rule+"</td>");
+			html.push("<td>"+_48h_15d_value.res_rule+"</td>");
+			
+			html.push("<td>"+_24h_48H_value.refund_rule+"</td>");
+			html.push("<td>"+_24h_48H_value.res_rule+"</td>");
+			
+			html.push("<td>"+lt_24h_value.refund_rule+"</td>");
+			html.push("<td>"+lt_24h_value.res_rule+"</td>");
+			html.push("</tr>");
+			
+			 $("#ret_res_info  tr:gt(1)").remove();
+			 $("#ret_res_info tbody").after(html.join(''));
+			 $("#ret_res_info").css("top",$(obj).position().top+$(obj).height()+10);
+		     $("#ret_res_info").css("left",$(obj).position().left);
+		     $("#ret_res_info").show();
+		
+		}else{
+			 $("#ret_res_info").hide();
+		}
+	
+	}
+
+//获取不重复的随机数
+function generateMixed(){
+	var res="";
+	var chars=['0','1','2','3','4','5','6','7','8','9',
+	           'A','B','C','D','E','F','G','H','I','J',
+	           'K','L','M','N','O','P','Q','R','S','T',
+	           'U','V','W','X','Y','Z',
+	           'a','b','c','d','e','f','g','h','i','j',
+	           'k','l','m','n','o','p','q','r','s','t',
+	           'u','v','w','x','y','z'];
+	for(var i=0;i<10;i++){
+		var id=Math.ceil(Math.random()*61);
+		res+=chars[id];
+	}
+	return res;
+}
+//用于帮助的用户名称显示
+function showHelpName(){
+		$.ajax({
+			url: '../login/existUser',
+			type: "POST",
+			success : function(response){
+				if(response.success){
+					sessionInit=response.name;
+					if ("undefined"!=typeof(sessionInit)&&(sessionInit) && (null != sessionInit) ) {
+						$("#login_user").attr("href", "../view/index.html");
+						$("#login_user").prev('span').html("意见反馈:<a class='cursor colorA' href='mailto:12306yjfk@rails.com.cn'>12306yjfk@rails.com.cn</a> 您好，");
+						$("#login_user").html(sessionInit);
+						$("#regist_out").attr("href", "../login/loginOut");
+						$("#regist_out").html("退出");
+						
+				//		var memberId = sessionInit._CURRENT_USER.LoginUserDTO.member_id;
+				//		if(memberId == null || memberId == ""){
+				//			$("#isMember").css("display","none");
+				//		}
+					} else {
+						$("#login_user").attr("href", "../view/index.html");
+						$("#login_user").prev('span').html("意见反馈:<a class='cursor colorA' href='mailto:12306yjfk@rails.com.cn'>12306yjfk@rails.com.cn</a> 您好，请&nbsp");
+						$("#login_user").html("登录");		
+						$("#regist_out").attr("href", "../regist/init");
+						$("#regist_out").html("注册");
+					}
+				}
+			}			
+		});		
+}
+//控制内容高度
+function controContentHeight(){
+	var subNum=0;
+	var notLogin=0;
+	if(window.attachEvent){
+		var version=navigator.appVersion;
+		if(version.indexOf('MSIE 7.0')>=0){
+			subNum=53;
+		}else{
+			subNum=80;
+			if(!document.getElementById("forget_password_id")){
+				notLogin=12;
+			}
+		}
+	}else{
+		subNum=78;
+		if(!document.getElementById("forget_password_id")){
+			notLogin=15;
+		}
+	}
+	var navH=0;
+	if(!$(".nav-list").is(":hidden")){
+		navH=$(".nav-list").height();
+	}
+	
+	var wHeight=$(window).height();
+	var hHeight=$(".header").height();
+	var fHeight=$(".footer").height();
+	
+	var minHeight=wHeight-hHeight-fHeight-subNum+notLogin-navH;
+	if(minHeight>400)
+	if($("#scroll").css("display")=="block"){
+	  	$(".content").css("min-height",minHeight-30);
+	}else{
+	 	$(".content").css("min-height",minHeight);
+	}
+}
+jQuery.extend({
+	dynamicLoadHref : function () {
+		$('a[name="g_href"]').unbind('click').click(function () {
+			var data_redirect = $(this).attr('data-redirect');
+			var data_type = $(this).attr('data-type');
+			var data_href = $(this).attr('data-href');
+			var data_target = $(this).attr('data-target');
+			var data_param = $(this).attr('data-param');
+
+			if (data_redirect == 'Y') {
+				if (data_target == '_blank') {
+					if (data_type == 1) {
+						window.open(href_baseUrl_1 + href_path_1 + data_href + ((data_param && data_param != '') ? '&'+data_param : ''));
+					} else if (data_type == 2) {
+						window.open(href_baseUrl_2 + href_path_2 + data_href + ((data_param && data_param != '') ? '&'+data_param : ''));
+					} else if (data_type == 3) {
+						window.open(href_baseUrl_3 + href_path_3 + data_href + ((data_param && data_param != '') ? '&'+data_param : ''));
+					} else if (data_type == 4) {
+						window.open(href_baseUrl_4 + href_path_4 + data_href + ((data_param && data_param != '') ? '&'+data_param : ''));
+					} else if (data_type == 5) {
+						window.open(href_baseUrl_5 + href_path_5 + data_href + ((data_param && data_param != '') ? '&'+data_param : ''));
+					} else if (data_type == 6) {
+						window.open(href_baseUrl_6 + href_path_6 + data_href + ((data_param && data_param != '') ? '&'+data_param : ''));
+					} else if (data_type == 10) {
+						window.open(href_baseUrl_10 + href_path_10 + data_href + ((data_param && data_param != '') ? '&'+data_param : ''));
+					}
+				} else {
+					if (data_type == 1) {
+						window.location.href = href_baseUrl_1 + href_path_1 + data_href + ((data_param && data_param != '') ? '&'+data_param : '');
+					} else if (data_type == 2) {
+						window.location.href = href_baseUrl_2 + href_path_2 + data_href + ((data_param && data_param != '') ? '&'+data_param : '');
+					} else if (data_type == 3) {
+						window.location.href = href_baseUrl_3 + href_path_3 + data_href + ((data_param && data_param != '') ? '&'+data_param : '');
+					} else if (data_type == 4) {
+						window.location.href = href_baseUrl_4 + href_path_4 + data_href + ((data_param && data_param != '') ? '&'+data_param : '');
+					} else if (data_type == 5) {
+						window.location.href = href_baseUrl_5 + href_path_5 + data_href + ((data_param && data_param != '') ? '&'+data_param : '');
+					} else if (data_type == 6) {
+						window.location.href = href_baseUrl_6 + href_path_6 + data_href + ((data_param && data_param != '') ? '&'+data_param : '');
+					} else if (data_type == 10) {
+						window.location.href = href_baseUrl_10 + href_path_10 + data_href + ((data_param && data_param != '') ? '&'+data_param : '');
+					}
+				}
+			} else {
+				if (data_target == '_blank') {
+					window.open(data_href)
+				} else {
+					window.location.href = data_href;
+				}
+			}
+		});
+	
+	},
+	//判断是否显示公告栏
+	showNotice : function(){
+		if("undefined" == typeof(isShowNotice) || "N" != isShowNotice ){
+			$("#scroll").css("display","block");
+			var contentHtml =  "<li><a >“网上购票”可购买预售期内不晚于开车前25分钟的列车车票；“网上订票”可预订4至20日列车车票。</a></li>";
+			if(noticeContent&&"undefined" != typeof(noticeContent)) {
+				var length = noticeContent.length;
+				if(length > 0){
+					for(var i = 0; i < length; i++){
+						contentHtml+= "<li><a>"+noticeContent[i]+"</a></li>";
+					}
+				}
+			}
+			$("#scroll .notice_in ul").html(contentHtml);
+		}else if("N" == isShowNotice){
+			$("#scroll").hide();
+			$("div.ban-area").hide();
+		}
+	},
+	changebigslh : function(){
+		var isHasBigslh = $("body").hasClass("is-caring");
+		if(isHasBigslh){
+			$("body").removeClass('is-caring');
+			$.common_jc_setcookie("_big_fontsize","",-1);
+			$.common_jc_setcookie("_big_fontsize","0",365*24*60*60,"", ".12306.cn");
+			$("#caring_a").html('爱心版');
+		}else{
+			$("body").addClass('is-caring');
+			$.common_jc_setcookie("_big_fontsize","1",365*24*60*60,"", ".12306.cn");
+			$("#caring_a").html('标准版');
+		}
+	},
+	common_jc_getcookie:function(name){
+	   var cookie_start = document.cookie.indexOf(name);
+	   var cookie_end = document.cookie.indexOf(";", cookie_start);
+	   return cookie_start == -1 ? '' : unescape(document.cookie.substring(
+				cookie_start + name.length + 1,
+				(cookie_end > cookie_start ? cookie_end
+						: document.cookie.length)));	
+	   
+	   
+	},
+	common_jc_setcookie:function(cookieName, cookieValue, seconds, path, domain,secure) {
+	   var expires = new Date();
+	   expires.setTime(expires.getTime() + seconds * 1000);
+	   document.cookie = escape(cookieName) + '=' + escape(cookieValue)
+			  + (expires ? '; expires=' + expires.toGMTString() : '')
+			  + (path ? '; path=' + path : ';path=/')
+			  + (domain ? '; domain=' + domain : '')
+			  + (secure ? '; secure' : '');
+	},
+	allotnSeatTypes:function(seat_type_code){
+		var allSeatMap = 
+		{
+			"A": "高级动卧",
+			"B": "混编硬座",
+			"C": "混编硬卧",
+			"D": "包厢软座",
+			"E": "特等软座",
+			"F": "动卧",
+			"F1": "下铺",
+			"F3": "上铺",
+			"G": "二人软包",
+			"H": "一人软包",
+			"H1": "下铺",
+			"H3": "上铺",
+			"I": "一等卧",
+			"I1": "下铺",
+			"I3": "上铺",
+			"J": "二等卧",
+			"J1": "下铺",
+			"J2": "中铺",
+			"J3": "上铺",
+			"K": "混编软座",
+			"L": "混编软卧",
+			"M": "一等座",
+			"O": "二等座",
+			"P": "特等座",
+			"Q": "多功能座",
+			"S": "二等包座",
+			"0": "棚车",
+			"1": "硬座",
+			"2": "软座",
+			"3": "硬卧",
+			"31": "下铺",
+			"32": "中铺",
+			"33": "上铺",
+			"4": "软卧",
+			"41": "下铺",
+			"43": "上铺",
+			"5": "包厢硬卧",
+			"6": "高级软卧",
+			"61": "下铺",
+			"63": "上铺",
+			"7": "一等软座",
+			"8": "二等软座",
+			"9": "商务座"
+		}
+		return allSeatMap[seat_type_code] ? allSeatMap[seat_type_code] : '';
+	}
+});
+$(function() {
+	var mouseOnPanelMenu=0;
+	
+	$(document).ready(function() {
+		//关怀版
+		var _big_fontsize = $.common_jc_getcookie("_big_fontsize");
+		if("1" == _big_fontsize){
+			$("body").addClass('is-caring');
+			$("#caring_a").html('标准版');
+		}
+		$.dynamicLoadHref();
+		if("undefined"==typeof(sessionInit)){
+			showHelpName();
+		}else{
+			//isLogin();
+		}
+		
+		controContentHeight();
+		$(".menu-list").on("mouseover",function(event){
+			if(checkHover(event,this)){
+				mouseOnPanelMenu = 1; 
+			}
+		}).on("mouseleave",function(){
+			mouseOnPanelMenu = 0;
+			$(".menu-list").hide();
+		});
+		
+		$('.nav>ul>li>a').click(function(){
+			$('.nav>ul>li').removeClass();
+			$(this).parent().addClass("current");
+		});
+		
+		$('.notice_in ul a').click(function(){
+			otsRedirect("post",ctx + "index/showAnnouncement");
+		});
+
+		//防止重复添加
+		if($(".phone-link").html()==undefined){
+			$('.login-info').prepend("<div class='phone-link'><a href='../appDownload/init'>手机版</a></div>");
+		}
+		returnTop();
+	});
+
+	function returnTop(){
+		//<a href="#" class="return-top" title="返回顶部"></a>
+		document.body.appendChild($('<a href="#" id="_return_top" class="return-top" title="返回顶部" style="display: block;"></a>')[0]);
+		var cssfixedsupport=!window.XMLHttpRequest;//判断是否ie6
+		$("#_return_top").css({
+			position: cssfixedsupport ? 'absolute' : 'fixed',
+			bottom:'30px',
+			right:'30px'
+		}).goToTop(5);
+		$(window).on('scroll resize',function(){ 
+			$("#_return_top").goToTop(5);    
+		});
+		
+	}
+	$("#js-my").on("mouseover",function(){
+		if(timmermenu){
+			clearTimeout(timmermenu);
+		}
+		$(".menu-list").show();
+	});
+	var timmermenu=null;
+	$("#js-my").on("mouseout",function(){
+		timmermenu=setTimeout(function(){
+			if(mouseOnPanelMenu != 1){
+				mouseOnPanelMenu = 0;
+				$(".menu-list").hide();
+			}
+		},120);
+	});
+	
+	/* 导航条 */
+	$("#js-xd").on("mouseover",function(){
+		if(timmer){
+			clearTimeout(timmer);
+		}
+		$("#js-xd").addClass("nav-guide");
+		$(this).find(".nav-list").show();	
+	});
+	var timmer=null;
+	$("#js-xd").on("mouseout",function(event){
+		var obj=$(this);
+		timmer=setTimeout(function(){
+			obj.find(".nav-list").hide();
+		},120);
+	});
+
+	/* 信息输入放大 */
+	$(".pos-rel input").focus(function() {
+		$(this).next().show();
+		$(this).css("border", "1px solid #2D8DCF");
+	});
+
+	$(".pos-rel input").blur(function() {
+		$(this).next().hide();
+		$(this).css("border", "1px solid #CFCDC7");
+	});
+	
+	$("#scroll>a:last").click( function () {
+		$.ajax({
+			url: ctx + 'Notice/showNotice',
+			type: "POST",
+			success : function(response){
+				if(response.status){
+					$("#scroll").hide();
+					$("div.ban-area").hide();
+				}
+			}			
+		});		
+	});
+	
+	//添加浏览器兼容的日志输出
+	if(!window.debug){  
+	    window.debug = function(message){  
+	      try{  
+	           if(!window.console){  
+	               window.console = {};  
+	               window.console.log = function(){  
+	                  return;  
+	               };  
+	           }
+	           if(isDebug)
+	              window.console.log(message + ' ');  
+	      }catch(e){}  
+	    };
+	}
+
+});
+(function($){
+	$.fn.goToTop=function(topValue){
+		var $window=$(window);
+		var $this=$(this);
+		var shouldvisible=( $window.scrollTop() > topValue )? true : false;
+		
+		if (shouldvisible){
+			$this.stop().show();
+		}else{
+			$this.stop().hide();
+		}
+		return this;
+	};
+	
+	
+	$.fn.headerFloat=function() {
+    	var position = function(element) {
+	        var _left=false;
+	        $(window).on('scroll resize',function(){ 
+	            var scrolls = $(this).scrollTop();
+	            if(!_left){
+	            	_left=element.position().left-1;
+	            }
+	            //if(!_top_)
+	            _top_=element.position().top;
+	            if (scrolls > _top_+30) {
+	                if (!(navigator.appVersion.indexOf("MSIE 6")>-1)) {
+                        $("#floatTable")[0].style.position="fixed";
+                        $("#floatTable")[0].style.top=0;
+                        $("#floatTable").css("z-index","1900");
+                        $("#floatTable").css("left",_left);
+	                } else {
+	                	 $("#floatTable").css({
+	                    	position: "absolute",
+	                        top: scrolls,
+	                        left:_left
+	                    });    
+	                }
+	             
+	                $("#floatTable").show();
+	            }else {
+	            	//$("#floatTable").removeAttr("style");
+	            	$("#floatTable").css({
+	                    top: _top_
+	                }); 
+	            	//element.show();
+	                $("#floatTable").hide();
+	            }
+	        });
+	 };
+   	 return $(this).each(function() {
+       	 position($(this));                         
+     });
+	};
+})(jQuery);
+

@@ -1,0 +1,4 @@
+.info-box{background:#fff;border:1px solid #e6e6e6;border-radius:6px;margin:20px 0;padding:20px}
+.info-hd{font-size:18px;color:#3b99fc;margin-bottom:16px}
+.info-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.info-card{display:block;height:100px;background:#f5f7fa;border:1px solid #e6e6e6;text-align:center;line-height:100px;text-decoration:none;color:#3b99fc;border-radius:6px}
