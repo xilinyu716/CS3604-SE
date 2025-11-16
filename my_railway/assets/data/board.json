@@ -1,7 +1,0 @@
-[
-  {"station":"北京","dir":"depart","train":"G1","to":"上海虹桥","start":"08:00","arrive":"12:25","status":"正点"},
-  {"station":"北京","dir":"depart","train":"G7","to":"上海虹桥","start":"09:00","arrive":"13:20","status":"晚点10分钟"},
-  {"station":"北京西","dir":"depart","train":"G502","to":"重庆西","start":"07:10","arrive":"18:45","status":"正点"},
-  {"station":"上海虹桥","dir":"arrive","train":"G1","from":"北京","start":"08:00","arrive":"12:25","status":"正点"},
-  {"station":"上海虹桥","dir":"arrive","train":"G7","from":"北京南","start":"09:00","arrive":"13:20","status":"晚点10分钟"}
-]
