@@ -38,7 +38,17 @@ body{margin:0;font-family:-apple-system,blinkmacsystemfont,Segoe UI,Roboto,Helve
 .icon-huochepiao{background:#3b99fc}
 .icon-user{background:#86bffb}
 .icon-cycx{background:#64a6ff}
+.icon-place{background:#f0b90b}
+.icon-time{background:#888}
+.icon-service{background:#8bc34a}
+.icon-order{background:#ff7043}
+.icon-help{background:#9c27b0}
 .station-suggest{position:absolute;left:25px;right:25px;top:190px;background:#fff;border:1px solid #dedede;display:none;z-index:50}
 .station-suggest ul{list-style:none;margin:0;padding:0}
 .station-suggest li{height:30px;line-height:30px;padding:0 10px;cursor:pointer}
 .station-suggest li:hover{background:#f5f7fa}
+.toast{position:fixed;top:20px;right:20px;min-width:220px;max-width:360px;padding:10px 14px;border-radius:4px;color:#fff;background:rgba(60,60,60,.9);box-shadow:0 4px 12px rgba(0,0,0,.12);z-index:200}
+.toast.info{background:#3b99fc}
+.toast.success{background:#2fb06b}
+.toast.error{background:#ff7043}
+.toast.hide{opacity:0;transition:opacity .3s}

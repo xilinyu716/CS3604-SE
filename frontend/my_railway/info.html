@@ -28,15 +28,91 @@
       <div class="info-hd">信息查询</div>
       <div class="info-grid">
         <a class="info-card" href="tickets.html">余票查询</a>
-        <a class="info-card" href="#">正晚点</a>
-        <a class="info-card" href="#">起售时间</a>
-        <a class="info-card" href="#">车站大屏</a>
-        <a class="info-card" href="#">代售点</a>
-        <a class="info-card" href="#">时刻表</a>
+        <a class="info-card" href="#onTime">正晚点</a>
+        <a class="info-card" href="#saleTime">起售时间</a>
+        <a class="info-card" href="#board">车站大屏</a>
+        <a class="info-card" href="#agency">代售点</a>
+        <a class="info-card" href="#schedule">时刻表</a>
+      </div>
+      <div id="onTime" style="margin-top:20px">
+        <div class="info-hd">正晚点查询</div>
+        <div class="query-form">
+          <div class="form-row"><label>车次</label><input id="otTrain" type="text" placeholder="如 G1" /></div>
+          <div class="form-row"><label>日期</label><input id="otDate" type="date" /></div>
+          <div class="form-actions"><button id="otBtn" class="btn-primary">查询</button></div>
+        </div>
+        <div id="otResult" class="result-list"></div>
+      </div>
+      <div id="saleTime" style="margin-top:20px">
+        <div class="info-hd">起售时间查询</div>
+        <div class="query-form">
+          <div class="form-row"><label>车站</label><input id="stStation" type="text" placeholder="简拼/全拼/汉字" list="stations_datalist" /></div>
+          <div class="form-actions"><button id="stBtn" class="btn-primary">查询</button></div>
+        </div>
+        <div id="stResult" class="result-list"></div>
+      </div>
+      <datalist id="stations_datalist"></datalist>
+      <div id="schedule" style="margin-top:20px">
+        <div class="info-hd">时刻表查询</div>
+        <div class="query-form">
+          <div class="form-row"><label>出发</label><input id="scFrom" type="text" placeholder="简拼/全拼/汉字" /></div>
+          <div class="form-row"><label>到达</label><input id="scTo" type="text" placeholder="简拼/全拼/汉字" /></div>
+          <div class="form-actions"><button id="scBtn" class="btn-primary">查询</button></div>
+        </div>
+        <div id="scResult" class="result-list"></div>
+      </div>
+      <div id="agency" style="margin-top:20px">
+        <div class="info-hd">代售点查询</div>
+        <div class="query-form">
+          <div class="form-row"><label>城市/车站</label><input id="agKey" type="text" placeholder="如 北京 / 北京西" /></div>
+          <div class="form-actions"><button id="agBtn" class="btn-primary">查询</button></div>
+        </div>
+        <div id="agResult" class="result-list"></div>
+      </div>
+      <div id="board" style="margin-top:20px">
+        <div class="info-hd">车站大屏</div>
+        <div class="query-form">
+          <div class="form-row"><label>车站</label><input id="bdStation" type="text" placeholder="简拼/全拼/汉字" list="stations_datalist" /></div>
+          <div class="form-row"><label>方向</label>
+            <div class="filter-group">
+              <span class="pill active" data-dir="depart">出发</span>
+              <span class="pill" data-dir="arrive">到达</span>
+            </div>
+          </div>
+          <div class="form-row"><label>状态</label>
+            <div class="filter-group">
+              <span class="pill active" data-status="all">全部</span>
+              <span class="pill" data-status="ok">正点</span>
+              <span class="pill" data-status="delay">晚点</span>
+            </div>
+          </div>
+          <div class="form-row"><label>时间段</label>
+            <input id="bdStart" type="time" />
+            <span style="width:30px;text-align:center;color:#999">至</span>
+            <input id="bdEnd" type="time" />
+          </div>
+          <div class="form-row"><label>刷新</label>
+            <div class="filter-group">
+              <span class="pill active" data-auto="on">自动</span>
+              <span class="pill" data-auto="off">手动</span>
+            </div>
+          </div>
+          <div class="form-row"><label>仅未来</label>
+            <div class="filter-group">
+              <span class="pill active" data-future="off">关闭</span>
+              <span class="pill" data-future="on">开启</span>
+            </div>
+          </div>
+          <div class="form-actions"><button id="bdBtn" class="btn-primary">查看</button></div>
+        </div>
+        <div id="bdUpdate" class="update-tip"></div>
+        <div id="bdResult" class="result-list"></div>
       </div>
     </div>
   </main>
   <footer class="footer"><div class="container"><div class="footer-copy">中国铁路12306</div></div></footer>
+  <script src="assets/scripts/stations.js"></script>
+  <script src="assets/scripts/info.js"></script>
   <script src="assets/scripts/main.js"></script>
 </body>
 </html>

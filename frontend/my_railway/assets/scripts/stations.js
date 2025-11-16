@@ -15,7 +15,6 @@ window.STATIONS = [
   {code:'CWQ',name:'长沙南',pinyin:'changshanan'},
   {code:'GIW',name:'贵阳',pinyin:'guiyang'},
   {code:'KQW',name:'贵阳北',pinyin:'guiyangbei'},
-  {code:'GIW',name:'贵阳',pinyin:'guiyang'},
   {code:'CQW',name:'重庆',pinyin:'chongqing'},
   {code:'CXW',name:'重庆西',pinyin:'chongqingxi'},
   {code:'CUW',name:'重庆北',pinyin:'chongqingbei'},
@@ -40,13 +39,36 @@ window.STATIONS = [
   {code:'SYT',name:'沈阳',pinyin:'shenyang'},
   {code:'SBT',name:'沈阳北',pinyin:'shenyangbei'},
   {code:'JNK',name:'济南',pinyin:'jinan'},
-  {code:'JNK',name:'济南',pinyin:'jinan'},
   {code:'JNG',name:'济南西',pinyin:'jinanxi'},
   {code:'DLT',name:'大连',pinyin:'dalian'},
-  {code:'DLT',name:'大连',pinyin:'dalian'},
-  {code:'WHN',name:'武汉',pinyin:'wuhan'},
   {code:'WHN',name:'武汉',pinyin:'wuhan'},
   {code:'XCN',name:'深圳',pinyin:'shenzhen'},
   {code:'IOQ',name:'深圳北',pinyin:'shenzhenbei'},
   {code:'ZHQ',name:'珠海',pinyin:'zhuhai'}
 ]
+
+;(function(){
+  try{
+    var xhr = new XMLHttpRequest()
+    xhr.open('GET','assets/data/stations.json',true)
+    xhr.onreadystatechange = function(){
+      if(xhr.readyState===4 && xhr.status===200){
+        try{
+          var data = JSON.parse(xhr.responseText)
+          if(Array.isArray(data)){
+            var seen = {}
+            var merged = data.concat(window.STATIONS||[]).filter(function(s){
+              var key = (s.code||'')+'|'+(s.name||'')
+              if(!s.code || !s.name || !s.pinyin) return false
+              if(seen[key]) return false
+              seen[key] = true
+              return true
+            })
+            window.STATIONS = merged
+          }
+        }catch(e){}
+      }
+    }
+    xhr.send()
+  }catch(e){}
+})()

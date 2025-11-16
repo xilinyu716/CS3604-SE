@@ -1,4 +1,24 @@
 ;(function(){
+  function createToast(){
+    var el = document.getElementById('j_toast')
+    if(!el){
+      el = document.createElement('div')
+      el.id = 'j_toast'
+      el.className = 'toast hide'
+      document.body.appendChild(el)
+    }
+    return el
+  }
+  function showToast(msg, type){
+    try{
+      var el = createToast()
+      el.className = 'toast '+(type||'info')
+      el.textContent = msg
+      setTimeout(function(){ el.classList.add('hide') }, 2600)
+      setTimeout(function(){ el.className = 'toast hide'; el.textContent='' }, 3200)
+    }catch(e){ alert(msg) }
+  }
+  window.showToast = showToast
   var navLinks = document.querySelectorAll('.nav a')
   var path = location.pathname.split('/').pop() || 'index.html'
   Array.prototype.forEach.call(navLinks,function(a){
@@ -92,6 +112,20 @@
       var a = document.getElementById('fromStation')
       var b = document.getElementById('toStation')
       if(a && b){ var t = a.value; a.value = b.value; b.value = t }
+    })
+  }
+  var goBtn = document.getElementById('goQuery')
+  if(goBtn){
+    goBtn.addEventListener('click',function(){
+      try{
+        var g = document.getElementById('goDate')
+        var b = document.getElementById('backDate')
+        var gt = g && g.value ? new Date(g.value).getTime() : 0
+        var bt = b && b.value ? new Date(b.value).getTime() : 0
+        if(bt && gt && bt<gt){
+          showToast('返程日期不能小于出发日期','error')
+        }
+      }catch(e){}
     })
   }
 })()
