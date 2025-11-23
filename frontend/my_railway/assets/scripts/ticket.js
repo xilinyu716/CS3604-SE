@@ -181,9 +181,35 @@
       Object.keys(it.seats).forEach(function(k){ total += it.seats[k] })
       if(total<=0){ btn.disabled = true }
       btn.addEventListener('click',function(){
-        var user = sessionStorage.getItem('user')
-        if(!user){ window.location.href = 'login.html'; return }
-        if(window.showToast){ window.showToast('已加入预订清单','success') }
+        var phone = sessionStorage.getItem('user')
+        var token = sessionStorage.getItem('token')
+        if(!phone || !token){ window.location.href = 'login.html'; return }
+        var API = window.API_BASE || 'http://localhost:5000'
+        function authFetch(url, opts){
+          var h = (opts && opts.headers) || {}
+          h['Content-Type'] = h['Content-Type'] || 'application/json'
+          h['Authorization'] = 'Bearer '+token
+          var o = opts || {}
+          o.headers = h
+          return fetch(url, o).then(function(r){ return r.json() })
+        }
+        authFetch(API+'/api/passengers', { method:'GET' }).then(function(res){
+          var list = res && res.passengers
+          if(!list || list.length===0){ if(window.showToast){ window.showToast('请先添加乘车人','error') }; window.location.href = 'account.html#passengers'; return }
+          var p = list[0]
+          function mapSeat(seats){
+            if(seats['二等座']>0) return 'second'
+            if(seats['一等座']>0) return 'first'
+            if(seats['商务座']>0) return 'business'
+            return 'second'
+          }
+          var seatType = mapSeat(it.seats || {})
+          var payload = { trainId: it.train, passengers: [{ name: p.name, idCard: p.id_card, seatType: seatType }], contactPhone: phone }
+          authFetch(API+'/api/orders', { method:'POST', body: JSON.stringify(payload) }).then(function(r){
+            if(r && r.order && r.order.id){ if(window.showToast){ window.showToast('订单已创建','success') }; window.location.href = 'account.html#orders' }
+            else{ if(window.showToast){ window.showToast((r && r.error)||'预订失败','error') } }
+          }).catch(function(){ if(window.showToast){ window.showToast('网络错误','error') } })
+        }).catch(function(){ if(window.showToast){ window.showToast('网络错误','error') } })
       })
       d.appendChild(left)
       d.appendChild(mid)

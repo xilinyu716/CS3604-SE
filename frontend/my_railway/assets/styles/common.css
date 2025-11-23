@@ -56,6 +56,8 @@ body{margin:0;font-family:-apple-system,blinkmacsystemfont,Segoe UI,Roboto,Helve
 .mega-nav .nav-link,.mega-nav .nav-item{display:inline-block;margin:0 12px;color:#666;text-decoration:none;height:80px;line-height:80px;position:relative}
 .mega-nav .nav-link.active,.mega-nav .nav-link:hover,.mega-nav .nav-item:hover{color:#3b99fc}
 .mega-panel{position:absolute;left:0;right:0;top:80px;background:#fff;border-top:1px solid #e6e6e6;border-bottom:1px solid #e6e6e6;box-shadow:0 6px 16px rgba(0,0,0,.08);display:none;z-index:120}
+.mega-panel[aria-hidden="true"]{visibility:hidden;opacity:0;transition:opacity .12s ease}
+.mega-panel[aria-hidden="false"]{visibility:visible;opacity:1;transition:opacity .12s ease}
 .mega-panel .panel{width:1190px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:24px;padding:16px 0}
 .panel-col{padding:0 12px}
 .panel-title{font-weight:600;color:#333;margin-bottom:8px}

@@ -252,7 +252,12 @@
     var name = document.getElementById('uName').value.trim()
     var email = document.getElementById('uEmail').value.trim()
     authFetch(API+'/api/users/profile', { method:'PUT', body: JSON.stringify({ name:name, email:email }) }).then(function(res){
-      if(res && res.user){ if(window.showToast) window.showToast('保存成功','success') } else { if(window.showToast) window.showToast((res && res.error)||'保存失败','error') }
+      if(res && res.user){
+        sessionStorage.setItem('userName', res.user.name || sessionStorage.getItem('user') || '')
+        var nav = document.querySelector('.nav')
+        if(nav){ var registerLink = nav.querySelector('a[href="account.html"]') || nav.querySelector('a[href="register.html"]'); if(registerLink){ registerLink.textContent = '欢迎，'+(res.user.name || sessionStorage.getItem('user')) } }
+        if(window.showToast) window.showToast('保存成功','success')
+      } else { if(window.showToast) window.showToast((res && res.error)||'保存失败','error') }
     }).catch(function(){ if(window.showToast) window.showToast('网络错误','error') })
   }
   function bind(){

@@ -20,7 +20,9 @@
         .then(function(res){
           if(res && res.success && res.data){
             var userPhone = (res.data.user && res.data.user.phone) || phone
+            var userName = (res.data.user && res.data.user.name) || name || userPhone
             sessionStorage.setItem('user', userPhone)
+            sessionStorage.setItem('userName', userName)
             sessionStorage.setItem('token', res.data.token || '')
             window.location.href = 'account.html'
           }else{ show((res && res.message)||'注册失败','error') }

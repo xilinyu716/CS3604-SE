@@ -78,11 +78,14 @@
       var p = document.getElementById(id)
       if(!p) return
       p.style.display = 'block'
+      p.setAttribute('aria-hidden','false')
       if(item){ item.setAttribute('aria-expanded','true') }
+      var firstLink = p.querySelector('a')
+      if(firstLink){ firstLink.focus() }
     }
     function closePanels(){
       var ps = document.querySelectorAll('.mega-panel')
-      Array.prototype.forEach.call(ps,function(p){ p.style.display = 'none' })
+      Array.prototype.forEach.call(ps,function(p){ p.style.display = 'none'; p.setAttribute('aria-hidden','true') })
       var items = nav.querySelectorAll('.nav-item')
       Array.prototype.forEach.call(items,function(it){ it.setAttribute('aria-expanded','false') })
     }
@@ -94,6 +97,17 @@
           var expanded = it.getAttribute('aria-expanded')==='true'
           closePanels()
           if(!expanded){ openPanel(id, it) }
+        })
+        it.addEventListener('mouseenter',function(){
+          var id = it.getAttribute('aria-controls')
+          openPanel(id, it)
+        })
+        it.addEventListener('mouseleave',function(){
+          setTimeout(function(){
+            var p = document.getElementById(it.getAttribute('aria-controls'))
+            var rel = document.activeElement
+            if(p && !p.contains(rel)){ closePanels() }
+          }, 120)
         })
         it.addEventListener('keydown',function(e){
           var code = e.key
@@ -136,9 +150,23 @@
         })
       })
     }
-    bindNav()
+  bindNav()
   }
   buildMega()
+  ;(function(){
+    try{
+      var su = sessionStorage.getItem('user')
+      var st = sessionStorage.getItem('token')
+      var lu = localStorage.getItem('user')
+      var lt = localStorage.getItem('token')
+      var ln = localStorage.getItem('userName')
+      if((!su || !st) && lu && lt){
+        sessionStorage.setItem('user', lu)
+        sessionStorage.setItem('token', lt)
+        if(ln) sessionStorage.setItem('userName', ln)
+      }
+    }catch(e){}
+  })()
   var closeEl = document.querySelector('.search-down .close')
   if(closeEl){
     closeEl.addEventListener('click',function(){
@@ -169,6 +197,7 @@
     loginBtn.addEventListener('click',function(){
       var u = document.getElementById('loginUser')
       var p = document.getElementById('loginPwd')
+      var rm = document.getElementById('remember')
       var name = (u && u.value.trim()) || ''
       var pwd = (p && p.value.trim()) || ''
       if(name && pwd){
@@ -179,8 +208,11 @@
             .then(function(res){
               if(res && res.success && res.data){
                 var userPhone = (res.data.user && res.data.user.phone) || name
+                var userName = (res.data.user && res.data.user.name) || userPhone
                 sessionStorage.setItem('user', userPhone)
+                sessionStorage.setItem('userName', userName)
                 sessionStorage.setItem('token', res.data.token || '')
+                try{ if(rm && rm.checked){ localStorage.setItem('user', userPhone); localStorage.setItem('userName', userName); localStorage.setItem('token', res.data.token || '') } }catch(err){}
                 window.location.href = 'index.html'
               }else{
                 if(window.showToast){ window.showToast((res && res.message) || '登录失败','error') }
@@ -192,6 +224,7 @@
     })
   }
   var user = sessionStorage.getItem('user')
+  var userName = sessionStorage.getItem('userName')
   if(user){
     var nav = document.querySelector('.nav')
     if(nav){
@@ -202,14 +235,24 @@
         loginLink.addEventListener('click',function(e){
           e.preventDefault()
           sessionStorage.removeItem('user')
+          sessionStorage.removeItem('userName')
+          sessionStorage.removeItem('token')
+          try{ localStorage.removeItem('user'); localStorage.removeItem('userName'); localStorage.removeItem('token') }catch(err){}
           window.location.href = 'index.html'
         })
       }
       var registerLink = nav.querySelector('a[href="register.html"]')
       if(registerLink){
-        registerLink.textContent = '欢迎，'+user
+        registerLink.textContent = '欢迎，'+(userName || user)
         registerLink.setAttribute('href','account.html')
+        registerLink.setAttribute('title','进入个人中心')
       }
+      var mOrders = document.querySelector('#sideContentMember .form-row a[href="tickets.html"]')
+      if(mOrders){ mOrders.setAttribute('href','account.html#orders') }
+      var mProfile = document.querySelector('#sideContentMember .form-row a[href="register.html"]')
+      if(mProfile){ mProfile.setAttribute('href','account.html#profile') }
+      var svcMember = document.querySelector('.services a[href="register.html"]')
+      if(svcMember){ svcMember.setAttribute('href','account.html') }
     }
   }
   var tabLis = document.querySelectorAll('.search-tab-hd li')
