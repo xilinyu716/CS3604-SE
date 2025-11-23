@@ -1,0 +1,25 @@
+.account{display:flex;gap:24px;padding:24px 0}
+ .account-side{width:200px;border-right:1px solid #e6e8eb}
+ .account-side ul{list-style:none;margin:0;padding:0}
+ .account-side li{padding:10px 12px;cursor:pointer;color:#2e82ff}
+ .account-side li.active{background:#f2f6ff;color:#1a64d6}
+ .account-main{flex:1}
+ .section-hd{font-size:16px;font-weight:600;margin:8px 0 12px}
+ .filter-group{display:flex;gap:8px;align-items:center;margin-bottom:12px}
+ .list{list-style:none;margin:0;padding:0}
+ .list li{border:1px solid #e6e8eb;border-radius:6px;padding:10px 12px;margin-bottom:10px;display:flex;justify-content:space-between;align-items:center}
+ .pill{display:inline-block;padding:2px 8px;border-radius:999px;font-size:12px;background:#eef3ff;color:#2e82ff;margin-left:8px}
+ .pill.grey{background:#f5f5f7;color:#666}
+ .pill.green{background:#e9f9ee;color:#2fa25a}
+ .pill.red{background:#fdecec;color:#c53b23}
+ .form{border:1px solid #e6e8eb;border-radius:6px;padding:12px}
+ .form-row{display:flex;align-items:center;gap:8px;margin-bottom:10px}
+ .form-row label{width:80px;color:#333}
+ .form-actions{display:flex;gap:8px}
+ .pagination{display:flex;align-items:center;gap:8px;margin-top:8px}
+.btn-danger{background:#c53b23;color:#fff;border:0;border-radius:4px;padding:6px 10px}
+.queue-modal{position:fixed;left:0;top:0;right:0;bottom:0;background:rgba(0,0,0,.35);display:none;z-index:300;align-items:center;justify-content:center}
+.queue-box{width:380px;background:#fff;border-radius:8px;box-shadow:0 12px 24px rgba(0,0,0,.15);padding:16px}
+.queue-title{font-weight:600;margin-bottom:8px}
+.queue-time{font-size:14px;color:#333;margin:8px 0}
+.queue-actions{display:flex;gap:8px;justify-content:flex-end;margin-top:8px}

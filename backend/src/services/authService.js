@@ -22,7 +22,7 @@ class AuthService {
    * @param {Object} userData - User registration data
    * @returns {Promise<Object>} User object and JWT token
    */
-  async register({ phone, password, code, name, idCard }) {
+  async register({ phone, password, code, name, idCard, email }) {
     try {
       // Check if phone already exists
       const existingUser = await database.get(
@@ -53,16 +53,18 @@ class AuthService {
       // Create user
       const userId = generateUUID();
       await database.run(
-        `INSERT INTO users (id, phone, password_hash, name, id_card) 
-         VALUES (?, ?, ?, ?, ?)`,
-        [userId, phone, passwordHash, name || null, idCard || null]
+        `INSERT INTO users (id, phone, password_hash, name, id_card, email) 
+         VALUES (?, ?, ?, ?, ?, ?)`,
+        [userId, phone, passwordHash, name || null, idCard || null, email || null]
       );
 
       // Mark verification code as used
-      await database.run(
-        'UPDATE verification_codes SET used = TRUE WHERE phone = ? AND code = ? AND type = ?',
-        [phone, code, 'register']
-      );
+      if (code) {
+        await database.run(
+          'UPDATE verification_codes SET used = TRUE WHERE phone = ? AND code = ? AND type = ?',
+          [phone, code, 'register']
+        );
+      }
 
       // Generate JWT token
       const token = jwt.sign(
@@ -71,11 +73,7 @@ class AuthService {
         { expiresIn: '24h' }
       );
 
-      const user = {
-        id: userId,
-        phone,
-        name: name || null
-      };
+      const user = { id: userId, phone, name: name || null, email: email || null };
 
       return { success: true, user, token };
     } catch (error) {

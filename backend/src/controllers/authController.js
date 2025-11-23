@@ -39,7 +39,7 @@ const register = async (req, res) => {
       });
     }
 
-    const { phone, password, code, name, idCard } = req.body;
+    const { phone, password, code, name, idCard, email } = req.body;
     
     // Additional validation
     if (!validatePhone(phone)) {
@@ -56,17 +56,13 @@ const register = async (req, res) => {
       });
     }
 
-    const result = await authService.register({ phone, password, code, name, idCard });
+    const result = await authService.register({ phone, password, code, name, idCard, email });
     
     if (result.success) {
       res.status(201).json({ 
         success: true,
         message: '注册成功',
-        data: {
-          userId: result.user.id,
-          user: result.user, 
-          token: result.token
-        }
+        data: { userId: result.user.id, user: result.user, token: result.token }
       });
     } else {
       const statusCode = result.error === 'Phone number already registered.' ? 409 :

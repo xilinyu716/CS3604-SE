@@ -11,6 +11,7 @@ const router = express.Router();
 router.post('/signup', [
   body('phone').isMobilePhone('zh-CN').withMessage('Invalid phone number format'),
   body('password').isLength({ min: 6 }).withMessage('Password must be at least 6 characters'),
+  body('email').optional().isEmail().withMessage('Invalid email format'),
   body('code').optional().isLength({ min: 4, max: 6 }).withMessage('Invalid verification code'),
   body('name').optional().isLength({ min: 1 }).withMessage('Name cannot be empty'),
   body('idCard').optional().isLength({ min: 15, max: 18 }).withMessage('Invalid ID card format')

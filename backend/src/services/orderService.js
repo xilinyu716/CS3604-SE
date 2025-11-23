@@ -1,50 +1,47 @@
 const database = require('../config/database');
-const { generateUUID } = require('../utils');
+const { generateUUID, generateSeatNumber } = require('../utils');
 
 /**
  * Order service for order management and processing
  */
 class OrderService {
-  /**
-   * Create new order
-   * @param {Object} orderData - Order creation data
-   * @returns {Promise<Object>} Created order object
-   */
   async createOrder(orderData) {
-    const { userId, trainId, passengers, contactPhone } = orderData;
+    const { userId, trainId, passengers } = orderData;
     const orderId = generateUUID();
-    const totalAmount = passengers.length * 120; // Base price per passenger
+    const totalAmount = passengers.length * 120;
     const status = 'pending';
     const createdAt = new Date().toISOString();
-
     try {
-      const db = database.getConnection();
-      
-      // Insert order
-      const orderResult = await db.run(
-        `INSERT INTO orders (id, user_id, train_id, contact_phone, total_amount, status, created_at)
+      await database.run(
+        `INSERT INTO orders (id, user_id, train_id, seat_type, total_amount, status, created_at)
          VALUES (?, ?, ?, ?, ?, ?, ?)`,
-        [orderId, userId, trainId, contactPhone, totalAmount, status, createdAt]
+        [orderId, userId, trainId, (passengers[0] && passengers[0].seatType) || 'second', totalAmount, status, createdAt]
       );
-
-      // Insert order passengers
+      let idx = 0;
       for (const passenger of passengers) {
-        await db.run(
-          `INSERT INTO order_passengers (order_id, name, id_card, seat_type, seat_number)
+        const existing = await database.get(
+          'SELECT id FROM passengers WHERE user_id = ? AND id_card = ?',
+          [userId, passenger.idCard]
+        );
+        let passengerId = existing ? existing.id : null;
+        if (!passengerId) {
+          passengerId = generateUUID();
+          await database.run(
+            `INSERT INTO passengers (id, user_id, name, id_card, phone, passenger_type, created_at)
+             VALUES (?, ?, ?, ?, ?, ?, datetime('now'))`,
+            [passengerId, userId, passenger.name, passenger.idCard, null, 'adult']
+          );
+        }
+        const opId = generateUUID();
+        const seatNumber = generateSeatNumber(passenger.seatType, idx);
+        idx += 1;
+        await database.run(
+          `INSERT INTO order_passengers (id, order_id, passenger_id, seat_number, ticket_price)
            VALUES (?, ?, ?, ?, ?)`,
-          [orderId, passenger.name, passenger.idCard, passenger.seatType, `${passenger.seatType.toUpperCase()}${Math.floor(Math.random() * 100) + 1}`]
+          [opId, orderId, passengerId, seatNumber, 120]
         );
       }
-
-      return {
-        id: orderId,
-        trainId,
-        passengers,
-        contactPhone,
-        totalAmount,
-        status,
-        createdAt
-      };
+      return { id: orderId, trainId, passengers, totalAmount, status, createdAt };
     } catch (error) {
       console.error('Order creation error:', error);
       throw new Error('Failed to create order');
@@ -60,28 +57,21 @@ class OrderService {
   async getUserOrders(userId, queryParams) {
     const { page = 1, limit = 10, status } = queryParams;
     const offset = (page - 1) * limit;
-
     try {
-      const db = database.getConnection();
-      
       let whereClause = 'WHERE user_id = ?';
       let params = [userId];
-      
       if (status) {
         whereClause += ' AND status = ?';
         params.push(status);
       }
-
-      const orders = await db.all(
+      const orders = await database.all(
         `SELECT * FROM orders ${whereClause} ORDER BY created_at DESC LIMIT ? OFFSET ?`,
         [...params, limit, offset]
       );
-
-      const totalResult = await db.get(
+      const totalResult = await database.get(
         `SELECT COUNT(*) as total FROM orders ${whereClause}`,
         params
       );
-
       return {
         orders,
         pagination: {
@@ -105,26 +95,18 @@ class OrderService {
    */
   async getOrderDetails(orderId, userId) {
     try {
-      const db = database.getConnection();
-      
-      const order = await db.get(
+      const order = await database.get(
         'SELECT * FROM orders WHERE id = ? AND user_id = ?',
         [orderId, userId]
       );
-
       if (!order) {
         throw new Error('Order not found');
       }
-
-      const passengers = await db.all(
+      const passengers = await database.all(
         'SELECT * FROM order_passengers WHERE order_id = ?',
         [orderId]
       );
-
-      return {
-        ...order,
-        passengers
-      };
+      return { ...order, passengers };
     } catch (error) {
       console.error('Get order details error:', error);
       throw new Error('Failed to retrieve order details');
@@ -139,36 +121,23 @@ class OrderService {
    */
   async payOrder(orderId, paymentData) {
     const { userId, paymentMethod } = paymentData;
-
     try {
-      const db = database.getConnection();
-      
-      const order = await db.get(
+      const order = await database.get(
         'SELECT * FROM orders WHERE id = ? AND user_id = ?',
         [orderId, userId]
       );
-
       if (!order) {
         throw new Error('Order not found');
       }
-
       if (order.status !== 'pending') {
         throw new Error('Order cannot be paid');
       }
-
       const paidAt = new Date().toISOString();
-      
-      await db.run(
-        'UPDATE orders SET status = ?, paid_at = ? WHERE id = ?',
-        ['paid', paidAt, orderId]
+      await database.run(
+        'UPDATE orders SET status = ?, paid_at = ?, payment_method = ? WHERE id = ?',
+        ['paid', paidAt, paymentMethod, orderId]
       );
-
-      return {
-        orderId,
-        status: 'paid',
-        paymentMethod,
-        paidAt
-      };
+      return { orderId, status: 'paid', paymentMethod, paidAt };
     } catch (error) {
       console.error('Pay order error:', error);
       throw new Error('Failed to process payment');
@@ -184,34 +153,21 @@ class OrderService {
    */
   async cancelOrder(orderId, userId, reason) {
     try {
-      const db = database.getConnection();
-      
-      const order = await db.get(
+      const order = await database.get(
         'SELECT * FROM orders WHERE id = ? AND user_id = ?',
         [orderId, userId]
       );
-
       if (!order) {
         throw new Error('Order not found');
       }
-
       if (order.status === 'cancelled') {
         throw new Error('Order already cancelled');
       }
-
-      const cancelledAt = new Date().toISOString();
-      
-      await db.run(
-        'UPDATE orders SET status = ?, cancelled_at = ? WHERE id = ?',
-        ['cancelled', cancelledAt, orderId]
+      await database.run(
+        'UPDATE orders SET status = ? WHERE id = ?',
+        ['cancelled', orderId]
       );
-
-      return {
-        orderId,
-        status: 'cancelled',
-        reason,
-        cancelledAt
-      };
+      return { orderId, status: 'cancelled', reason };
     } catch (error) {
       console.error('Cancel order error:', error);
       throw new Error('Failed to cancel order');

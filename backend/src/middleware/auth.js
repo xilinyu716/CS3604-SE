@@ -1,4 +1,5 @@
 const jwt = require('jsonwebtoken');
+const authService = require('../services/authService');
 
 /**
  * Authentication middleware to verify JWT tokens
@@ -8,15 +9,16 @@ const jwt = require('jsonwebtoken');
  */
 const authMiddleware = (req, res, next) => {
   try {
-    const token = req.header('Authorization')?.replace('Bearer ', '');
-    
+    const header = req.header('Authorization');
+    const token = header ? header.replace('Bearer ', '') : null;
     if (!token) {
       return res.status(401).json({ error: 'Access denied. No token provided.' });
     }
-
-    // TODO: Implement JWT verification logic
-    // For now, just mock the user data
-    req.user = { id: 1, phone: '13800138000' };
+    const decoded = authService.verifyToken(token);
+    if (!decoded || !decoded.userId) {
+      return res.status(401).json({ error: 'Invalid token.' });
+    }
+    req.user = { id: decoded.userId, phone: decoded.phone };
     next();
   } catch (error) {
     console.error('Auth middleware error:', error);

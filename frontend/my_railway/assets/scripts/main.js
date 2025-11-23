@@ -20,12 +20,125 @@
     }catch(e){ alert(msg) }
   }
   window.showToast = showToast
-  var navLinks = document.querySelectorAll('.nav a')
-  var path = location.pathname.split('/').pop() || 'index.html'
-  Array.prototype.forEach.call(navLinks,function(a){
-    var href = a.getAttribute('href')
-    if(href === path) a.classList.add('active')
-  })
+  function buildMega(){
+    var nav = document.querySelector('.nav')
+    if(!nav) return
+    if(nav.getAttribute('data-mega')==='1') return
+    nav.setAttribute('data-mega','1')
+    nav.className = 'nav mega-nav'
+    nav.innerHTML = ''
+    var html = ''
+    html += '<a href="index.html" class="nav-link" role="menuitem" tabindex="0">首页</a>'
+    html += '<div class="nav-item" role="menuitem" tabindex="0" aria-haspopup="true" aria-expanded="false" aria-controls="panel-tickets">车票</div>'
+    html += '<div class="nav-item" role="menuitem" tabindex="0" aria-haspopup="true" aria-expanded="false" aria-controls="panel-member">我的12306</div>'
+    html += '<a href="info.html" class="nav-link" role="menuitem" tabindex="0">信息查询</a>'
+    html += '<a href="help.html" class="nav-link" role="menuitem" tabindex="0">出行指南</a>'
+    html += '<a href="register.html" class="nav-link" role="menuitem" tabindex="0">注册</a>'
+    html += '<a href="login.html" class="nav-link" role="menuitem" tabindex="0">登录</a>'
+    nav.innerHTML = html
+    var panel = document.createElement('div')
+    panel.className = 'mega-panel'
+    panel.id = 'panel-tickets'
+    panel.setAttribute('role','menu')
+    panel.innerHTML = '<div class="panel">'
+      + '<div class="panel-col"><div class="panel-title">购买</div>'
+      + '<a href="#" role="menuitem" data-link="tickets.html">单程</a>'
+      + '<a href="#" role="menuitem" data-link="tickets.html?type=wf">往返</a>'
+      + '<a href="#" role="menuitem" data-link="tickets.html?type=lc">中转换乘</a>'
+      + '</div>'
+      + '<div class="panel-col"><div class="panel-title">变更</div>'
+      + '<a href="#" role="menuitem" data-link="account.html#orders">退票</a>'
+      + '<a href="#" role="menuitem" data-link="account.html#orders">改签</a>'
+      + '</div>'
+      + '<div class="panel-col"><div class="panel-title">其他</div>'
+      + '<a href="#" role="menuitem" data-link="info.html">正晚点</a>'
+      + '<a href="#" role="menuitem" data-link="info.html">起售时间</a>'
+      + '</div>'
+      + '</div>'
+    document.querySelector('.header').appendChild(panel)
+    var panel2 = document.createElement('div')
+    panel2.className = 'mega-panel'
+    panel2.id = 'panel-member'
+    panel2.setAttribute('role','menu')
+    panel2.innerHTML = '<div class="panel">'
+      + '<div class="panel-col"><div class="panel-title">我的服务</div>'
+      + '<a href="#" role="menuitem" data-link="account.html#orders">我的订单</a>'
+      + '<a href="#" role="menuitem" data-link="account.html#passengers">乘车人</a>'
+      + '<a href="#" role="menuitem" data-link="account.html#profile">个人资料</a>'
+      + '</div>'
+      + '</div>'
+    document.querySelector('.header').appendChild(panel2)
+    var path = location.pathname.split('/').pop() || 'index.html'
+    var navLinks = nav.querySelectorAll('.nav-link')
+    Array.prototype.forEach.call(navLinks,function(a){
+      var href = a.getAttribute('href')
+      if(href === path) a.classList.add('active')
+    })
+    function openPanel(id, item){
+      var p = document.getElementById(id)
+      if(!p) return
+      p.style.display = 'block'
+      if(item){ item.setAttribute('aria-expanded','true') }
+    }
+    function closePanels(){
+      var ps = document.querySelectorAll('.mega-panel')
+      Array.prototype.forEach.call(ps,function(p){ p.style.display = 'none' })
+      var items = nav.querySelectorAll('.nav-item')
+      Array.prototype.forEach.call(items,function(it){ it.setAttribute('aria-expanded','false') })
+    }
+    function bindNav(){
+      var items = nav.querySelectorAll('.nav-item')
+      Array.prototype.forEach.call(items,function(it){
+        it.addEventListener('click',function(){
+          var id = it.getAttribute('aria-controls')
+          var expanded = it.getAttribute('aria-expanded')==='true'
+          closePanels()
+          if(!expanded){ openPanel(id, it) }
+        })
+        it.addEventListener('keydown',function(e){
+          var code = e.key
+          if(code==='Enter' || code===' ' || code==='ArrowDown'){
+            e.preventDefault()
+            closePanels()
+            openPanel(it.getAttribute('aria-controls'), it)
+          }
+          if(code==='Escape'){
+            closePanels()
+          }
+          if(code==='ArrowRight' || code==='ArrowLeft'){
+            var all = nav.querySelectorAll('.nav-link, .nav-item')
+            var arr = Array.prototype.slice.call(all)
+            var idx = arr.indexOf(it)
+            var next = code==='ArrowRight' ? idx+1 : idx-1
+            if(next>=0 && next<arr.length){ arr[next].focus() }
+          }
+        })
+      })
+      document.addEventListener('click',function(e){
+        var inside = e.target.closest('.mega-panel') || e.target.closest('.nav-item')
+        if(!inside){ closePanels() }
+      })
+      var links = document.querySelectorAll('.mega-panel a')
+      Array.prototype.forEach.call(links,function(a){
+        a.addEventListener('click',function(e){
+          if(e) e.preventDefault()
+          var href = a.getAttribute('data-link')
+          if(href){ window.location.href = href }
+        })
+        a.setAttribute('tabindex','0')
+        a.addEventListener('keydown',function(e){
+          var k = e.key
+          if(k==='Enter' || k===' '){
+            e.preventDefault()
+            var href = a.getAttribute('data-link')
+            if(href){ window.location.href = href }
+          }
+        })
+      })
+    }
+    bindNav()
+  }
+  buildMega()
   var closeEl = document.querySelector('.search-down .close')
   if(closeEl){
     closeEl.addEventListener('click',function(){
@@ -95,7 +208,7 @@
       var registerLink = nav.querySelector('a[href="register.html"]')
       if(registerLink){
         registerLink.textContent = '欢迎，'+user
-        registerLink.setAttribute('href','#')
+        registerLink.setAttribute('href','account.html')
       }
     }
   }

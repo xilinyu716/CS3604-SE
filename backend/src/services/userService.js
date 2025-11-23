@@ -1,4 +1,4 @@
-const Database = require('../config/database');
+const database = require('../config/database');
 
 /**
  * User service for user profile management
@@ -11,10 +11,8 @@ class UserService {
    */
   async getUserProfile(userId) {
     try {
-      const db = Database.getInstance();
-      
-      const user = await db.get(
-        'SELECT id, name, email, phone, avatar, created_at FROM users WHERE id = ?',
+      const user = await database.get(
+        'SELECT id, name, email, phone, created_at FROM users WHERE id = ?',
         [userId]
       );
 
@@ -22,14 +20,7 @@ class UserService {
         throw new Error('User not found');
       }
 
-      return {
-        id: user.id,
-        name: user.name,
-        email: user.email,
-        phone: user.phone,
-        avatar: user.avatar,
-        createdAt: user.created_at
-      };
+      return { id: user.id, name: user.name, email: user.email, phone: user.phone, createdAt: user.created_at };
     } catch (error) {
       console.error('Get user profile error:', error);
       throw error;
@@ -44,15 +35,12 @@ class UserService {
    */
   async updateUserProfile(userId, profileData) {
     try {
-      const db = Database.getInstance();
-      
-      // Check if user exists
-      const existingUser = await db.get('SELECT id FROM users WHERE id = ?', [userId]);
+      const existingUser = await database.get('SELECT id FROM users WHERE id = ?', [userId]);
       if (!existingUser) {
         throw new Error('User not found');
       }
 
-      const { name, email, avatar } = profileData;
+      const { name, email } = profileData;
       const updateFields = [];
       const updateValues = [];
 
@@ -64,18 +52,13 @@ class UserService {
         updateFields.push('email = ?');
         updateValues.push(email);
       }
-      if (avatar !== undefined) {
-        updateFields.push('avatar = ?');
-        updateValues.push(avatar);
-      }
-
       if (updateFields.length === 0) {
         throw new Error('No fields to update');
       }
 
       updateValues.push(userId);
 
-      await db.run(
+      await database.run(
         `UPDATE users SET ${updateFields.join(', ')}, updated_at = datetime('now') WHERE id = ?`,
         updateValues
       );
