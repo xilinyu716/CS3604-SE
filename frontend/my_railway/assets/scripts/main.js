@@ -1,5 +1,5 @@
 ;(function(){
-  window.API_BASE = window.API_BASE || 'http://localhost:5000'
+  window.API_BASE = window.API_BASE || 'http://localhost:5001'
   function createToast(){
     var el = document.getElementById('j_toast')
     if(!el){
@@ -90,6 +90,10 @@
       Array.prototype.forEach.call(items,function(it){ it.setAttribute('aria-expanded','false') })
     }
     function bindNav(){
+      var hoveringPanel = false
+      var hoveringItem = false
+      var pendingClose = null
+      var closeDelay = 180
       var items = nav.querySelectorAll('.nav-item')
       Array.prototype.forEach.call(items,function(it){
         it.addEventListener('click',function(){
@@ -99,15 +103,15 @@
           if(!expanded){ openPanel(id, it) }
         })
         it.addEventListener('mouseenter',function(){
+          hoveringItem = true
+          if(pendingClose){ clearTimeout(pendingClose) }
           var id = it.getAttribute('aria-controls')
           openPanel(id, it)
         })
         it.addEventListener('mouseleave',function(){
-          setTimeout(function(){
-            var p = document.getElementById(it.getAttribute('aria-controls'))
-            var rel = document.activeElement
-            if(p && !p.contains(rel)){ closePanels() }
-          }, 120)
+          hoveringItem = false
+          if(pendingClose){ clearTimeout(pendingClose) }
+          pendingClose = setTimeout(function(){ if(!hoveringPanel){ closePanels() } }, closeDelay)
         })
         it.addEventListener('keydown',function(e){
           var code = e.key
@@ -147,6 +151,22 @@
             var href = a.getAttribute('data-link')
             if(href){ window.location.href = href }
           }
+        })
+      })
+      var panels = document.querySelectorAll('.mega-panel')
+      Array.prototype.forEach.call(panels,function(p){
+        p.addEventListener('mouseenter',function(){
+          hoveringPanel = true
+          if(pendingClose){ clearTimeout(pendingClose) }
+          p.style.display='block'
+          p.setAttribute('aria-hidden','false')
+          var items2 = nav.querySelectorAll('.nav-item')
+          Array.prototype.forEach.call(items2,function(it){ if(it.getAttribute('aria-controls')===p.id){ it.setAttribute('aria-expanded','true') } })
+        })
+        p.addEventListener('mouseleave',function(){
+          hoveringPanel = false
+          if(pendingClose){ clearTimeout(pendingClose) }
+          pendingClose = setTimeout(function(){ if(!hoveringItem){ closePanels() } }, closeDelay)
         })
       })
     }

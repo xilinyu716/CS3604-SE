@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>找回密码 - 中国铁路12306</title>
+  <link rel="stylesheet" href="assets/styles/common.css" />
+  <link rel="stylesheet" href="assets/styles/login.css" />
+  <style>
+    .page-login #resetBox{width:min(860px,80vw);left:50%;top:50%;margin:0;transform:translate(-50%,-50%)}
+    .page-login #resetBox .login-account{padding:20px 60px}
+    .page-login #resetBox .login-item{height:40px;margin-bottom:20px}
+    .page-login #resetBox .login-item .input{height:40px;font-size:16px}
+    .page-login #resetBox .btn-primary,.page-login #resetBox .btn-secondary,.page-login #resetBox .btn-success{height:40px}
+    .page-login #resetBox .btn-submit{height:40px;background:#ff8000;color:#fff;border:none;border-radius:3px;cursor:pointer}
+    .page-login #resetBox .btn-submit:hover{background:rgba(255,128,0,.9)}
+    .page-login #resetBox .input[disabled]{color:#ff8000;background:#fafafa}
+    .page-login #resetBox .progress{display:flex;align-items:center;gap:2px;padding:10px 40px 0 40px}
+    .page-login #resetBox .progress .line{flex:1;height:8px;background:#e6e6e6;border-radius:4px;margin-top:-2px}
+    .page-login #resetBox .progress .step{display:flex;flex-direction:column;align-items:center;min-width:50px;color:#999}
+    .page-login #resetBox .progress .step .dot{width:20px;height:20px;border-radius:50%;background:#e6e6e6;box-shadow:0 0 0 3px #ddd}
+    .page-login #resetBox .progress .step .label{margin-top:8px;color:#666;font-size:14px}
+    .page-login #resetBox .progress .step.active .dot{background:#3b99fc;box-shadow:0 0 0 3px #3b99fc}
+    .page-login #resetBox .progress .step.active .label{color:#3b99fc;font-weight:600}
+    .page-login #resetBox .find-tabs{list-style:none;margin:0 60px;padding:0;display:flex;height:48px;border-radius:4px;overflow:hidden}
+    .page-login #resetBox .find-tabs li{flex:1;text-align:center;line-height:48px;color:#fff;background:#86bffb;cursor:pointer}
+    .page-login #resetBox .find-tabs li.active{background:#0f9ae0}
+    .page-login #resetBox .method-face,.page-login #resetBox .method-email{padding:20px 60px;text-align:center}
+    .page-login #resetBox .qr-box{width:180px;height:180px;margin:16px auto;border:8px solid #e6e6e6;border-radius:6px;background-image:linear-gradient(90deg,#f2f2f2 50%,transparent 50%),linear-gradient(#f2f2f2 50%,transparent 50%);background-size:20px 20px}
+  </style>
+</head>
+<body class="page-login">
+  <header class="header">
+    <div class="container">
+      <div class="header-left">
+        <a class="logo" href="index.html">中国铁路12306</a>
+      </div>
+      <div class="header-right">
+        <nav class="nav">
+          <a href="index.html">首页</a>
+          <a href="tickets.html">购票</a>
+          <a href="info.html">信息查询</a>
+          <a href="help.html">出行指南</a>
+          <a href="register.html">注册</a>
+          <a href="login.html">登录</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main class="content login-panel">
+    <div class="login-box" id="resetBox">
+      <ul class="find-tabs">
+        <li data-method="face">人脸找回</li>
+        <li data-method="phone" class="active">手机找回</li>
+        <li data-method="email">邮箱找回</li>
+      </ul>
+      <div class="progress">
+        <div class="step" data-index="1"><div class="dot"></div><div class="label">填写账户信息</div></div>
+        <div class="line"></div>
+        <div class="step" data-index="2"><div class="dot"></div><div class="label">获取验证码</div></div>
+        <div class="line"></div>
+        <div class="step" data-index="3"><div class="dot"></div><div class="label">设置新密码</div></div>
+        <div class="line"></div>
+        <div class="step" data-index="4"><div class="dot"></div><div class="label">完成</div></div>
+      </div>
+      <div class="method-face" id="methodFace" style="display:none">
+        <h3>人脸找回</h3>
+        <div>扫描二维码，使用 12306 APP 找回密码（模拟）</div>
+        <div class="qr-box"></div>
+      </div>
+      <div class="method-email" id="methodEmail" style="display:none">
+        <h3>邮箱找回</h3>
+        <div class="login-item"><span class="item-label">邮</span><input id="emailAddr" class="input" type="email" placeholder="请输入注册邮箱" /></div>
+        <div class="login-item"><span class="item-label">证</span><input id="emailIdType" class="input" type="text" placeholder="证件类型（示例：居民身份证）" /></div>
+        <div class="login-item"><span class="item-label">号</span><input id="emailIdNo" class="input" type="text" placeholder="证件号码" /></div>
+        <button id="emailSubmit" class="btn-submit" style="width:200px">提交</button>
+      </div>
+      <div class="login-account" id="step1">
+        <div class="login-item">
+          <span class="item-label">手</span>
+          <input id="fpPhone" class="input" type="text" placeholder="请输入已验证的手机号" />
+        </div>
+        <button id="fpSend" class="btn-submit w100">提交</button>
+      </div>
+      <div class="login-account" id="step2" style="display:none">
+        <div class="login-item">
+          <span class="item-label">手</span>
+          <input id="fpPhoneShow" class="input" type="text" disabled />
+        </div>
+        <div class="login-item">
+          <span class="item-label">码</span>
+          <input id="fpCode" class="input" type="text" placeholder="请输入手机验证码" />
+        </div>
+        <button id="fpNext" class="btn-primary w100">提交</button>
+        <div class="login-txt"><a href="#" id="fpResend">重新获取验证码</a></div>
+      </div>
+      <div class="login-account" id="step3" style="display:none">
+        <div class="login-item">
+          <span class="item-label">新</span>
+          <input id="fpNew" class="input" type="password" placeholder="不少于8位，含字母和数字" />
+        </div>
+        <div class="login-item">
+          <span class="item-label">确</span>
+          <input id="fpConfirm" class="input" type="password" placeholder="请再次输入新密码" />
+        </div>
+        <button id="fpSubmit" class="btn-success w100">提交</button>
+      </div>
+      <div class="login-account" id="step4" style="display:none">
+        <div class="login-code-success">
+          <h3>新密码设置成功，您可以使用新密码登录系统！</h3>
+        </div>
+        <a class="btn-primary w100" href="login.html">去登录</a>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-copy">中国铁路12306</div>
+    </div>
+  </footer>
+
+  <script src="assets/scripts/main.js"></script>
+  <script src="assets/scripts/forgot.js"></script>
+</body>
+</html>
