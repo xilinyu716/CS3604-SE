@@ -31,7 +31,9 @@ async function comparePassword(password, hash) {
  * Generate verification code
  */
 function generateVerificationCode() {
-  // In test environment, return predictable code
+  if (process.env.FORCE_CODE) {
+    return String(process.env.FORCE_CODE);
+  }
   if (process.env.NODE_ENV === 'test') {
     return '123456';
   }

@@ -4,7 +4,7 @@ const path = require('path')
 const url = require('url')
 
 const root = path.resolve(__dirname)
-const port = 5523
+const port = parseInt(process.env.FRONTEND_PORT || process.env.PORT || '5523', 10)
 
 const types = {
   '.html': 'text/html; charset=utf-8',
