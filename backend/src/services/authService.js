@@ -196,8 +196,8 @@ class AuthService {
         }
       }
 
-      // Generate verification code
-      const code = generateVerificationCode();
+      // Generate verification code (development uses 123456 for consistency)
+      const code = process.env.NODE_ENV === 'production' ? generateVerificationCode() : '123456';
       const expiresAt = getCodeExpirationTime(5); // 5 minutes
       const codeId = generateUUID();
 
