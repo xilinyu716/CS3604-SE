@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>餐饮服务 - 中国铁路12306</title>
+  <link rel="stylesheet" href="assets/styles/common.css" />
+  <link rel="stylesheet" href="assets/styles/dining.css" />
+</head>
+<body>
+  <header class="header">
+    <div class="container">
+      <div class="header-left">
+        <a class="logo" href="index.html">中国铁路12306</a>
+      </div>
+      <div class="header-right">
+        <nav class="nav">
+          <a href="index.html">首页</a>
+          <a href="tickets.html">购票</a>
+          <a href="info.html">信息查询</a>
+          <a href="dining.html" class="active">餐饮服务</a>
+          <a href="help.html">出行指南</a>
+          <a href="register.html">注册</a>
+          <a href="login.html">登录</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main class="content">
+    <section class="hero">
+      <div class="hero-text">带有温度的旅途配餐，享受星级的体验，家乡的味道</div>
+      <div class="search-bar">
+        <div class="search-item">
+          <input id="mealDate" type="date" />
+        </div>
+        <div class="search-item">
+          <input id="trainNo" type="text" placeholder="车次如 G1" />
+        </div>
+        <div class="search-item">
+          <input id="arriveStation" type="text" placeholder="到达站，如 上海" />
+        </div>
+        <div class="search-item">
+          <button id="loadMenu" class="btn-orange" type="button">搜索</button>
+        </div>
+      </div>
+      <div id="stationPicker" class="station-picker" aria-hidden="true"></div>
+    </section>
+    <section class="container dining-section">
+      <div class="form-row">
+        <label>送达座位</label>
+        <input id="deliverySeat" type="text" placeholder="如 3车05C" />
+      </div>
+      <div id="menuList" class="list"></div>
+      <div class="form-actions">
+        <button id="submitOrder" class="btn-primary" type="button">下单</button>
+      </div>
+    </section>
+  </main>
+
+  <script src="assets/scripts/main.js"></script>
+  <script src="assets/scripts/stations.js"></script>
+  <script src="assets/scripts/dining.js"></script>
+</body>
+</html>

@@ -32,6 +32,7 @@
     html += '<div class="nav-item" role="menuitem" tabindex="0" aria-haspopup="true" aria-expanded="false" aria-controls="panel-tickets">车票</div>'
     html += '<div class="nav-item" role="menuitem" tabindex="0" aria-haspopup="true" aria-expanded="false" aria-controls="panel-member">我的12306</div>'
     html += '<a href="info.html" class="nav-link" role="menuitem" tabindex="0">信息查询</a>'
+    html += '<a href="dining.html" class="nav-link" role="menuitem" tabindex="0">餐饮服务</a>'
     html += '<a href="help.html" class="nav-link" role="menuitem" tabindex="0">出行指南</a>'
     html += '<a href="register.html" class="nav-link" role="menuitem" tabindex="0">注册</a>'
     html += '<a href="login.html" class="nav-link" role="menuitem" tabindex="0">登录</a>'

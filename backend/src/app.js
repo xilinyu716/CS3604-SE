@@ -31,6 +31,7 @@ app.use('/api/trains', require('./routes/trains'));
 app.use('/api/orders', require('./routes/orders'));
 app.use('/api/passengers', require('./routes/passengers'));
 app.use('/api/users', require('./routes/users'));
+app.use('/api/catering', require('./routes/catering'));
 app.use('/confirmPassenger', require('./routes/confirm'));
 
 // Health check endpoint
