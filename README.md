@@ -121,3 +121,4 @@ Tests run against an in‑memory SQLite and do not require the server to listen 
 
 ## License
 MIT
+just test
