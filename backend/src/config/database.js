@@ -119,6 +119,30 @@ class Database {
         ticket_price REAL NOT NULL,
         FOREIGN KEY (order_id) REFERENCES orders (id) ON DELETE CASCADE,
         FOREIGN KEY (passenger_id) REFERENCES passengers (id)
+      )`,
+
+      // Catering orders table
+      `CREATE TABLE IF NOT EXISTS catering_orders (
+        id TEXT PRIMARY KEY,
+        user_id TEXT NOT NULL,
+        train_id TEXT NOT NULL,
+        delivery_seat TEXT,
+        total_amount REAL NOT NULL,
+        status TEXT DEFAULT 'pending',
+        created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+        FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE,
+        FOREIGN KEY (train_id) REFERENCES trains (id)
+      )`,
+
+      // Catering order items table
+      `CREATE TABLE IF NOT EXISTS catering_order_items (
+        id TEXT PRIMARY KEY,
+        order_id TEXT NOT NULL,
+        item_id TEXT NOT NULL,
+        name TEXT NOT NULL,
+        price REAL NOT NULL,
+        quantity INTEGER NOT NULL,
+        FOREIGN KEY (order_id) REFERENCES catering_orders (id) ON DELETE CASCADE
       )`
     ];
 
@@ -197,6 +221,67 @@ class Database {
            train.seat_info, train.travel_date]
         );
       }
+    }
+
+    const today = new Date().toISOString().split('T')[0];
+    const todayTrains = [
+      {
+        id: 'train-g104-'+today,
+        train_number: 'G104',
+        from_station: '北京南',
+        to_station: '上海虹桥',
+        departure_time: '09:10',
+        arrival_time: '13:40',
+        duration: '4小时30分',
+        train_type: 'high_speed',
+        seat_info: JSON.stringify({
+          business: { price: 1688, available: 8, total: 8 },
+          first: { price: 920, available: 40, total: 40 },
+          second: { price: 540, available: 180, total: 180 }
+        }),
+        travel_date: today
+      },
+      {
+        id: 'train-g2-'+today,
+        train_number: 'G2',
+        from_station: '北京南',
+        to_station: '上海虹桥',
+        departure_time: '07:00',
+        arrival_time: '11:32',
+        duration: '4小时32分',
+        train_type: 'high_speed',
+        seat_info: JSON.stringify({
+          business: { price: 1748, available: 10, total: 10 },
+          first: { price: 933, available: 50, total: 50 },
+          second: { price: 553, available: 200, total: 200 }
+        }),
+        travel_date: today
+      },
+      {
+        id: 'train-d312-'+today,
+        train_number: 'D312',
+        from_station: '北京',
+        to_station: '天津',
+        departure_time: '14:20',
+        arrival_time: '15:35',
+        duration: '1小时15分',
+        train_type: 'bullet',
+        seat_info: JSON.stringify({
+          first: { price: 69, available: 30, total: 30 },
+          second: { price: 54, available: 150, total: 150 }
+        }),
+        travel_date: today
+      }
+    ];
+
+    for (const train of todayTrains) {
+      await this.run(
+        `INSERT OR IGNORE INTO trains (id, train_number, from_station, to_station, departure_time, arrival_time, duration, train_type, seat_info, travel_date) 
+         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+        [train.id, train.train_number, train.from_station, train.to_station, 
+         train.departure_time, train.arrival_time, train.duration, train.train_type, 
+         train.seat_info, train.travel_date]
+      );
     }
   }
 

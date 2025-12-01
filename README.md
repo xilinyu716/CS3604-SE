@@ -1,4 +1,4 @@
-# 12306 Railway Booking Demo (CS3604-SE)
+# 12306 Railway Booking Demo (CS3604-SE) 
 
 A simplified, full‑stack demo of a railway ticketing system inspired by 12306. It includes a static frontend (HTML/CSS/vanilla JS) and a Node.js/Express backend with SQLite for persistence. The project demonstrates ticket search, user authentication, order creation and management, and frequent passenger management.
 

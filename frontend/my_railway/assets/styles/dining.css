@@ -1,0 +1,16 @@
+body { background: #f5f7fb; }
+.hero { position: relative; padding: 64px 0 32px; background: linear-gradient(120deg,#3b99fc,#86bffb); color: #fff; }
+.hero-text { text-align: center; font-size: 22px; line-height: 1.6; margin-bottom: 16px; }
+.search-bar { width: 960px; max-width: 92%; margin: 0 auto; display: flex; gap: 8px; background: rgba(255,255,255,0.95); border-radius: 6px; padding: 12px; }
+.search-item input { height: 36px; padding: 0 10px; border: 1px solid #d9d9d9; border-radius: 4px; }
+.btn-orange { background: #ff8c1a; color: #fff; border: none; height: 36px; padding: 0 18px; border-radius: 4px; cursor: pointer; }
+.station-picker { position: absolute; left: 50%; transform: translateX(-50%); top: 140px; width: 960px; max-width: 92%; background: #fff; box-shadow: 0 6px 16px rgba(0,0,0,0.12); border-radius: 6px; display: none; }
+.station-picker.show { display: block; }
+.station-picker .tabs { display: flex; gap: 4px; padding: 8px; border-bottom: 1px solid #eee; }
+.station-picker .tabs button { background: #f3f5f7; border: none; padding: 6px 10px; cursor: pointer; border-radius: 4px; }
+.station-picker .grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px; padding: 12px; }
+.station-picker .grid button { border: 1px solid #e6e6e6; background: #fff; padding: 6px 8px; cursor: pointer; border-radius: 4px; text-align: left; }
+.dining-section { padding: 16px; }
+.list .list-item { display: flex; align-items: center; justify-content: space-between; padding: 8px 12px; background: #fff; border: 1px solid #eee; border-radius: 6px; margin-bottom: 8px; }
+.item-name { font-weight: 500; }
+.item-price { color: #f60; margin-left: 12px; }
