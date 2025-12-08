@@ -119,6 +119,21 @@ class Database {
         ticket_price REAL NOT NULL,
         FOREIGN KEY (order_id) REFERENCES orders (id) ON DELETE CASCADE,
         FOREIGN KEY (passenger_id) REFERENCES passengers (id)
+      )`,
+
+      // Addresses table
+      `CREATE TABLE IF NOT EXISTS addresses (
+        id TEXT PRIMARY KEY,
+        user_id TEXT NOT NULL,
+        province TEXT NOT NULL,
+        city TEXT NOT NULL,
+        detail_address TEXT NOT NULL,
+        recipient_name TEXT NOT NULL,
+        recipient_phone TEXT NOT NULL,
+        is_default INTEGER DEFAULT 0,
+        created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+        updated_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+        FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE
       )`
     ];
 
