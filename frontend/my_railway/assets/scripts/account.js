@@ -19,7 +19,7 @@
     return true
   }
   function switchTab(key){
-    var tabs = ['orders','passengers','profile']
+    var tabs = ['orders','passengers','addresses','profile']
     for(var i=0;i<tabs.length;i++){
       var el = document.getElementById('tab-'+tabs[i])
       if(el) el.style.display = tabs[i]===key ? 'block' : 'none'
@@ -260,6 +260,158 @@
       } else { if(window.showToast) window.showToast((res && res.error)||'保存失败','error') }
     }).catch(function(){ if(window.showToast) window.showToast('网络错误','error') })
   }
+  function renderAddresses(list){
+    var tbody = document.getElementById('addressList')
+    if(!tbody) return
+    tbody.innerHTML = ''
+    for(var i=0;i<list.length;i++){
+      var a = list[i]
+      var tr = document.createElement('tr')
+      var td1 = document.createElement('td')
+      td1.textContent = i+1
+      var td2 = document.createElement('td')
+      td2.textContent = a.recipient_name || ''
+      var td3 = document.createElement('td')
+      td3.textContent = (a.province||'')+' '+(a.city||'')+' '+(a.detail_address||'')
+      var td4 = document.createElement('td')
+      td4.textContent = a.recipient_phone || ''
+      var td5 = document.createElement('td')
+      td5.textContent = a.is_default ? '是' : '否'
+      var td6 = document.createElement('td')
+      var delBtn = document.createElement('button')
+      delBtn.className = 'btn-danger'
+      delBtn.textContent = '删除'
+      delBtn.addEventListener('click',function(aid){ return function(){ deleteAddress(aid) } }(a.id))
+      td6.appendChild(delBtn)
+      tr.appendChild(td1)
+      tr.appendChild(td2)
+      tr.appendChild(td3)
+      tr.appendChild(td4)
+      tr.appendChild(td5)
+      tr.appendChild(td6)
+      tbody.appendChild(tr)
+    }
+  }
+  function loadAddresses(){
+    authFetch(API+'/api/addresses', { method:'GET' }).then(function(res){
+      if(res && res.addresses){ renderAddresses(res.addresses) } else { if(window.showToast) window.showToast((res && res.error)||'加载失败','error') }
+    }).catch(function(){ if(window.showToast) window.showToast('网络错误','error') })
+  }
+  function showAddressForm(){
+    var tableView = document.getElementById('addressTableView')
+    var formView = document.getElementById('addressFormView')
+    if(tableView) tableView.style.display = 'none'
+    if(formView) formView.style.display = 'block'
+    var provSelect = document.getElementById('addrProvince')
+    if(provSelect){
+      provSelect.innerHTML = '<option value="">请选择省</option>'
+      var provinces = ['北京','上海','广东','四川','陕西','重庆','云南','辽宁','湖北']
+      for(var i=0;i<provinces.length;i++){
+        var opt = document.createElement('option')
+        opt.value = provinces[i]
+        opt.textContent = provinces[i]
+        provSelect.appendChild(opt)
+      }
+    }
+    document.getElementById('addrProvince').value = ''
+    document.getElementById('addrCity').innerHTML = '<option value="">请选择城市</option>'
+    document.getElementById('addrDetail').value = ''
+    document.getElementById('addrRecipient').value = ''
+    document.getElementById('addrPhone').value = ''
+    document.getElementById('addrDefault').checked = false
+  }
+  function cancelAddressForm(){
+    var tableView = document.getElementById('addressTableView')
+    var formView = document.getElementById('addressFormView')
+    if(tableView) tableView.style.display = 'block'
+    if(formView) formView.style.display = 'none'
+  }
+  function saveAddress(){
+    var province = document.getElementById('addrProvince').value.trim()
+    var city = document.getElementById('addrCity').value.trim()
+    var detail = document.getElementById('addrDetail').value.trim()
+    var recipient = document.getElementById('addrRecipient').value.trim()
+    var phone = document.getElementById('addrPhone').value.trim()
+    var isDefault = document.getElementById('addrDefault').checked
+    if(!province || !city || !detail || !recipient || !phone){
+      if(window.showToast) window.showToast('请填写完整地址信息','error')
+      return
+    }
+    authFetch(API+'/api/addresses', {
+      method:'POST',
+      body: JSON.stringify({
+        province:province,
+        city:city,
+        detailAddress:detail,
+        recipientName:recipient,
+        recipientPhone:phone,
+        isDefault:isDefault
+      })
+    }).then(function(res){
+      if(res && res.address){
+        showSuccessModal()
+      } else {
+        if(window.showToast) window.showToast((res && res.error)||'添加失败','error')
+      }
+    }).catch(function(){
+      if(window.showToast) window.showToast('网络错误','error')
+    })
+  }
+  function showSuccessModal(){
+    var modal = document.getElementById('addressSuccessModal')
+    if(!modal){
+      modal = document.createElement('div')
+      modal.id = 'addressSuccessModal'
+      modal.className = 'modal'
+      modal.innerHTML = '<div class="modal-content">'
+        + '<p>添加车票快递地址成功</p>'
+        + '<button id="addressSuccessOk" class="btn-primary">确定</button>'
+        + '</div>'
+      document.body.appendChild(modal)
+      document.getElementById('addressSuccessOk').addEventListener('click',function(){
+        modal.style.display = 'none'
+        cancelAddressForm()
+        loadAddresses()
+      })
+    }
+    modal.style.display = 'flex'
+  }
+  function deleteAddress(id){
+    authFetch(API+'/api/addresses/'+id, { method:'DELETE' }).then(function(res){
+      if(res && res.message){
+        if(window.showToast) window.showToast('删除成功','success')
+        loadAddresses()
+      } else {
+        if(window.showToast) window.showToast((res && res.error)||'删除失败','error')
+      }
+    }).catch(function(){
+      if(window.showToast) window.showToast('网络错误','error')
+    })
+  }
+  function populateCityOptions(){
+    var prov = document.getElementById('addrProvince').value
+    var citySelect = document.getElementById('addrCity')
+    citySelect.innerHTML = '<option value="">请选择城市</option>'
+    if(!prov) return
+    var cities = provinceCityMap[prov] || []
+    for(var i=0;i<cities.length;i++){
+      var opt = document.createElement('option')
+      opt.value = cities[i]
+      opt.textContent = cities[i]
+      citySelect.appendChild(opt)
+    }
+  }
+  var provinceCityMap = {
+    '北京': ['北京市'],
+    '上海': ['上海市'],
+    '广东': ['广州市', '深圳市', '珠海市', '东莞市', '佛山市'],
+    '四川': ['成都市', '绵阳市'],
+    '陕西': ['西安市'],
+    '重庆': ['重庆市'],
+    '云南': ['昆明市'],
+    '辽宁': ['沈阳市', '大连市'],
+    '湖北': ['武汉市']
+  }
   function bind(){
     var sideLis = document.querySelectorAll('.account-side li')
     Array.prototype.forEach.call(sideLis,function(li){
@@ -276,20 +428,29 @@
     if(pSubmit){ pSubmit.addEventListener('click',addPassenger) }
     var uSave = document.getElementById('uSave')
     if(uSave){ uSave.addEventListener('click',saveProfile) }
+    var addAddrBtn = document.getElementById('addAddressBtn')
+    if(addAddrBtn){ addAddrBtn.addEventListener('click',showAddressForm) }
+    var addrSave = document.getElementById('addrSave')
+    if(addrSave){ addrSave.addEventListener('click',saveAddress) }
+    var addrCancel = document.getElementById('addrCancel')
+    if(addrCancel){ addrCancel.addEventListener('click',cancelAddressForm) }
+    var provSelect = document.getElementById('addrProvince')
+    if(provSelect){ provSelect.addEventListener('change',populateCityOptions) }
   }
   function init(){
     if(!ensureLogin()) return
     bind()
     var tabKey = 'orders'
     var h = (location.hash||'').replace('#','')
-    try{ var params = new URLSearchParams(location.search); var q = params.get('tab'); if(h==='orders'||h==='passengers'||h==='profile'){ tabKey=h } else if(q==='orders'||q==='passengers'||q==='profile'){ tabKey=q } }catch(e){}
+    try{ var params = new URLSearchParams(location.search); var q = params.get('tab'); if(h==='orders'||h==='passengers'||h==='addresses'||h==='profile'){ tabKey=h } else if(q==='orders'||q==='passengers'||q==='addresses'||q==='profile'){ tabKey=q } }catch(e){}
     switchTab(tabKey)
     loadOrders()
     loadPassengers()
+    loadAddresses()
     loadProfile()
     window.addEventListener('hashchange', function(){
       var hk = (location.hash||'').replace('#','')
-      if(hk==='orders'||hk==='passengers'||hk==='profile'){ switchTab(hk) }
+      if(hk==='orders'||hk==='passengers'||hk==='addresses'||hk==='profile'){ switchTab(hk) }
     })
   }
   if(document.readyState==='loading'){

@@ -23,3 +23,9 @@
 .queue-title{font-weight:600;margin-bottom:8px}
 .queue-time{font-size:14px;color:#333;margin:8px 0}
 .queue-actions{display:flex;gap:8px;justify-content:flex-end;margin-top:8px}
+.modal{position:fixed;left:0;top:0;right:0;bottom:0;background:rgba(0,0,0,.35);display:none;z-index:300;align-items:center;justify-content:center}
+.modal-content{width:320px;background:#fff;border-radius:8px;box-shadow:0 12px 24px rgba(0,0,0,.15);padding:24px;text-align:center}
+.modal-content p{margin:0 0 16px;font-size:14px;color:#333}
+.address-table{width:100%;border-collapse:collapse;margin-bottom:12px}
+.address-table th,.address-table td{border:1px solid #e6e8eb;padding:8px;text-align:left}
+.address-table th{background:#f5f5f7;font-weight:600}

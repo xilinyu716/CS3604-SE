@@ -32,6 +32,7 @@
         <ul>
           <li class="active" data-tab="orders">我的订单</li>
           <li data-tab="passengers">乘车人</li>
+          <li data-tab="addresses">地址管理</li>
           <li data-tab="profile">个人信息</li>
         </ul>
       </div>
@@ -82,6 +83,65 @@
             </div>
             <div class="form-actions">
               <button id="pSubmit" class="btn-primary">添加</button>
+            </div>
+          </div>
+        </section>
+
+        <section id="tab-addresses" class="tab-section" style="display:none">
+          <div class="section-hd">地址管理</div>
+          <div id="addressTableView">
+            <table id="addressTable" class="address-table">
+              <thead>
+                <tr>
+                  <th>序号</th>
+                  <th>收件人</th>
+                  <th>地址</th>
+                  <th>手机</th>
+                  <th>是否默认</th>
+                  <th>操作</th>
+                </tr>
+              </thead>
+              <tbody id="addressList">
+              </tbody>
+            </table>
+            <div class="form-actions">
+              <button id="addAddressBtn" class="btn-primary">增加</button>
+            </div>
+          </div>
+          <div id="addressFormView" style="display:none">
+            <div class="section-hd">选择地址（*为必填项）</div>
+            <div class="form">
+              <div class="form-row">
+                <label>所在地址 *</label>
+                <div style="display:flex;gap:10px">
+                  <select id="addrProvince" required>
+                    <option value="">请选择省</option>
+                  </select>
+                  <select id="addrCity" required>
+                    <option value="">请选择城市</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-row">
+                <label>详细地址 *</label>
+                <input id="addrDetail" type="text" placeholder="请填写详细地址" required />
+              </div>
+              <div class="form-row">
+                <label>收件人 *</label>
+                <input id="addrRecipient" type="text" placeholder="请填写收件人姓名" required />
+              </div>
+              <div class="form-row">
+                <label>手机 *</label>
+                <input id="addrPhone" type="text" placeholder="请填写手机号" required />
+              </div>
+              <div class="form-row">
+                <label>设为默认地址</label>
+                <input id="addrDefault" type="checkbox" />
+              </div>
+              <div class="form-actions">
+                <button id="addrCancel" class="btn-danger">取消</button>
+                <button id="addrSave" class="btn-primary">保存</button>
+              </div>
             </div>
           </div>
         </section>
