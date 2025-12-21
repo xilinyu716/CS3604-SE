@@ -1,0 +1,16 @@
+ .wrap { position: relative; display: inline-block; }
+ .link { color: #ff7f00; text-decoration: underline; cursor: pointer; }
+ .pop {
+  position: absolute;
+  top: 24px;
+  left: 0;
+  width: 520px;
+  background: #fff;
+  border: 1px solid #e6eef5;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+  border-radius: 6px;
+  padding: 10px 12px;
+  z-index: 100;
+ }
+ .pop ul { margin: 0; padding-left: 16px; }
+ .pop li { font-size: 12px; color: #666; line-height: 1.8; }

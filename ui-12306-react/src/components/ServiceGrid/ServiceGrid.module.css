@@ -1,0 +1,20 @@
+.services { margin-top: 20px; }
+.serviceList { display: flex; justify-content: space-between; }
+.serviceList li a { display: flex; align-items: center; gap: 8px; color: #333; }
+.serviceIcon { width: 40px; height: 40px; display: inline-block; background-size: contain; background-repeat: no-repeat; }
+.icoS2 { background-image: url('/assets/left_img2.png'); }
+.icoS6 { background-image: url('/assets/small1.png'); }
+.icoS4 { background-image: url('/assets/left_img2.png'); }
+.icoS5 { background-image: url('/assets/left_img5.png'); }
+.icoS3 { background-image: url('/assets/point2.png'); }
+.icoS7 { background-image: url('/assets/enlarge1.png'); }
+.icoS9 { background-image: url('/assets/help1.png'); }
+.last { margin-left: auto; }
+.serviceLg { margin-top: 10px; }
+.serviceLgList { display: grid; grid-template-columns: 1fr; gap: 10px; }
+.serviceLgList img { width: 100%; display: block; }
+.serviceSmList { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+.servicePic img { width: 100%; display: block; }
+.serviceInfo { position: relative; padding: 8px; }
+.serviceName { font-size: 16px; }
+.serviceTxt { color: #666; }

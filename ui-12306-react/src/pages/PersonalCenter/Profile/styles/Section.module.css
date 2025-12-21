@@ -1,0 +1,21 @@
+.section {
+  border: 1px solid #e6e6e6;
+  background: #fff;
+}
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  border-bottom: 1px solid #e6e6e6;
+}
+.title {
+  font-size: 16px;
+  color: #333;
+}
+.actions .btn {
+  margin-left: 10px;
+}
+.body {
+  padding: 12px 16px 16px;
+}

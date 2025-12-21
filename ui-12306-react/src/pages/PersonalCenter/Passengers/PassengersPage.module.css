@@ -1,0 +1,10 @@
+.page {
+  background: #fff;
+}
+.content {
+  min-height: 600px;
+}
+.center-box {
+  display: flex;
+}
+

@@ -1,0 +1,7 @@
+* { box-sizing: border-box; }
+html, body, #root { height: 100%; }
+body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', 'PingFang SC', 'Microsoft YaHei', sans-serif; background: #fff; color: #333; }
+a { color: #333; text-decoration: none; }
+img { display: block; }
+.btn { display: inline-block; height: 30px; line-height: 30px; padding: 0 16px; border: 1px solid #bdbdbd; border-radius: 4px; background: #f7f7f7; color: #333; }
+.btn-primary { background: #3b99fc; border-color: #3b99fc; color: #fff; }

@@ -1,0 +1,15 @@
+.search {
+  display: flex;
+  gap: 12px;
+  padding: 10px 0;
+}
+.search :global(.w160) {
+  width: 160px;
+}
+.search :global(.input) {
+  height: 32px;
+}
+.search :global(.btn.w100) {
+  width: 100px;
+}
+

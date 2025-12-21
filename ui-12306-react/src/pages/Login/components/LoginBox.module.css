@@ -1,0 +1,10 @@
+.box { background: #fff; width: 380px; }
+.hd { height: 78px; line-height: 78px; padding: 0 30px; display: flex; }
+.tab { width: 130px; text-align: center; position: relative; }
+.tab a { display: block; color: #666; font-size: 16px; }
+.tab a:hover { color: #3b99fc; }
+.active a { color: #3b99fc; }
+.last { margin-left: 60px; }
+.last::after { content: ""; position: absolute; top: 27px; left: -30px; width: 1px; height: 24px; background: #dedede; }
+.bd {}
+.ft { padding: 10px 20px 15px; font-size: 13px; color: #666; border-top: 1px solid #dedede; }

@@ -1,0 +1,6 @@
+.header { background: #fff; position: relative; z-index: 2000; border-bottom: none; }
+.wrapper { width: 1200px; padding: 0 5px; margin: 0 auto; }
+.headerCon { height: 80px; }
+.logo { float: left; margin: 15px 0 0 0; }
+.logo a { display: block; width: 200px; height: 50px; text-indent: -9999px; background-image: url('/assets/logo@2x.png'); background-repeat: no-repeat; background-size: 200px 50px; }
+.welcome { float: left; height: 80px; line-height: 80px; padding-left: 40px; font-size: 20px; }

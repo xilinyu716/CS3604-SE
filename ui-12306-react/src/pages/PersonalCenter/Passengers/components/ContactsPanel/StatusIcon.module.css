@@ -1,0 +1,11 @@
+.common {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+  background-size: cover;
+}
+.userOk { background-image: url('/assets/user-verification-success.png'); background-color: #e7f6ed; }
+.userError { background-image: url('/assets/user-verification-error.png'); background-color: #fdecec; }
+.mobileOk { background-image: url('/assets/mobile-verification-success.png'); background-color: #e7f6ed; }
+.mobileError { background-image: url('/assets/mobile-verification-error.png'); background-color: #fdecec; }

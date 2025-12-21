@@ -1,0 +1,33 @@
+ .page {
+  background: #f5f9fc;
+ }
+ .wrapper {
+  width: 1200px;
+  margin: 0 auto;
+ }
+ .crumbs {
+  font-size: 12px;
+  color: #666;
+  padding: 12px 0;
+ }
+ .content {
+  background: #fff;
+  border: 1px solid #e6eef5;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+ }
+ .section {
+  padding: 20px 40px;
+ }
+ .title {
+  font-size: 18px;
+  color: #333;
+  line-height: 48px;
+  border-bottom: 1px solid #e6eef5;
+ }
+ .step {
+  padding: 20px 40px 0;
+ }
+ .success {
+  padding: 40px;
+  text-align: center;
+ }

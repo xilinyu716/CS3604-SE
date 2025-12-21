@@ -1,0 +1,22 @@
+.tips {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-top: 20px;
+}
+.item {
+  border: 1px solid #e6e6e6;
+  background: #fff;
+}
+.tit {
+  padding: 8px 12px;
+  border-bottom: 1px solid #e6e6e6;
+  color: #333;
+}
+.pic {
+  padding: 12px;
+  text-align: center;
+}
+.pic img {
+  max-width: 100%;
+}

@@ -1,0 +1,5 @@
+ .wrap { padding: 10px 0; }
+ .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+ .item { border: 1px solid #e6eef5; border-radius: 4px; padding: 12px; }
+ .tit { font-size: 14px; color: #333; margin-bottom: 8px; }
+ .img { width: 100%; height: 160px; object-fit: contain; background: #fafbfc; }

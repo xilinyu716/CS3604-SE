@@ -1,0 +1,73 @@
+ .block {
+  padding: 20px 0;
+ }
+ .regList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+ }
+ .item {
+  display: flex;
+  align-items: flex-start;
+  padding: 10px 0;
+ }
+ .labelCol {
+  width: 375px;
+  color: #333;
+  font-size: 14px;
+ }
+ .required {
+  color: #ff7f00;
+  margin-right: 6px;
+ }
+ .inputCol {
+  width: 400px;
+ }
+ .inptxt {
+  width: 200px;
+  height: 30px;
+  line-height: 30px;
+  border: 1px solid #bdbdbd;
+  border-radius: 4px;
+  padding: 0 8px;
+  color: #333;
+ }
+ .w200sel {
+  width: 200px;
+  height: 30px;
+  border: 1px solid #bdbdbd;
+  border-radius: 4px;
+ }
+ .tipsCol {
+  flex: 1;
+  padding-left: 12px;
+  color: #666;
+  font-size: 12px;
+ }
+ .rank {
+  display: inline-flex;
+  gap: 6px;
+  margin-top: 6px;
+ }
+ .rank span {
+  display: inline-block;
+  width: 40px;
+  height: 6px;
+  background: #eaeaea;
+  border-radius: 3px;
+ }
+ .btn {
+  display: inline-block;
+  width: 92px;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  border-radius: 4px;
+  background: #60c6e7;
+  color: #fff;
+ }
+ .agreeline {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+ }

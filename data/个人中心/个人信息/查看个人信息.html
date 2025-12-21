@@ -1,0 +1,1796 @@
+<!DOCTYPE html>
+<!-- saved from url=(0047)https://kyfw.12306.cn/otn/view/information.html -->
+<html lang="zh-CN"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>中国铁路12306网站</title>
+  <link rel="shortcut icon" href="https://kyfw.12306.cn/otn/images/favicon.ico" type="image/x-icon">
+  <!-- <link rel="stylesheet" href="../css/global.css">
+ <link rel="stylesheet" href="../css/public.css">
+ <link rel="stylesheet" href="../css/center.css">
+ <link rel="stylesheet" href="../css/common/calendarNew.css">
+ <link rel="stylesheet" href="../css/validate.css"> -->
+
+  <link rel="stylesheet" href="./查看个人信息_files/iconfont.css">
+  <link rel="stylesheet" href="./查看个人信息_files/information_v70001.css">
+<style>
+  .ac_results_school {
+    background: #fff;
+    border: 1px solid #7f9db9;
+    position: absolute;
+    z-index: 10000;
+    display: none;
+    height: auto;
+    overflow: auto;
+    width: 218px;
+    z-index: 9999;
+    line-height: 20px;
+  }
+  .ac_result_tip {
+    border-bottom: 0px dashed #666;
+    padding: 3px;
+    z-index: 9999;
+    width: 270px;
+  }
+  .gray {
+    color: gray;
+  }
+  .ac_results_school li {
+    border: 1px solid #fff;
+    line-height: 20px;
+  }
+  .ac_results_school li a {
+    white-space: nowrap;
+    text-decoration: none;
+    display: block;
+    color: #05a;
+    padding: 2px 2px 4px;
+  }
+  .cityflip:link {
+    font-size: 12px;
+    color: #0055aa;
+    text-decoration: none;
+  }
+  .cityflip:visited {
+    font-size: 12px;
+    color: #0055aa;
+    text-decoration: none;
+  }
+  .ac_over,
+  .ac_results_school li a:hover {
+    background: #c8e3fc;
+  }
+  #preferenceFromStationNameSuggest {
+    max-height: 210px;
+  }
+  #preferenceToStationNameSuggest {
+    max-height: 210px;
+  }
+</style><script type="text/javascript" src="./查看个人信息_files/jquery.js.下载" charset="utf-8"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="main_v30008" src="./查看个人信息_files/main_v30008.js.下载"></script><script type="text/javascript" src="./查看个人信息_files/base64.js.下载" charset="utf-8"></script><script type="text/javascript" src="./查看个人信息_files/soundmanager2.js.下载" charset="utf-8"></script><script type="text/javascript" src="./查看个人信息_files/pinyin.js.下载" charset="utf-8"></script><script type="text/javascript" src="./查看个人信息_files/handleInnerIframe.js.下载" charset="utf-8"></script><script type="text/javascript" src="./查看个人信息_files/toolbar.js.下载" charset="utf-8" id="ESDWebAppToolbar"></script></head>
+
+
+<body style=""><div id="jumpareNodeId" style="position:absolute;left:-9999px; top:-9999px; z-index:2001;" role="complementary"><a href="javascript:" onfocus="$(&quot;#jumpareNodeId&quot;).attr(&quot;style&quot;,&quot;position:absolute;left:5px; top:5px; z-index:2001; background:#fff; padding:5px 15px;&quot;)" onblur="$(&quot;#jumpareNodeId&quot;).attr(&quot;style&quot;,&quot;position:absolute;left:-9999px; top:-9999px; z-index:2001; background:#fff; padding:5px 15px;&quot;)" onclick="esd_JumpToNavElementId()" style="display:block; font-size:14px; line-height:2em;letter-spacing:2px;" aria-label="跳转到导航区域">跳转到导航区域</a><a href="javascript:" style="display:block; font-size:14px; line-height:2em;letter-spacing:2px;" onfocus="$(&quot;#jumpareNodeId&quot;).attr(&quot;style&quot;,&quot;position:absolute;left:5px; top:5px; z-index:2001; background:#fff; padding:5px 15px;&quot;)" onblur="$(&quot;#jumpareNodeId&quot;).attr(&quot;style&quot;,&quot;position:absolute;left:-9999px; top:-9999px; z-index:0;&quot;)" onclick="esd_JumpCrossNavElementId()" aria-label="跳过导航区域">跳过导航区域</a></div><div id="toolbar_Div" role="complementary">
+<!-- 头部 -->
+<!-- 公用-头部 start -->
+<div class="header" role="complementary" aria-label="头部">
+  <div class="wrapper">
+    <!-- 头部内容 -->
+    <div class="header-con">
+      <h1 class="logo" role="banner">
+        <a name="g_href" data-type="1" data-href="index.html" data-redirect="Y" href="javascript:;">中国铁路12306</a>
+      </h1>
+      <div class="header-right">
+        <!-- 搜索条 -->
+        <div class="header-search" style="width: 380px">
+          <div class="search-bd" style="width: 350px">
+            <input type="password" value="" style="display: none">
+            <input type="text" class="search-input" id="search-input" aria-label="请输入要搜索的车票/餐饮/常旅客/相关规章" value="" placeholder="搜索车票/餐饮/常旅客/相关规章" auto-complete="new-password" aria-haspopup="true">
+            <!-- 搜索提示 -->
+            <div class="search-down">
+              <a href="javascript:;" class="close">关闭</a>
+              <ul class="search-down-list" role="listbox" aria-expanded="true"></ul>
+            </div>
+            <!-- 搜索历史 -->
+            <div class="search-history">
+              <a href="javascript:;" class="history-clear">清除</a>
+              <h3 class="search-history-tit">搜索历史</h3>
+              <ul class="search-history-list" role="listbox" aria-expanded="true"></ul>
+            </div>
+          </div>
+          <a class="search-btn" href="javascript:;" aria-label="点击搜索">
+            <i class="icon icon-search"></i>
+          </a>
+        </div>
+        <!-- 右侧菜单 -->
+        <ul class="header-menu" id="topMenu">
+          <li class="menu-item">
+            <a id="toolbarSwitch" href="javascript:;" class="menu-nav-hd">无障碍</a>
+          </li>
+          <li class="menu-item menu-line">|</li>
+          <li class="menu-item">
+            <a id="caringEdition" href="javascript:;" class="menu-nav-hd">敬老版</a>
+          </li>
+          <li class="menu-item menu-line">|</li>
+          <li class="menu-item menu-nav" role="menuitem">
+            <a href="https://www.12306.cn/en/index.html" class="menu-nav-hd item" title="English" aria-controls="megamenu-1" aria-expanded="true" aria-haspopup="true">English
+              <i class="caret"></i>
+            </a>
+            <ul class="menu-nav-bd" id="megamenu-1" role="menu" aria-hidden="true">
+              <li>
+                <a name="g_href" data-type="1" data-href="index.html" data-redirect="Y" href="javascript:;" title="简体中文">简体中文</a>
+              </li>
+              <li>
+                <a href="https://www.12306.cn/en/index.html" title="English">English</a>
+              </li>
+            </ul>
+          </li>
+          <li class="menu-item menu-line">|</li>
+          <li class="menu-item menu-nav" role="menuitem">
+            <a name="g_href" data-type="2" data-href="view/index.html" data-redirect="Y" href="javascript:;" class="menu-nav-hd item" aria-controls="megamenu-2" aria-expanded="true" aria-haspopup="true">我的12306
+              <i class="caret"></i>
+            </a>
+            <ul class="menu-nav-bd">
+              <li>
+                <a name="g_href" data-type="2" data-href="view/train_order.html" data-redirect="Y" href="javascript:;">火车票订单</a>
+              </li>
+              <!-- <li>
+                <a
+                  name="g_href"
+                  data-type="2"
+                  data-href="view/prefilled_order_center.html"
+                  data-redirect="Y"
+                  href="javascript:;"
+                  >预填单</a
+                >
+              </li> -->
+              <li>
+                <a name="g_href" data-type="2" data-href="view/lineUp_order.html" data-redirect="Y" href="javascript:;">候补订单</a>
+              </li>
+              <li>
+                <a name="g_href" data-type="2" data-href="view/commutation_order.html" data-redirect="Y" href="javascript:;">计次•定期票订单</a>
+              </li>
+              <li>
+                <a name="g_href" data-type="2" data-href="view/commutation_ticket_order.html" data-redirect="Y" href="javascript:;">约号订单</a>
+              </li>
+              <!-- <li>
+                <a
+                  name="g_href"
+                  data-type="8"
+                  data-href="view/inter_center.html"
+                  data-redirect="Y"
+                  href="javascript:;"
+                  >国际列车订单</a
+                >
+              </li> -->
+              <li>
+                <a name="g_href" data-type="2" data-href="view/snow_order.html" data-redirect="Y" href="javascript:;">雪具快运订单</a>
+              </li>
+              <li>
+                <a name="g_href" data-type="2" data-href="view/invoice_index.html" data-redirect="Y" href="javascript:;">电子发票</a>
+              </li>
+              <li>
+                <a name="g_href" data-type="2" data-href="view/personal_travel.html" data-redirect="Y" href="javascript:;">本人车票</a>
+              </li>
+              <li class="nav-line"></li>
+              <li>
+                <a name="g_href" data-type="10" data-href="queryMyOrder.html" data-redirect="Y" href="javascript:;">我的餐饮•特产</a>
+              </li>
+              <li>
+                <a name="g_href" data-type="2" data-href="view/my_insurance.html" data-redirect="Y" href="javascript:;">我的保险</a>
+              </li>
+              <li>
+                <a name="g_href" data-type="3" data-href="welcome.html" data-redirect="Y" href="javascript:;">我的会员</a>
+              </li>
+              <li class="nav-line"></li>
+              <li>
+                <a name="g_href" data-type="2" data-href="view/information.html" data-redirect="Y" href="javascript:;">查看个人信息</a>
+              </li>
+              <li>
+                <a name="g_href" data-type="2" data-href="view/userSecurity.html" data-redirect="Y" href="javascript:;">账户安全</a>
+              </li>
+              <li class="nav-line"></li>
+              <li>
+                <a name="g_href" data-type="2" data-href="view/passengers.html" data-redirect="Y" href="javascript:;">乘车人</a>
+              </li>
+              <li>
+                <a name="g_href" data-type="2" data-href="view/address_init.html" data-redirect="Y" href="javascript:;">地址管理</a>
+              </li>
+              <li class="nav-line"></li>
+              <li>
+                <a name="g_href" data-type="2" data-href="view/icentre_serviceQuery.html" data-redirect="Y" href="javascript:;">温馨服务查询</a>
+              </li>
+            </ul>
+          </li>
+          <li class="menu-item menu-line">|</li>
+          <li id="J-header-login" class="menu-item menu-login" role="menuitem" style="display: none;">
+            <a name="g_href" data-type="2" data-href="resources/login.html" data-redirect="Y" href="javascript:;">登录</a><a name="g_href" data-type="2" data-href="regist/init" data-redirect="Y" href="javascript:;" class="ml">注册</a>
+          </li>
+          <li id="J-header-logout" style="" class="menu-item menu-nav menu-login" role="menuitem">
+            您好，
+            <a login-type="personal" name="g_href" data-type="2" data-href="view/index.html" data-redirect="Y" href="javascript:;" class="txt-primary menu-nav-my-hd" style="display: inline-block;vertical-align:top;overflow:hidden;white-space:nowrap;max-width: 72px;" title="郁熙临">郁熙临</a>&nbsp;|&nbsp;<a class="logout" href="https://kyfw.12306.cn/otn/login/loginOut">退出</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <!-- 导航 -->
+  <div class="nav-box" role="navigation"><div id="esd_createToNavNode"></div>
+    <ul class="nav" id="wbomeal" role="menubar">
+      <li id="J-index" class="nav-item nav-item-w1">
+        <a name="g_href" data-type="1" data-href="index.html" data-redirect="Y" href="javascript:;" class="nav-hd" aria-expanded="false">首页</a>
+      </li>
+      <li id="J-chepiao" class="nav-item nav-item-w1 active">
+        <a href="javascript:void(0)" class="nav-hd item" aria-expanded="false" aria-haspopup="true" aria-controls="megamenu-3">车票
+          <i class="icon icon-down"></i>
+        </a>
+        <div class="nav-bd" id="megamenu-3">
+          <div class="nav-bd-item nav-col2">
+            <h3 class="nav-tit">购买</h3>
+            <ul class="nav-con" role="menu" aria-hidden="true">
+              <li class="nav_dan" role="menuitemradio">
+                <a name="g_href" data-type="2" data-href="leftTicket/init?linktypeid=dc" data-redirect="Y" href="javascript:;">单程</a>
+              </li>
+              <li class="nav_wang" role="menuitemradio">
+                <a name="g_href" data-type="2" data-href="leftTicket/init?linktypeid=wf" data-redirect="Y" href="javascript:;">往返</a>
+              </li>
+              <li role="menuitemradio">
+                <a name="g_href" data-type="2" data-href="lcQuery/init" data-redirect="Y" href="javascript:;">中转换乘</a>
+              </li>
+              <li role="menuitemradio">
+                <a name="g_href" data-type="2" data-href="view/commutation_index.html" data-redirect="Y" href="javascript:;">计次•定期票</a>
+              </li>
+              <!-- <li role="menuitemradio">
+                <a
+                  name="g_href"
+                  data-type="2"
+                  data-href="view/prefilled_home.html"
+                  data-redirect="Y"
+                  href="javascript:;"
+                  >购票预填</a
+                >
+              </li> -->
+              <!-- <li role="menuitemradio">
+                <a
+                  name="g_href"
+                  data-type="8"
+                  data-href="view/inter_query_ticket.html"
+                  data-redirect="Y"
+                  href="javascript:;"
+                  >国际列车购票</a
+                >
+              </li> -->
+            </ul>
+          </div>
+          <div class="nav-bd-item nav-col2">
+            <h3 class="nav-tit">变更</h3>
+            <ul class="nav-con" role="menu" aria-hidden="true">
+              <li class="nav_ref" role="menuitemradio">
+                <a name="g_href" data-type="2" data-href="view/train_order.html?type=2&amp;typefilt=4" data-redirect="Y" href="javascript:;">退票</a>
+              </li>
+              <li class="nav_res" role="menuitemradio">
+                <a name="g_href" data-type="2" data-href="view/train_order.html?type=2&amp;typefilt=2" data-redirect="Y" href="javascript:;">改签</a>
+              </li>
+              <li class="nav_chg" role="menuitemradio">
+                <a name="g_href" data-type="2" data-href="view/train_order.html?type=2&amp;typefilt=3" data-redirect="Y" href="javascript:;">变更到站</a>
+              </li>
+              <li></li>
+            </ul>
+          </div>
+          <div class="nav-bd-item nav-col2">
+            <h3 class="nav-tit border-none">更多</h3>
+            <ul class="nav-con" role="menu" aria-hidden="true">
+              <li role="menuitemradio">
+                <a name="g_href" data-type="1" data-href="view/ticket/zt_card.html" data-redirect="Y" href="javascript:;">中铁银通卡</a>
+              </li>
+              <!-- <li class="border-none" role="menuitemradio">
+                <a
+                  name="g_href"
+                  data-type="1"
+                  data-href="view/ticket/through_train.html"
+                  data-redirect="Y"
+                  href="javascript:;"
+                  >广九直通车</a
+                >
+              </li> -->
+              <!-- <li role="menuitemradio">
+                <a
+                  name="g_href"
+                  data-type="1"
+                  data-href="view/ticket/railway.html"
+                  data-redirect="Y"
+                  href="javascript:;"
+                  >市郊快速铁路</a
+                >
+              </li> -->
+              <li role="menuitemradio">
+                <a name="g_href" data-type="1" data-href="view/ticket/international_train.html" data-redirect="Y" href="javascript:;">国际列车</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </li>
+      <li id="J-tuangoufuwu" class="nav-item" role="menuitem">
+        <a href="javascript:void(0) " class="nav-hd item" aria-expanded="false" aria-haspopup="true" aria-controls="megamenu-4">团购服务
+          <i class="icon icon-down"></i>
+        </a>
+        <div class="nav-bd" id="megamenu-4">
+          <div class="nav-bd-item nav-col6">
+            <ul class="nav-con" role="menu" aria-hidden="true">
+              <li role="menuitemradio">
+                <a name="g_href" data-type="1" data-href="view/group/group_management.html?type=1" data-redirect="Y" href="javascript:;">务工人员</a>
+              </li>
+
+              <li role="menuitemradio">
+                <a name="g_href" data-type="1" data-href="view/group/group_management.html?type=2" data-redirect="Y" href="javascript:;">学生团体</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </li>
+      <li id="J-huiyuanfuwu" class="nav-item" role="menuitem">
+        <a href="javascript:void(0) " class="nav-hd item" aria-expanded="false" aria-haspopup="true" aria-controls="megamenu-5">会员服务
+          <i class="icon icon-down"></i>
+        </a>
+        <div class="nav-bd" id="megamenu-5" style="display: none;">
+          <div class="nav-bd-item nav-col6">
+            <ul class="nav-con" role="menu" aria-hidden="true">
+              <li role="menuitemradio">
+                <a name="g_href" data-type="3" data-href="index.html" data-redirect="Y" href="javascript:;">会员管理</a>
+              </li>
+              <li role="menuitemradio">
+                <a name="g_href" data-type="3" data-href="index.html" data-redirect="Y" href="javascript:;">积分账户</a>
+              </li>
+              <li role="menuitemradio">
+                <a name="g_href" data-type="3" data-href="index.html" data-redirect="Y" href="javascript:;">积分兑换</a>
+              </li>
+              <li role="menuitemradio">
+                <a name="g_href" data-type="3" data-href="index.html" data-redirect="Y" href="javascript:;">会员专享</a>
+              </li>
+              <li class="border-none" role="menuitemradio">
+                <a name="g_href" data-type="3" data-href="welcome.html" data-redirect="Y" href="javascript:;">会员中心</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </li>
+      <li id="J-zhanchefuwu" class="nav-item" role="menuitem">
+        <a href="javascript:void(0) " class="nav-hd item" aria-expanded="false" aria-haspopup="true" aria-controls="megamenu-6">站车服务
+          <i class="icon icon-down"></i>
+        </a>
+        <div class="nav-bd" id="megamenu-6">
+          <div class="nav-bd-item nav-col4" role="menu" aria-hidden="true">
+            <ul class="nav-con">
+              <li role="menuitemradio">
+                <a name="g_href" data-type="2" data-href="view/icentre_qxyyInfo.html" data-redirect="Y" href="javascript:;">重点旅客预约</a>
+              </li>
+              <li role="menuitemradio">
+                <a name="g_href" data-type="1" data-href="view/station/hand.html" data-redirect="Y" href="javascript:;">便民托运</a>
+              </li>
+              <li role="menuitemradio">
+                <a name="g_href" data-type="1" data-href="view/station/shared_Car.html" data-redirect="Y" href="javascript:;">约车服务</a>
+              </li>
+              <li role="menuitemradio">
+                <a name="g_href" data-type="4" data-href="czyd_2143/" data-redirect="Y" href="javascript:;">车站引导</a>
+              </li>
+              <li role="menuitemradio">
+                <a name="g_href" data-type="2" data-href="view/icentre_lostInfo.html" data-redirect="Y" href="javascript:;">遗失物品查找</a>
+              </li>
+              <li role="menuitemradio">
+                <a name="g_href" data-type="1" data-href="view/station/train_intro.html" data-redirect="Y" href="javascript:;">动车组介绍</a>
+              </li>
+              <li role="menuitemradio">
+                <a name="g_href" data-type="1" data-href="view/station/custom_PickUp.html" data-redirect="Y" href="javascript:;">定制接送</a>
+              </li>
+              <li role="menuitemradio">
+                <a name="g_href" data-type="4" data-href="zcfc_2548/" data-redirect="Y" href="javascript:;">站车风采</a>
+              </li>
+            </ul>
+          </div>
+          <!-- <div class="nav-bd-item ">
+              <ul class="nav-con ">
+                  <li>
+                      <a name="g_href" data-type="4" data-href="czyd_2143/" data-redirect="Y" href="javascript:;">车站引导</a>
+                  </li>
+                  <li>
+                      <a name="g_href" data-type="4" data-href="zcfc_2548/" data-redirect="Y" href="javascript:;">站车风采</a>
+                  </li>
+              </ul>
+          </div> -->
+        </div>
+      </li>
+      <li id="J-shanlvfuwu" class="nav-item" role="menuitem">
+        <a href="javascript:void(0) " class="nav-hd item" aria-expanded="false" aria-haspopup="true" aria-controls="megamenu-7">商旅服务
+          <i class="icon icon-down"></i>
+        </a>
+        <div class="nav-bd" id="megamenu-7">
+          <div class="nav-bd-item nav-col6">
+            <ul class="nav-con" role="menu" aria-hidden="true">
+              <li role="menuitemradio">
+                <a name="g_href" data-type="10" data-href="index.html" data-redirect="Y" href="javascript:;">餐饮•特产</a>
+              </li>
+              <li role="menuitemradio">
+                <a name="g_href" data-type="2" data-href="view/my_insurance.html" data-redirect="Y" href="javascript:;">保险</a>
+              </li>
+              <li class="border-none" role="menuitemradio">
+                <a name="g_href" data-type="2" data-href="view/snow_checkedBaggage.html" data-redirect="Y" href="javascript:;">雪具快运</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </li>
+      <li id="J-chuxingzhinan" class="nav-item" role="menuitem">
+        <a href="javascript:void(0) " class="nav-hd item" aria-expanded="false" aria-haspopup="true" aria-controls="megamenu-8">出行指南
+          <i class="icon icon-down"></i>
+        </a>
+        <div class="nav-bd" id="megamenu-8">
+          <div class="nav-bd-item nav-col2">
+            <h3 class="nav-tit">常见问题</h3>
+            <ul class="nav-con" role="menu" aria-hidden="true">
+              <li role="menuitemradio">
+                <a name="g_href" data-type="2" data-href="gonggao/ticketType.html" data-redirect="Y" href="javascript:;">车票</a>
+              </li>
+              <li role="menuitemradio">
+                <a name="g_href" data-type="2" data-href="gonggao/ticketWindow.html" data-redirect="Y" href="javascript:;">购票</a>
+              </li>
+              <li role="menuitemradio">
+                <a name="g_href" data-type="2" data-href="gonggao/windowEndorse.html" data-redirect="Y" href="javascript:;">改签</a>
+              </li>
+              <li role="menuitemradio">
+                <a name="g_href" data-type="2" data-href="gonggao/windowRefund.html" data-redirect="Y" href="javascript:;">退票</a>
+              </li>
+              <li role="menuitemradio">
+                <a name="g_href" data-type="2" data-href="gonggao/help.html" data-redirect="Y" href="javascript:;" class="txt-lighter">更多&gt;&gt;</a>
+              </li>
+              <li></li>
+            </ul>
+          </div>
+          <div class="nav-bd-item nav-col2">
+            <h3 class="nav-tit">旅客须知</h3>
+            <ul class="nav-con" role="menu" aria-hidden="true">
+              <li role="menuitemradio">
+                <a name="g_href" data-type="2" data-href="gonggao/usersNeedToKnow.html?linktypeid=txt" data-redirect="Y" href="javascript:;">铁路电子客票</a>
+              </li>
+              <li>
+                <a name="g_href" data-type="2" data-href="gonggao/saleTicketMeans.html?linktypeid=means5" data-redirect="Y" href="javascript:;">身份核验</a>
+              </li>
+              <li>
+                <a name="g_href" data-type="2" data-href="gonggao/help.html" data-redirect="Y" href="javascript:;" class="txt-lighter">更多&gt;&gt;</a>
+              </li>
+              <li></li>
+            </ul>
+          </div>
+          <div class="nav-bd-item nav-col2">
+            <h3 class="nav-tit border-none">相关章程</h3>
+            <ul class="nav-con" role="menu" aria-hidden="true">
+              <li role="menuitemradio">
+                <a name="g_href" data-type="2" data-href="gonggao/saleTicketMeans.html?linktypeid=means2" data-redirect="Y" href="javascript:;" aria-expanded="false">铁路旅客运输规程</a>
+              </li>
+              <li class="border-none" role="menuitemradio">
+                <a name="g_href" data-type="2" data-href="gonggao/saleTicketMeans.html?linktypeid=means7" data-redirect="Y" href="javascript:;" aria-expanded="false">广深港高速铁路跨境旅客运输组织规则</a>
+              </li>
+              <li style="text-overflow: ellipsis; white-space: nowrap" role="menuitemradio">
+                <a name="g_href" data-type="2" data-href="gonggao/saleTicketMeans.html?linktypeid=means6" data-redirect="Y" href="javascript:;" aria-expanded="false">铁路旅客禁止、限制携带和托运物品目录</a>
+              </li>
+              <li role="menuitemradio">
+                <a name="g_href" data-type="2" data-href="gonggao/help.html" data-redirect="Y" href="javascript:;" class="txt-lighter" aria-expanded="false">更多&gt;&gt;</a>
+              </li>
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </li>
+      <li id="J-xinxichaxun" class="nav-item last" role="menuitem">
+        <a href="javascript:void(0) " class="nav-hd item" aria-expanded="false" aria-haspopup="true" aria-controls="megamenu-9">信息查询
+          <i class="icon icon-down"></i>
+        </a>
+        <div class="nav-bd" id="megamenu-9">
+          <div class="nav-bd-item nav-col5">
+            <h3 class="nav-tit border-none">常用查询</h3>
+            <ul class="nav-con" role="menu" aria-hidden="true">
+              <li role="menuitemradio">
+                <a name="g_href" data-type="2" data-href="zwdch/init" data-redirect="Y" href="javascript:;">正晚点</a>
+              </li>
+              <li role="menuitemradio">
+                <a name="g_href" data-type="2" data-href="queryTrainInfo/init" data-redirect="Y" href="javascript:;">时刻表</a>
+              </li>
+              <li role="menuitemradio">
+                <a name="g_href" data-type="2" data-href="view/queryPublicIndex.html" data-redirect="Y" href="javascript:;">公布票价</a>
+              </li>
+              <li role="menuitemradio">
+                <a name="g_href" data-type="1" data-href="view/infos/ticket_check.html" data-redirect="Y" href="javascript:;">检票口</a>
+              </li>
+              <li role="menuitemradio">
+                <a name="g_href" data-type="1" data-href="view/infos/sale_time.html" data-redirect="Y" href="javascript:;">起售时间</a>
+              </li>
+              <li role="menuitemradio">
+                <a name="g_href" data-href="https://12306.weather.com.cn/pc.html" data-redirect="N" data-target="_blank" href="javascript:;">天气</a>
+              </li>
+              <li role="menuitemradio">
+                <a name="g_href" data-type="1" data-href="view/infos/jiaotong.html" data-redirect="Y" href="javascript:;">交通查询</a>
+              </li>
+              <li role="menuitemradio">
+                <a name="g_href" data-type="2" data-href="queryAgencySellTicket/init" data-redirect="Y" href="javascript:;">代售点</a>
+              </li>
+              <li role="menuitemradio">
+                <a name="g_href" data-type="1" data-href="view/infos/service_number.html" data-redirect="Y" href="javascript:;">客服电话</a>
+              </li>
+              <li role="menuitemradio">
+                <a name="g_href" data-type="1" data-href="view/infos/train-query-status.html" data-redirect="Y" href="javascript:;">列车状态</a>
+              </li>
+              <li></li>
+            </ul>
+          </div>
+          <div class="nav-bd-item">
+            <ul class="nav-con nav-con-pt" role="menu" aria-hidden="true">
+              <li class="border-none" role="menuitemradio">
+                <a id="gLink" href="javascript:void(0)">最新发布</a>
+              </li>
+              <li class="border-none" role="menuitemradio">
+                <a name="g_href" data-type="6" data-href="queryDishonest/init" data-redirect="Y" href="javascript:;">信用信息</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </li>
+    </ul>
+  <div id="esd_createCrossNavNode"></div></div>
+</div>
+<!-- 公用-头部 end -->
+
+
+<!-- 主体内容 -->
+<div class="wrapper content" role="main" style="min-height: 297px;">
+  <!-- 面包屑 -->
+  <div class="breadcrumb">
+    当前位置：<a href="https://kyfw.12306.cn/otn/view/index.html">个人中心</a><span class="sep">&gt;</span><span class="active">查看个人信息</span>
+  </div>
+  <!-- 个人中心 -->
+  <div class="center-box">
+    <!-- 个人中心左侧 -->
+    <!-- 个人中心左侧菜单 -->
+<ul class="center-menu" role="menubar">
+  <li class="menu-item" id="gerenzhongxin" role="menuitem">
+    <h2 class="menu-tit">
+      <a href="https://kyfw.12306.cn/otn/view/index.html">个人中心</a>
+    </h2>
+  </li>
+  <li class="menu-item" role="menuitem">
+    <h2 class="menu-tit"><a href="javascript:" title="订单中心" aria-label="订单中心" style="width:10px;height:10px;position:absolute;display:block;"></a>订单中心<i class="icon icon-switch"></i></h2>
+    <ul class="menu-sub" role="menubar">
+      <li id="chepiaodingdan" role="menuitem">
+        <a href="https://kyfw.12306.cn/otn/view/train_order.html">火车票订单</a>
+      </li>
+      <!-- <li id="yuyuepiaodingdan" role="menuitem">
+        <a href="./prefilled_order_center.html">预填单</a>
+      </li> -->
+      <li id="houbudingdan" role="menuitem">
+        <a href="https://kyfw.12306.cn/otn/view/lineUp_order.html">候补订单</a>
+      </li>
+      <li id="chanpindingdan" title="计次•定期票订单" role="menuitem">
+        <a href="https://kyfw.12306.cn/otn/view/commutation_order.html">计次•定期票订单</a>
+      </li>
+      <li id="yuehaodingdan" role="menuitem">
+        <a href="https://kyfw.12306.cn/otn/view/commutation_ticket_order.html">约号订单</a>
+      </li>
+      <!-- <li id="internationOrder" role="menuitem">
+        <a
+          name="g_href"
+          data-type="8"
+          data-href="view/inter_center.html"
+          data-redirect="Y"
+          href="javascript:;"
+          >国际列车订单</a
+        >
+      </li> -->
+      <li id="xuejudingdan" role="menuitem">
+        <a href="https://kyfw.12306.cn/otn/view/snow_order.html">雪具快运订单</a>
+      </li>
+      <li role="menuitem">
+        <a name="g_href" data-type="10" data-href="queryMyOrder.html" data-redirect="Y" href="javascript:;">餐饮•特产</a>
+      </li>
+      <li id="baoxiandingdan" role="menuitem">
+        <a href="https://kyfw.12306.cn/otn/view/my_insurance.html">保险订单</a>
+      </li>
+      <li id="invoiceMeau" role="menuitem">
+        <a href="https://kyfw.12306.cn/otn/view/invoice_index.html">电子发票</a>
+      </li>
+    </ul>
+  </li>
+  <li id="gerenxingcheng" class="menu-item" role="menuitem">
+    <h2 class="menu-tit"><a href="https://kyfw.12306.cn/otn/view/personal_travel.html">本人车票</a></h2>
+  </li>
+  <li class="menu-item" role="menuitem">
+    <h2 class="menu-tit">
+      <a name="g_href" data-type="3" data-href="welcome.html" data-redirect="Y" href="javascript:;">会员中心</a>
+    </h2>
+  </li>
+  <li class="menu-item" role="menuitem">
+    <h2 class="menu-tit"><a href="javascript:" title="个人信息" aria-label="个人信息" style="width:10px;height:10px;position:absolute;display:block;"></a>个人信息<i class="icon icon-switch"></i></h2>
+    <ul class="menu-sub" role="menubar">
+      <li id="gerenxinxi" role="menuitem" class="active">
+        <a href="https://kyfw.12306.cn/otn/view/information.html">查看个人信息</a>
+      </li>
+      <li id="zhanghaoanquan" role="menuitem">
+        <a href="https://kyfw.12306.cn/otn/view/userSecurity.html">账号安全</a>
+      </li>
+      <li id="shoujiheyan" role="menuitem">
+        <a href="https://kyfw.12306.cn/otn/view/userSecurity_bindTel.html">手机核验</a>
+      </li>
+      <!-- <li id="reserveMobile" role="menuitem">
+        <a href="./reserveMobilePhone.html">联系方式预留</a>
+      </li> -->
+      <li id="zhanghaozhuxiao" role="menuitem">
+        <a href="https://kyfw.12306.cn/otn/view/accountCancellation.html">账号注销</a>
+      </li>
+    </ul>
+  </li>
+  <li class="menu-item" role="menuitem">
+    <h2 class="menu-tit"><a href="javascript:" title="常用信息管理" aria-label="常用信息管理" style="width:10px;height:10px;position:absolute;display:block;"></a>常用信息管理<i class="icon icon-switch"></i></h2>
+    <ul class="menu-sub" role="menubar">
+      <li id="cylianxiren" role="menuitem">
+        <a href="https://kyfw.12306.cn/otn/view/passengers.html">乘车人</a>
+      </li>
+      <li id="chepiaokuaidi" role="menuitem">
+        <a href="https://kyfw.12306.cn/otn/view/address_init.html">地址管理</a>
+      </li>
+    </ul>
+  </li>
+  <li class="menu-item" role="menuitem">
+    <h2 class="menu-tit"><a href="javascript:" title="温馨服务" aria-label="温馨服务" style="width:10px;height:10px;position:absolute;display:block;"></a>温馨服务<i class="icon icon-switch"></i></h2>
+    <ul class="menu-sub" role="menubar">
+      <li id="lvkeyuyue" role="menuitem">
+        <a href="https://kyfw.12306.cn/otn/view/icentre_qxyyInfo.html">重点旅客预约</a>
+      </li>
+      <li id="yishiwupin" role="menuitem">
+        <a href="https://kyfw.12306.cn/otn/view/icentre_lostInfo.html">遗失物品查找</a>
+      </li>
+      <!-- <li id="yiqingshensu" role="menuitem">
+        <a href="./icentre_epidemic.html">限制购票求助</a>
+      </li> -->
+      <li id="J-icentre_serviceQuery" role="menuitem">
+        <a href="https://kyfw.12306.cn/otn/view/icentre_serviceQuery.html">服务查询</a>
+      </li>
+    </ul>
+  </li>
+  <li class="menu-item" role="menuitem">
+    <h2 class="menu-tit"><a href="javascript:" title="投诉和建议" aria-label="投诉和建议" style="width:10px;height:10px;position:absolute;display:block;"></a>投诉和建议<i class="icon icon-switch"></i></h2>
+    <ul class="menu-sub" role="menubar">
+      <li id="J-advice_complaintInfo" role="menuitem">
+        <a href="https://kyfw.12306.cn/otn/view/advice_complaintInfo.html">投诉</a>
+      </li>
+      <li id="J-advice_adviceInfo" role="menuitem">
+        <a href="https://kyfw.12306.cn/otn/view/advice_adviceInfo.html">建议</a>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+    <!-- 个人中心右侧 -->
+    <div class="center-main" id="informationView">
+  <form id="modifyUserForm">
+    <div class="panel-border" id="js-minHeight">
+      <!-- 基本信息 -->
+      <div class="center-form-item">
+        <div class="center-tit">
+          <div class="tit-name">基本信息</div>
+          <div class="pull-right">
+            
+          </div>
+        </div>
+        <!-- 显示 -->
+        <div class="form-list form-list-view" id="basic_info_view">
+          <div class="form-item">
+            <div class="form-label"><span class="required">*</span>用户名：</div>
+            <div class="form-bd"><div class="form-bd-txt">yxl4869yxl</div></div>
+          </div>
+          <div class="form-item">
+            <div class="form-label"><span class="required">*</span>姓名：</div>
+            <div class="form-bd"><div class="form-bd-txt">郁熙临</div></div>
+          </div>
+          
+          <div class="form-item">
+            <div class="form-label">国家/地区：</div>
+            <div class="form-bd"><div class="form-bd-txt">中国China</div></div>
+          </div>
+          <div class="form-item">
+            <div class="form-label"><span class="required">*</span>证件类型：</div>
+            <div class="form-bd"><div class="form-bd-txt" data-val="1">居民身份证</div></div>
+          </div>
+          <div class="form-item">
+            <div class="form-label"><span class="required">*</span>证件号码：</div>
+            <div class="form-bd"><div class="form-bd-txt">3101***********019</div></div>
+          </div>
+          <div class="form-item">
+            <div class="form-label">核验状态：</div>
+
+            <div class="form-bd">
+              <div class="form-bd-txt">
+                
+                <span class="txt-second" title="">已通过</span>
+                
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- 编辑 -->
+        <div class="form-list form-list-edit" id="basic_info_base" style="display: none;">
+          <div class="form-item">
+            <div class="form-label"><span class="required">*</span>用户名：</div>
+            <div class="form-bd"><div class="input-box"><input type="text" name="userDTO.loginUserDTO.user_name" class="input" value="yxl4869yxl" style="display:none"><div style="line-height:30px">yxl4869yxl</div></div></div>
+          </div>
+          <div class="form-item" style="position:relative">
+            <div class="form-label"><span class="required">*</span>证件类型：</div>
+            
+            <div class="form-bd-txt" id="id_type_name" data-val="1">居民身份证</div>
+            
+            
+            <div class="form-tips txt-second" id="GAT_idno_rule" name="tips_GAT" style="position: absolute; top: 0px; left: 565px; line-height: 30px; display: none;"><a class="txt-second underline">证件填写规则</a></div>
+          </div>
+          
+          <div class="form-item" style="position:relative">
+            <div class="form-label"><span class="required">*</span>姓名：</div>
+            
+            
+            <div class="form-bd-txt"><input type="text" name="userDTO.loginUserDTO.name" class="input" value="郁熙临" style="display: none">郁熙临</div>
+            
+            
+          </div>
+          <div class="form-item" style="position:relative">
+            <div class="form-label"><span class="required">*</span>证件号码：</div>
+            
+            
+            <div class="form-bd-txt"><input type="text" name="userDTO.loginUserDTO.id_no" class="input" value="3101***********019" style="display: none">3101***********019</div>
+            
+            
+          </div>
+
+
+          
+            
+              
+              <div class="form-item cardLi sex_code_show" style="display: none;">
+                
+                
+                
+                
+                
+                
+                <div class="form-label"><span class="required">*</span>性别：</div>
+                
+                
+                <div class="form-bd-txt">男</div>
+                
+                
+              </div>
+              
+              <div class="form-item gjLi" id="country" style="display: none;">
+                <div class="form-label">国家/地区：</div>
+                
+                <span>中国China</span>
+                <input type="hidden" name="userDTO.country_code" value="CHN">
+                
+
+              </div>
+
+
+
+              <div class="form-item">
+                <div class="form-label">核验状态：</div>
+                <div class="form-bd">
+                  <div class="form-bd-txt">
+                    
+                    <span class="txt-second" title="">已通过</span>
+                    
+                  </div>
+                </div>
+              </div>
+              <div class="form-item" style="position:relative">
+                <div class="form-label"><span class="required">*</span>登录密码：</div>
+                <div class="form-bd"><div class="input-box"><input type="password" id="passwordInput" name="userDTO.password" maxlength="25" class="input" value=""></div></div>
+                <div class="form-tips one-line txt-second" style="position:absolute;top:0px;left:565px;line-height:30px;">正确输入密码才能修改个人资料</div>
+              </div>
+            </div>
+          </div>
+          <div class="line-dashed"></div>
+          <!-- 联系方式 -->
+          <div class="center-form-item">
+            <div class="center-tit">
+              <div class="tit-name">联系方式</div>
+              <div class="pull-right">
+                <a href="javascript:;" class="btn btn-edit" id="relation_way_edit" title="编辑联系方式" aria-label="编辑联系方式">编辑</a>
+                <a href="javascript:;" class="btn btn-primary btn-save" id="relation_way_save" title="保存联系方式" aria-label="保存联系方式" style="display: none;">保存</a>
+              </div>
+            </div>
+            <!-- 显示 -->
+            <div class="form-list form-list-view" id="relation_way_view">
+              <div class="form-item" style="position:relative">
+                <div class="form-label"><span name="mobile_div_span" class="required">*</span>手机号：</div>
+                <div class="form-bd">
+                  <div class="form-bd-txt">
+                    
+                    (+86)
+                    
+                    189****0875</div>
+                  
+                  <div class="tips one-line txt-second" style="margin-left:5px;position:absolute;top:4px;left:545px;">已通过核验</div>
+                  
+                </div>
+
+              </div>
+              <!-- <div class="form-item">
+                <div class="form-label">固定电话：</div>
+                <div class="form-bd"><div class="form-bd-txt showTelephone"></div></div>
+              </div> -->
+              <div class="form-item" style="position:relative">
+                <div class="form-label">邮箱：</div>
+                
+                
+                <div class="form-bd" title=""><div class="form-bd-txt"></div></div>
+                
+                
+              </div>
+              <!-- <div class="form-item">
+                <div class="form-label">地址：</div>
+                <div class="form-bd"><div class="form-bd-txt showAddress" title=""></div></div>
+              </div>
+              <div class="form-item">
+                <div class="form-label">邮编：</div>
+                <div class="form-bd"><div class="form-bd-txt showPost"></div></div>
+              </div> -->
+            </div>
+            <!-- 编辑 -->
+            <div class="form-list form-list-edit" style="display: none;" id="relation_way_base">
+              <div class="form-item">
+                <div class="form-label"><span class="required">*</span>手机号：</div>
+                <div class="form-bd">
+                  <div class="form-bd-txt pull-left" style="min-width: 200px;">
+                    
+                    (+86)
+                    
+                    189****0875</div>
+                  <input type="text" value="189****0875" name="userDTO.mobile_no" maxlength="30" style="display:none;">
+                  <div class="form-bd-txt pull-left txt-second ml">去 <a href="https://kyfw.12306.cn/otn/view/userSecurity_bindTel.html" id="phone_binding_href" class="txt-primary underline">
+                    
+                    <span>手机核验</span>
+                    
+                  </a> 修改</div>
+                </div>
+              </div>
+              <!-- <div class="form-item">
+                <div class="form-label">固定电话：</div>
+                <div class="form-bd" id="errTemplate" style="line-height: 30px">
+                  <div class="input-box"><input type="text" class="input infoTelephone" name="userDTO.phone_no" value=""></div>
+
+                </div>
+              </div> -->
+              <div class="form-item">
+                <div class="form-label"><span name="email_div_span" class="required" style="display:none;">*</span>邮箱：</div>
+                <div class="form-bd">
+                  <div class="form-bd-txt pull-left" style="min-width: 200px;"></div>
+                  <input type="text" value="" name="userDTO.email" style="display:none;">
+                  
+                </div>
+              </div>
+              <!-- <div class="form-item">
+                <div class="form-label">地址：</div>
+                <div class="form-bd" style="line-height: 30px"><div class="input-box"><input type="text" class="input infoAddress" name="userDTO.address" value=""></div></div>
+              </div>
+              <div class="form-item">
+                <div class="form-label">邮编：</div>
+                <div class="form-bd" style="line-height: 30px"><div class="input-box"><input type="text" class="input infoPost" name="userDTO.postalcode" value=""></div></div>
+              </div> -->
+            </div>
+          </div>
+          <div class="line-dashed"></div>
+          <!-- 附加信息 -->
+          <div class="center-form-item">
+            <div class="center-tit">
+              <div class="tit-name">附加信息</div>
+              <div class="pull-right">
+                <a href="javascript:;" class="btn btn-edit" id="append_info_edit" title="编辑附加信息" aria-label="编辑附加信息">编辑</a>
+                <a href="javascript:;" class="btn btn-primary btn-save" id="append_info_save" title="保存附加信息" aria-label="保存附加信息" style="display: none;">保存</a>
+              </div>
+            </div>
+            <!-- 显示 -->
+            <div class="form-list form-list-view" id="append_info_view">
+              <div class="form-item">
+                <div class="form-label"><span class="required">*</span>优惠(待)类型：</div>
+                <div class="form-bd"><div class="form-bd-txt" id="isStudent">成人</div></div>
+              </div>
+            </div>
+            <!-- 编辑 -->
+            <div class="form-list form-list-edit" id="append_info_base" style="display: none;">
+              <div class="form-item">
+                <div class="form-label"><span class="required">*</span>优惠(待)类型：</div>
+                <div class="form-bd">
+                  <div class="sel">
+                    <div class="sel-hd">
+                      <div class="sel-inner" id="passenger_type_text" data-val="1"><a href="javascript:" title="" aria-label="" style="width:10px;height:10px;position:absolute;display:block;"></a>成人</div>
+                      <i class="icon icon-caret-down"></i>
+                    </div>
+                    <div class="sel-bd">
+                      <ul class="sel-list select-old" id="selectValue" title="
+                        
+                        成人
+                        
+                        儿童
+                        
+                        学生
+                        
+                        残疾军人
+                        
+                      " aria-label="
+                        
+                        成人
+                        
+                        儿童
+                        
+                        学生
+                        
+                        残疾军人
+                        
+                      ">
+                        
+                        <li data-val="1">成人</li>
+                        
+                        <li data-val="2">儿童</li>
+                        
+                        <li data-val="3">学生</li>
+                        
+                        <li data-val="4">残疾军人</li>
+                        
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="line-dashed"></div>
+          <!-- 学生资质查询 -->
+          
+          <!-- 选择车站下拉框 -->
+          <div id="choice_div" style="z-index: 2000; position: absolute;">
+            <div id="form_cities2">
+              <div id="panel_cities2"></div>
+            </div>
+          </div>
+          <input type="text" value="N" name="userDTO.is_active" style="display: none;">
+          <input type="text" value="" name="userDTO.check_code" style="display: none;">
+          <input type="text" value="Y" name="userDTO.revSm_code" style="display: none;">
+          <input type="text" value="" name="userDTO.flag" style="display: none;">
+          <input type="text" value="" name="userDTO.last_login_time" style="display: none;">
+          <input type="text" value="" name="userDTO.first_letter" style="display: none;">
+          <input type="text" value="22000079318159" name="userDTO.user_id" style="display: none;">
+          <input type="text" value="*" name="userDTO.phone_flag" style="display: none;">
+          <input type="text" value="*" name="userDTO.encourage_flag" style="display: none;">
+          <input type="text" value="" name="userDTO.needModifyPassword" style="display: none;">
+          <input type="text" value="Y" name="userDTO.needModifyEmail" style="display: none;">
+          <input type="text" value="N" name="userDTO.flag_member" style="display: none;">
+          <input type="text" value="E" name="userDTO.loginUserDTO.channel" style="display: none;">
+          <input type="text" value="189****0875" name="userDTO.loginUserDTO.agent_contact" style="display: none;">
+          <input type="text" value="" name="userDTO.loginUserDTO.user_id" style="display: none;">
+          <input type="text" value="" name="userDTO.loginUserDTO.refundLogin" style="display: none;">
+          <input type="text" value="" name="userDTO.studentInfoDTO.student_name" style="display: none;">
+          <input type="text" value="" name="userDTO.studentInfoDTO.city_name" style="display: none;">
+          <input type="text" value="" name="userDTO.studentInfoDTO.city_code" style="display: none;">
+  
+</div></form></div>
+  </div>
+</div>
+<!-- 港澳 -->
+<div id="GAT_tip" class="passport-tips">
+  <div id="gangao_tip">
+    <div class="passport-item fl">
+      <div class="passport-tit">港澳居民来往内地通行证示例（1999版）</div>
+      <div class="passport-con">
+        <img src="./查看个人信息_files/person03.jpg" alt="">
+      </div>
+    </div>
+    <div class="passport-item fr">
+      <div class="passport-tit">港澳居民来往内地通行证示例（2012版）</div>
+      <div class="passport-con">
+        <img src="./查看个人信息_files/person04.jpg" alt="">
+      </div>
+    </div>
+    <div class="passport-item fl">
+      <div class="passport-tit">港澳居民来往内地通行证示例（非中国籍）</div>
+      <div class="passport-con">
+        <img src="./查看个人信息_files/person08.jpg" alt="">
+      </div>
+    </div>
+  </div>
+  <!-- 台湾通行证 -->
+  <div id="taiwan_tip" style="display: none">
+    <div class="passport-item fl">
+      <div class="passport-tit">台湾居民来往大陆通行证示例（2002版）</div>
+      <div class="passport-con">
+        <img src="./查看个人信息_files/person06.png" alt="">
+      </div>
+    </div>
+    <div class="passport-item fr">
+      <div class="passport-tit">台湾居民来往大陆通行证示例（2015版）</div>
+      <div class="passport-con">
+        <img src="./查看个人信息_files/person01.jpg" alt="">
+      </div>
+    </div>
+  </div>
+  <!-- 外国人通行证 -->
+  <div id="work_tip" style="display: none">
+    <div class="passport-item fl">
+      <div class="passport-tit">外国人永久居留身份证示例（2017版）</div>
+      <div class="passport-con">
+        <img src="./查看个人信息_files/person02.jpg" alt="">
+      </div>
+    </div>
+    <div class="passport-item fr">
+      <div class="passport-tit">外国人永久居留身份证示例（2023版）</div>
+      <div class="passport-con">
+        <img src="./查看个人信息_files/person07.jpg" alt="">
+      </div>
+    </div>
+  </div>
+  <!-- 港澳台居民居住证 -->
+  <div id="gat_jzz_tip" style="display: none">
+    <div class="passport-item fr">
+      <div class="passport-tit">港澳居民居住证/台湾居民居住证</div>
+      <div class="passport-con">
+        <img src="./查看个人信息_files/person05.jpg" alt="">
+      </div>
+    </div>
+  </div>
+  <!-- 外国护照 -->
+  <div id="waihu_tip" style="display: none;overflow-x: scroll;width: 100%;height: 420px;display: flex;justify-content: flex-start">
+    <div class="passport-item ">
+      <div class="passport-tit">外国护照</div>
+      <div class="passport-con">
+        <img src="./查看个人信息_files/foreign-simple-1.jpg" alt="">
+      </div>
+    </div>
+    <div class="passport-item ">
+      <div class="passport-tit">外国护照</div>
+      <div class="passport-con">
+        <img src="./查看个人信息_files/foreign-simple-2.jpg" alt="">
+      </div>
+    </div>
+    <div class="passport-item ">
+      <div class="passport-tit">外国护照</div>
+      <div class="passport-con">
+        <img src="./查看个人信息_files/Full_Name.jpg" alt="">
+      </div>
+    </div>
+    <div class="passport-item ">
+      <div class="passport-tit">外国护照</div>
+      <div class="passport-con">
+        <img src="./查看个人信息_files/Surename_Given_Names.jpg" alt="">
+      </div>
+    </div>
+    <div class="passport-item ">
+      <div class="passport-tit">外国护照</div>
+      <div class="passport-con">
+        <img src="./查看个人信息_files/First_name_Last_name_Middle_name.jpg" alt="">
+      </div>
+    </div>
+    <div class="passport-item ">
+      <div class="passport-tit">外国护照</div>
+      <div class="passport-con">
+        <img src="./查看个人信息_files/name_contain_space.jpg" alt="">
+      </div>
+    </div>
+    <div class="passport-item ">
+      <div class="passport-tit">外国护照</div>
+      <div class="passport-con">
+        <img src="./查看个人信息_files/name_contain_more_name.jpg" alt="">
+      </div>
+    </div>
+    <div class="passport-item ">
+      <div class="passport-tit">外国护照</div>
+      <div class="passport-con">
+        <img src="./查看个人信息_files/name_contain_miss_mr_master.jpg" alt="">
+      </div>
+    </div>
+    <div class="passport-item ">
+      <div class="passport-tit">外国护照</div>
+      <div class="passport-con">
+        <img src="./查看个人信息_files/name_contain_fh_1.jpg" alt="">
+      </div>
+    </div>
+    <div class="passport-item ">
+      <div class="passport-tit">外国护照</div>
+      <div class="passport-con">
+        <img src="./查看个人信息_files/name_contain_fh_2.jpg" alt="">
+      </div>
+    </div>
+    <div class="passport-item ">
+      <div class="passport-tit">外国护照</div>
+      <div class="passport-con">
+        <img src="./查看个人信息_files/name_contain_fh_3.jpg" alt="">
+      </div>
+    </div>
+    <div class="passport-item ">
+      <div class="passport-tit">外国护照</div>
+      <div class="passport-con">
+        <img src="./查看个人信息_files/name_contain_kh.jpg" alt="">
+      </div>
+    </div>
+    <div class="passport-item ">
+      <div class="passport-tit">外国护照</div>
+      <div class="passport-con">
+        <img src="./查看个人信息_files/id_contain_space.jpg" alt="">
+      </div>
+    </div>
+    <div class="passport-item ">
+      <div class="passport-tit">外国护照</div>
+      <div class="passport-con">
+        <img src="./查看个人信息_files/id_contain_No.jpg" alt="">
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- 底部 -->
+<!-- 公用-底部 start -->
+<div class="footer" role="complementary" aria-label="底部">
+  <div class="footer-con wrapper">
+    <div class="foot-links" style="margin-right: 20px">
+      <h2 class="foot-con-tit">友情链接</h2>
+      <ul class="foot-links-list" role="menubar">
+        <li role="menuitem">
+          <a name="g_href" data-href="http://www.china-railway.com.cn/" data-redirect="N" href="javascript:;" data-target="_blank" title="中国国家铁路集团有限公司" aria-label="中国国家铁路集团有限公司">
+            <img src="./查看个人信息_files/link05.png" alt="中国国家铁路集团有限公司" title="中国国家铁路集团有限公司">
+          </a>
+        </li>
+        <li role="menuitem">
+          <a name="g_href" data-href="http://www.china-ric.com/" data-redirect="N" href="javascript:;" data-target="_blank" title="中国铁路财产保险自保有限公司" aria-label="中国铁路财产保险自保有限公司">
+            <img src="./查看个人信息_files/link02.png" alt="中国铁路财产保险自保有限公司" title="中国铁路财产保险自保有限公司">
+          </a>
+        </li>
+        <li role="menuitem">
+          <a name="g_href" title="中国铁路95306网" data-href="http://www.95306.cn/" data-redirect="N" href="javascript:;" data-target="_blank" aria-label="中国铁路95306网">
+            <img src="./查看个人信息_files/link03.png" alt="中国铁路95306网" title="中国铁路95306网">
+          </a>
+        </li>
+        <li role="menuitem">
+          <a name="g_href" title="中铁快运股份有限公司" data-href="http://www.95572.com/" data-redirect="N" href="javascript:;" data-target="_blank" aria-label="中铁快运股份有限公司">
+            <img src="./查看个人信息_files/link04.png" alt="中铁快运股份有限公司" title="中铁快运股份有限公司">
+          </a>
+        </li>
+      </ul>
+    </div>
+    <ul class="foot-code">
+      <li style="width: 140px">
+        <h2 class="foot-con-tit">中国铁路官方微信</h2>
+        <div class="code-pic">
+          <img src="./查看个人信息_files/zgtlwb.png" alt="中国铁路官方微信" title="中国铁路官方微信">
+        </div>
+      </li>
+      <li style="width: 140px">
+        <h2 class="foot-con-tit">中国铁路官方微博</h2>
+        <div class="code-pic">
+          <img src="./查看个人信息_files/zgtlwx.png" alt="中国铁路官方微博" title="中国铁路官方微博">
+        </div>
+      </li>
+      <li style="width: 110px">
+        <h2 class="foot-con-tit">12306 公众号</h2>
+        <div class="code-pic">
+          <img src="./查看个人信息_files/public.png" alt="12306 公众号" title="12306 公众号">
+        </div>
+      </li>
+      <li style="width: 110px">
+        <h2 class="foot-con-tit">铁路12306</h2>
+        <div class="code-pic">
+          <img src="./查看个人信息_files/download.png" alt="铁路12306" title="铁路12306">
+          <div class="code-tips">
+            官方APP下载，目前铁路未授权其他网站或APP开展类似服务内容，敬请广大用户注意。
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div class="footer-txt" style="position: relative;">
+    <p>
+      <span class="mr">版权所有©2008-2025</span>
+      <span class="mr">中国铁道科学研究院集团有限公司</span>
+      <span>技术支持：铁旅科技有限公司</span>
+    </p>
+    <p>
+      <span class="mr">
+        <img src="./查看个人信息_files/gongan.png" alt="中国国家铁路集团有限公司" style="width:13px" title="中国国家铁路集团有限公司">
+        <a target="blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=11010802038392" style="color:#c1c1c1">京公网安备 11010802038392号</a>
+      </span>
+      <span class="mr">|</span>
+      <span class="mr">京ICP备05020493号-4</span>
+      <span class="mr">|</span>
+      <span>ICP证：京B2-20202537</span>
+    </p>
+    <div style="position: absolute;top: 17px;left: 50%;margin-left: 465px;">
+      <img src="./查看个人信息_files/footer-slh.jpg" style="display: block;width: 130px;height: 46px;" alt="中国国家铁路集团有限公司" title="中国国家铁路集团有限公司">
+    </div>
+  </div>
+</div>
+<!-- 公用-底部 end -->
+<!-- <script type="text/javascript" src="http://extened.8686c.com/otnyt/resources/route/extened.8686c.com/route.js"></script> -->
+<script type="text/javascript" src="./查看个人信息_files/route.js.下载"></script><script type="text/javascript" src="./查看个人信息_files/route(1).js.下载" charset="utf-8"></script><a href="javascript:void(0);" tabindex="7" id="esdTipLink1" style="max-width: 0px !important; float: left !important; border: 0px !important; padding: 0px !important; margin: 0px !important; width: 0px !important; height: 0px !important; overflow: hidden !important; display: block !important; left: 0px !important; top: 0px !important; position: absolute !important;">新窗口打开无障碍说明页面,按Alt加波浪键打开导盲模式</a>
+
+
+<!-- 返回顶部 -->
+<div class="gototop js-top">
+  <a href="javascript:;" class="js-gotop" title="返回顶部"><i class="icon icon-gotop"></i></a>
+</div>
+
+<!-- 遮罩层 -->
+<!-- loading -->
+<div class="mask" style="display: none;">
+  <img style="
+      display: block;
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      margin: auto;
+      width: 60px;
+    " src="./查看个人信息_files/loading.gif" alt="正在加载" title="正在加载">
+</div>
+
+<script type="text/template" id="informationTemp">
+  <form id="modifyUserForm">
+    <div class="panel-border" id="js-minHeight">
+      <!-- 基本信息 -->
+      <div class="center-form-item">
+        <div class="center-tit">
+          <div class="tit-name">基本信息</div>
+          <div class="pull-right">
+            <%if(userDTO.loginUserDTO.id_type_code == 'H'){%>
+            <%if(canEdit&&userDTO.user_status%2 != 0){%>
+            <a href="javascript:;" class="btn btn-edit" id="basic_info_edit">旧证换新证</a>
+            <a href="javascript:;" class="btn btn-primary btn-save" id="basic_info_save" >保存</a>
+            <%}else{%>
+            <a href="javascript:;" class="btn btn-edit" id="basic_info_edit">编辑</a>
+            <a href="javascript:;" class="btn btn-primary btn-save" id="basic_info_save" >保存</a>
+            <%}%>
+            <%}else if(canEdit||canAddGAT||(userDTO.loginUserDTO.id_type_code != "1"&&userDTO.loginUserDTO.id_type_code != "H")){%>
+            <a href="javascript:;" class="btn btn-edit" id="basic_info_edit">编辑</a>
+            <a href="javascript:;" class="btn btn-primary btn-save" id="basic_info_save" >保存</a>
+            <%}%>
+          </div>
+        </div>
+        <!-- 显示 -->
+        <div class="form-list form-list-view" id="basic_info_view">
+          <div class="form-item">
+            <div class="form-label"><span class="required">*</span>用户名：</div>
+            <div class="form-bd"><div class="form-bd-txt"><%= userDTO.loginUserDTO.user_name %></div></div>
+          </div>
+          <div class="form-item">
+            <div class="form-label"><span class="required">*</span>姓名：</div>
+            <div class="form-bd"><div class="form-bd-txt"><%= userDTO.loginUserDTO.name %></div></div>
+          </div>
+          <% if(userDTO.loginUserDTO.id_type_code != "1") {%>
+          <div class="form-item">
+            <div class="form-label"><span class="required">*</span>性别：</div>
+            <% if(userDTO.sex_code == "M") {%>
+            <div class="form-bd"><div class="form-bd-txt">男</div></div>
+            <%} else if(userDTO.sex_code == "F"){%>
+            <div class="form-bd"><div class="form-bd-txt">女</div></div>
+            <%}else{%>
+            <div class="form-bd"><div class="form-bd-txt"></div></div>
+            <%}%>
+          </div>
+          <%}%>
+          <div class="form-item">
+            <div class="form-label">国家/地区：</div>
+            <div class="form-bd"><div class="form-bd-txt"><%= country_name %></div></div>
+          </div>
+          <div class="form-item">
+            <div class="form-label"><span class="required">*</span>证件类型：</div>
+            <div class="form-bd"><div class="form-bd-txt" data-val = '<%= userDTO.loginUserDTO.id_type_code %>'><%= userDTO.loginUserDTO.id_type_name %></div></div>
+          </div>
+          <div class="form-item">
+            <div class="form-label"><span class="required">*</span>证件号码：</div>
+            <div class="form-bd"><div class="form-bd-txt"><%= userDTO.loginUserDTO.id_no.toUpperCase() %></div></div>
+          </div>
+          <div class="form-item">
+            <div class="form-label">核验状态：</div>
+
+            <div class="form-bd">
+              <div class="form-bd-txt">
+                <%if(notice == '已通过' || notice == '预通过'){%>
+                <span class="txt-second" title="<%=notice1%>"><%= notice %></span>
+                <%}else if(notice == '未通过'){%>
+                <span class="txt-danger mr10" title="<%=notice1%>"><%= notice %></span>
+                <%if(userDTO.loginUserDTO.id_type_code == 'A'){%>
+                <a href="./passportVerification.html" class="txt-primary upload">上传照片核验</a>
+                <span class="ml10 idNoTips" style="color: #ff8000;" id="idNoTips">
+                      <i class="icon icon-plaint-fill mr5"></i>您可上传证件照片在线完成核验，或持乘车人有效证件到车站售票窗口办理核验。
+                    </span>
+                <%}%>
+                <%}else if(notice == '请报验' || notice == '待核验'){%>
+                <span class="txt-primary" title="<%=notice1%>"><%= notice %></span>
+                <%}%>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- 编辑 -->
+        <div class="form-list form-list-edit" id="basic_info_base" style="display: none;">
+          <div class="form-item">
+            <div class="form-label"><span class="required">*</span>用户名：</div>
+            <div class="form-bd"><div class="input-box"><input type="text" name="userDTO.loginUserDTO.user_name" class="input" value="<%= userDTO.loginUserDTO.user_name %>" style="display:none"><div style="line-height:30px"><%= userDTO.loginUserDTO.user_name %></div></div></div>
+          </div>
+          <div class="form-item" style="position:relative">
+            <div class="form-label"><span class="required">*</span>证件类型：</div>
+            <%if(!canEdit){%>
+            <div class="form-bd-txt" id="id_type_name" data-val="<%= userDTO.loginUserDTO.id_type_code %>"><%= userDTO.loginUserDTO.id_type_name %></div>
+            <%}%>
+            <%if(canEdit){%>
+            <div class="form-bd">
+              <div class="sel">
+                <div class="sel-hd">
+                  <input name="userDTO.loginUserDTO.id_type_code" id="cardTypeCode" value="<%= userDTO.loginUserDTO.id_type_code %>" type="hidden"/>
+                  <div class="sel-inner" id="id_type_name" data-val="<%= userDTO.loginUserDTO.id_type_code %>"><%= userDTO.loginUserDTO.id_type_name %></div>
+                  <i class="icon icon-caret-down"></i>
+                </div>
+                <div class="sel-bd">
+                  <ul class="sel-list select-old" id="listCardType">
+                    <% for(var j = 0;j < listCardType.length;j++) {%>
+                    <li data-val='<%= listCardType[j].id %>'><%= listCardType[j].value %></li>
+                    <%}%>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <%}%>
+            <div class="form-tips txt-second" id="GAT_idno_rule" name="tips_GAT" style="position:absolute;top:0px;left:565px;line-height:30px;"><a class ="txt-second underline">证件填写规则</a></div>
+          </div>
+          <%if(canEdit){%>
+          <!-- <div class="form-card-type" id="jmsfz_li">
+
+            <label class="check-inline"><input type="radio" id="idTypeCode_second" value="1" data-type='nd' name="idTypeRadio">居民身份证</label>
+            <label class="check-inline"><input type="radio" id="idTypeCode_wgjzz" value="H" name="idTypeRadio">外国人永久居留身份证</label>
+            <label class="check-inline"><input type="radio" id="idTypeCode_gatjjz" value="1" data-type='ga' name="idTypeRadio">港澳台居民居住证</label>
+          </div> -->
+          <%}%>
+          <div class="form-item" style="position:relative">
+            <div class="form-label"><span class="required">*</span>姓名：</div>
+            <%if(!canEdit){%>
+            <%if(canAddGAT){%>
+            <div class="form-bd"><div class="input-box"><input type="text" name="userDTO.loginUserDTO.name" class="input" value="<%= userDTO.loginUserDTO.name %>"></div></div>
+            <div class="form-tips txt-second" id="name_rule" onmouseover="showTip();" onmouseout="hideTip();" style="position:absolute;top:0px;left:565px;line-height:30px;"><a class="txt-second underline" href="javascript:;">姓名填写规则</a>（用于身份核验）
+              <!-- 提示框 -->
+              <div class="panel-tooltip showTip" style="top: 28px;width:400px; left: 0px;background: #fff;display: none;z-index:99">
+                <div class="tooltip-arw"></div>
+                <div class="tooltip-txt">
+                  <p>1.居民身份证、港澳居民居住证、台湾居民居住证、中国护照按姓名顺序填写中文姓名。</p>
+                  <p>2.外国人永久居留身份证按姓名顺序填写中文或英文姓名。</p>
+                  <p>3.港澳居民来往内地通行证、台湾居民来往大陆通行证按姓名顺序输入简体中文姓名。非中国籍港澳居民来往内地通行证按姓名顺序输入简体中文姓名或英文姓名。</p>
+                  <p>4.外国护照按姓名顺序填写英文姓名。姓、名中有空格的应输入空格，姓和名之间也应使用空格分隔。</p>
+                  <p>5.确认姓名中生僻字无法输入时，可用生僻字拼音或同音字替代。</p>
+                  <p>6.输入姓名保存后，遇有系统无法正确显示的汉字，可用该汉字的拼音或同音字重新修改后保存。</p>
+                  <p>7.姓名中有繁体字无法输入时，可用简体替代。</p>
+                  <p>8.姓名中有“.”或“•”时，请仔细辨析身份证件原件上的“.”或“•”，准确输入。</p>
+                  <p class="nameLength">9.姓名较长，汉字字符合计超过30个（1个汉字算2个字符）的，需按姓名中第一个汉字开始按顺序连续输入30个字符（空格字符不输入）。外国人永久居留身份证和外国护照使用英文姓名的，应按姓名顺序全部填写。</p>
+                </div>
+              </div>
+            </div>
+            <%}else{%>
+            <div class="form-bd-txt"><input type="text" name="userDTO.loginUserDTO.name" class="input" value="<%= userDTO.loginUserDTO.name %>" style="display: none"><%= userDTO.loginUserDTO.name %></div>
+            <%}%>
+            <%} else if(canEdit||canAddGAT){%>
+            <div class="form-bd"><div class="input-box"><input type="text" name="userDTO.loginUserDTO.name" class="input" value="<%= userDTO.loginUserDTO.name %>"></div></div>
+            <div class="form-tips txt-second" id="name_rule" onmouseover="showTip();" onmouseout="hideTip();" style="position:absolute;top:0px;left:565px;line-height:30px;"><a class="txt-second underline" href="javascript:;">姓名填写规则</a>（用于身份核验）
+              <!-- 提示框 -->
+              <div class="panel-tooltip showTip" style="top: 28px;width:400px; left: 0px;background: #fff;display: none;z-index:99">
+                <div class="tooltip-arw"></div>
+                <div class="tooltip-txt">
+                  <p>1.居民身份证、港澳居民居住证、台湾居民居住证、中国护照按姓名顺序填写中文姓名。</p>
+                  <p>2.外国人永久居留身份证按姓名顺序填写中文或英文姓名。</p>
+                  <p>3.港澳居民来往内地通行证、台湾居民来往大陆通行证按姓名顺序输入简体中文姓名。非中国籍港澳居民来往内地通行证按姓名顺序输入简体中文姓名或英文姓名。</p>
+                  <p>4.外国护照按姓名顺序填写英文姓名。姓、名中有空格的应输入空格，姓和名之间也应使用空格分隔。</p>
+                  <p>5.确认姓名中生僻字无法输入时，可用生僻字拼音或同音字替代。</p>
+                  <p>6.输入姓名保存后，遇有系统无法正确显示的汉字，可用该汉字的拼音或同音字重新修改后保存。</p>
+                  <p>7.姓名中有繁体字无法输入时，可用简体替代。</p>
+                  <p>8.姓名中有“.”或“•”时，请仔细辨析身份证件原件上的“.”或“•”，准确输入。</p>
+                  <p class="nameLength">9.姓名较长，汉字字符合计超过30个（1个汉字算2个字符）的，需按姓名中第一个汉字开始按顺序连续输入30个字符（空格字符不输入）。外国人永久居留身份证和外国护照使用英文姓名的，应按姓名顺序全部填写。</p>
+                </div>
+              </div>
+            </div>
+            <%}%>
+          </div>
+          <div class="form-item" style="position:relative">
+            <div class="form-label"><span class="required">*</span>证件号码：</div>
+            <%if(!canEdit){%>
+            <%if(canAddGAT){%>
+            <div class="form-bd">
+              <div class="input-box">
+                <%if(userDTO.loginUserDTO.id_type_code == 'C'){%>
+                <%if(userDTO.loginUserDTO.id_no.length==11){%>
+                <div class="form-bd-txt"><input type="text" name="userDTO.loginUserDTO.id_no" class="input" value="<%= userDTO.loginUserDTO.id_no.toUpperCase().slice(0,9) %>" style="display: none"><%= userDTO.loginUserDTO.id_no.toUpperCase().slice(0,9) %></div>
+                <%}else{%>
+                <div class="form-bd-txt"><input type="text" name="userDTO.loginUserDTO.id_no" class="input" value="<%= userDTO.loginUserDTO.id_no.toUpperCase() %>" style="display: none"><%= userDTO.loginUserDTO.id_no.toUpperCase() %></div>
+                <%}%>
+                <%}else if(userDTO.loginUserDTO.id_type_code == 'G'){%>
+                <%if(userDTO.loginUserDTO.id_no.length==10){%>
+                <div class="form-bd-txt"><input type="text" name="userDTO.loginUserDTO.id_no" class="input" value="<%= userDTO.loginUserDTO.id_no.toUpperCase().slice(0,8) %>" style="display: none"><%= userDTO.loginUserDTO.id_no.toUpperCase().slice(0,8) %></div>
+                <%}else{%>
+                <div class="form-bd-txt"><input type="text" name="userDTO.loginUserDTO.id_no" class="input" value="<%= userDTO.loginUserDTO.id_no.toUpperCase() %>" style="display: none"><%= userDTO.loginUserDTO.id_no.toUpperCase() %></div>
+                <%}%>
+                <%}else if(userDTO.loginUserDTO.id_type_code == 'B' && userDTO.user_status=='3'){%>
+                <div class="form-bd-txt"><input type="text" name="userDTO.loginUserDTO.id_no" class="input" value="<%= userDTO.loginUserDTO.id_no.toUpperCase() %>"></div>
+                <%}else{%>
+                <div class="form-bd-txt"><input type="text" name="userDTO.loginUserDTO.id_no" class="input" value="<%= userDTO.loginUserDTO.id_no.toUpperCase() %>" style="display: none"><%= userDTO.loginUserDTO.id_no.toUpperCase()%></div>
+                <%}%>
+              </div>
+              <div class="form-tips txt-second" id="commonIdNo" style="display:block;position:absolute;top:0px;left:565px;line-height:30px;width:400px">用于身份核验，请正确填写。</div>
+              <div class="form-tips txt-second" id="specialIdNo" style="display:none;position:absolute;top:0px;left:565px;line-height:30px;width:400px">证件号码将按新版证件统一去除换证次数。</div>
+            </div>
+
+            <%}else{%>
+            <div class="form-bd-txt"><input type="text" name="userDTO.loginUserDTO.id_no" class="input" value="<%= userDTO.loginUserDTO.id_no.toUpperCase() %>" style="display: none"><%= userDTO.loginUserDTO.id_no.toUpperCase() %></div>
+            <%}%>
+            <%}else if(canEdit||canAddGAT){%>
+            <div class="form-bd">
+              <div class="input-box">
+                <%if(userDTO.loginUserDTO.id_type_code == 'C'){%>
+                <%if(userDTO.loginUserDTO.id_no.length==11){%>
+                <input id="edit_user_no" name="userDTO.loginUserDTO.id_no" type="text" class="input" value="<%= userDTO.loginUserDTO.id_no.toUpperCase().slice(0,9) %>" onmouseover="showUserNoBigInfo();" onmouseout="hideUserNoBigInfo();" onkeyup="showUserNoBigInfo();" onkeydown="showUserNoBigInfo();" onclick="showUserNoBigInfo();">
+                <div class="input-scale" style="display: none; " id="show_user_id_div"><%= userDTO.loginUserDTO.id_no.toUpperCase().slice(0,9) %></div>
+                <%}else{%>
+                <input id="edit_user_no" name="userDTO.loginUserDTO.id_no" type="text" class="input" value="<%= userDTO.loginUserDTO.id_no.toUpperCase() %>" onmouseover="showUserNoBigInfo();" onmouseout="hideUserNoBigInfo();" onkeyup="showUserNoBigInfo();" onkeydown="showUserNoBigInfo();" onclick="showUserNoBigInfo();">
+                <div class="input-scale" style="display: none; " id="show_user_id_div"><%= userDTO.loginUserDTO.id_no.toUpperCase() %></div>
+                <%}%>
+                <%}else if(userDTO.loginUserDTO.id_type_code == 'G'){%>
+                <%if(userDTO.loginUserDTO.id_no.length==10){%>
+                <input id="edit_user_no" name="userDTO.loginUserDTO.id_no" type="text" class="input" value="<%= userDTO.loginUserDTO.id_no.toUpperCase().slice(0,8) %>" onmouseover="showUserNoBigInfo();" onmouseout="hideUserNoBigInfo();" onkeyup="showUserNoBigInfo();" onkeydown="showUserNoBigInfo();" onclick="showUserNoBigInfo();">
+                <div class="input-scale" style="display: none; " id="show_user_id_div"><%= userDTO.loginUserDTO.id_no.toUpperCase().slice(0,8) %></div>
+                <%}else{%>
+                <input id="edit_user_no" name="userDTO.loginUserDTO.id_no" type="text" class="input" value="<%= userDTO.loginUserDTO.id_no.toUpperCase() %>" onmouseover="showUserNoBigInfo();" onmouseout="hideUserNoBigInfo();" onkeyup="showUserNoBigInfo();" onkeydown="showUserNoBigInfo();" onclick="showUserNoBigInfo();">
+                <div class="input-scale" style="display: none; " id="show_user_id_div"><%= userDTO.loginUserDTO.id_no.toUpperCase() %></div>
+                <%}%>
+                <%}else{%>
+                <input id="edit_user_no" name="userDTO.loginUserDTO.id_no" type="text" class="input" value="<%= userDTO.loginUserDTO.id_no.toUpperCase() %>" onmouseover="showUserNoBigInfo();" onmouseout="hideUserNoBigInfo();" onkeyup="showUserNoBigInfo();" onkeydown="showUserNoBigInfo();" onclick="showUserNoBigInfo();">
+                <div class="input-scale" style="display: none; " id="show_user_id_div"><%= userDTO.loginUserDTO.id_no.toUpperCase() %></div>
+                <%}%>
+              </div>
+              <div class="form-tips txt-second" id="commonIdNo" style="display:block;position:absolute;top:0px;left:565px;line-height:30px;width:400px">用于身份核验，请正确填写。</div>
+              <div class="form-tips txt-second" id="specialIdNo" style="display:none;position:absolute;top:0px;left:565px;line-height:30px;width:400px">证件号码将按新版证件统一去除换证次数。</div>
+            </div>
+            <%}%>
+          </div>
+
+
+          <%if(canEdit||canAddGAT){%>
+          <%if(userDTO.loginUserDTO.id_type_code!='C' && userDTO.loginUserDTO.id_type_code!='G' && userDTO.loginUserDTO.id_type_code!='B'){%>
+          <div class="form-item"  id="youxiao_form_date" name="li_GAT" style="display:none;margin-top:10px;position:relative">
+            <%}else{%>
+            <div class="form-item"  id="youxiao_form_date" name="li_GAT" style="display:block;margin-top:10px;position:relative">
+              <%}%>
+              <div class="form-label"><span class="required">*</span>证件有效期截止日期：</div>
+              <div class="form-bd">
+                <div class="input-box"><input id="id_limit_date_end" name="userDTO.loginUserDTO.GAT_valid_date_end" type="text" class="input" value="" aria-label="请输入日期，例如2021杠01杠01" autocomplete="off"></div>
+              </div>
+              <div name="tips_GAT" class="form-tips txt-second" style="position:absolute;top:0px;left:565px;line-height:30px;">用于身份核验，请正确填写。</div>
+            </div>
+            <%}%>
+            <%if(canEdit||canAddGAT){%>
+            <%if(userDTO.loginUserDTO.id_type_code!='C'&& userDTO.loginUserDTO.id_type_code!='G'){%>
+            <div class="form-item" id="barth_date" style="display:none;position:relative;margin-top:10px">
+              <%}else{%>
+              <div class="form-item" id="barth_date"  style="display:block;position:relative;margin-top:10px">
+                <%}%>
+                <div class="form-label"><span class="required">*</span>出生日期：</div>
+                <div class="form-bd input-box input-data" style="margin-left: 0px" title="<%= notice1%>">
+                  <%if(userDTO.born_date){%>
+                  <% var born_date = userDTO.born_date.split(' ')%>
+                  <input name="userDTO.born_date" type="text" class="input" id="informationFromDate" value="<%= born_date[0] %>">
+                  <i class="icon icon-date" data-click="informationFromDate"></i>
+                  <%}else{%>
+                  <input name="userDTO.born_date" type="text" class="input" id="informationFromDate" value="" aria-label="请输入日期，例如2021杠01杠01" autocomplete="off">
+                  <i class="icon icon-date" data-click="informationFromDate"></i>
+                  <%}%>
+                </div>
+                <div name="tips_GAT" class="form-tips txt-second" style="position:absolute;top:0px;left:565px;line-height:30px;">用于身份核验，请正确填写。</div>
+              </div>
+              <%}%>
+              <% if(true) {%>
+              <div class="form-item cardLi sex_code_show">
+                <% var genderMale = ''%>
+                <% var genderFamale = ''%>
+                <%if(userDTO.sex_code == "F"){%>
+                <% genderMale = ''%>
+                <% genderFamale = 'checked'%>
+                <%}else if(userDTO.sex_code == "M"){%>
+                <% genderMale = 'checked'%>
+                <% genderFamale = ''%>
+                <%}else{%>
+                <% genderMale = ''%>
+                <% genderFamale = ''%>
+                <%}%>
+                <div class="form-label"><span class="required">*</span>性别：</div>
+                <%if(canEdit||canAddGAT||userDTO.loginUserDTO.id_type_code != "1"){%>
+                <div class="form-bd">
+                  <div style="display: inline" id="sex_code_div">
+                    <label class="check-inline"><input type="radio" id="male" name="userDTO.sex_code" <%= genderMale %> value="M" >男</label>
+                    <label class="check-inline"><input type="radio" id="famale" name="userDTO.sex_code" <%= genderFamale %> value="F" >女</label>
+                  </div>
+                </div>
+                <%}else{%>
+                <%if(userDTO.sex_code == "M") {%>
+                <div class="form-bd-txt">男</div>
+                <%}else if(userDTO.sex_code == "F"){%>
+                <div class="form-bd-txt">女</div>
+                <%}else{%>
+                <div class="form-bd">
+                  <div style="display: inline" id="sex_code_div">
+                    <label class="check-inline"><input type="radio" id="male" name="userDTO.sex_code" <%= genderMale%> value="M">男</label>
+                    <label class="check-inline"><input type="radio" id="famale" name="userDTO.sex_code" <%= genderFamale %> value="F">女</label>
+                  </div>
+                </div>
+                <%}%>
+                <%}%>
+              </div>
+              <%}%>
+              <div class="form-item gjLi" id="country">
+                <div class="form-label">国家/地区：</div>
+                <%if(canEdit||canAddGAT||userDTO.loginUserDTO.id_type_code == "H"){%>
+                <div class="form-bd">
+                  <div class="sel">
+                    <div class="sel-hd">
+                      <%for(var country = 0;country < listCountry.length;country++){%>
+                      <%if(listCountry[country].id == userDTO.country_code){%>
+                      <div class="sel-inner" id="country_code" data-val="<%= userDTO.country_code%>"><%= listCountry[country].value %></div>
+                      <%}%>
+                      <%}%>
+                      <i class="icon icon-caret-down"></i>
+                    </div>
+                    <div class="sel-bd">
+                      <ul class="sel-list select-old" id="listCountry">
+                        <%if(userDTO.loginUserDTO.id_type_code == "A"){%>
+                        <%for(var i = 1;i < listCountry.length;i++){%>
+                        <li data-val='<%= listCountry[i].id %>'><%= listCountry[i].value %></li>
+                        <!-- <li data-val='<%= listCountry[i].id %>'><%= listCountry[i].value.replace(/[^\u4e00-\u9fa5]/gi,"") %></li> -->
+                        <%}%>
+                        <%}else if(userDTO.loginUserDTO.id_type_code == "B"){%>
+                        <li data-val='<%= listCountry[0].id %>'><%= listCountry[0].value%></li>
+                        <%}else{%>
+                        <%for(var i = 0;i < listCountry.length;i++){%>
+                        <li data-val='<%= listCountry[i].id %>'><%= listCountry[i].value%></li>
+                        <%}%>
+                        <%}%>
+
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <%}else{%>
+                <span><%= country_name%></span>
+                <input type="hidden" name="userDTO.country_code" value="<%= userDTO.country_code%>" />
+                <%}%>
+
+              </div>
+
+
+
+              <div class="form-item">
+                <div class="form-label">核验状态：</div>
+                <div class="form-bd">
+                  <div class="form-bd-txt">
+                    <%if(notice == '已通过' || notice == '预通过'){%>
+                    <span class="txt-second" title="<%=notice1%>"><%= notice %></span>
+                    <%}else if(notice == '未通过'){%>
+                    <span class="txt-danger" title="<%=notice1%>"><%= notice %></span>
+                    <%if(userDTO.loginUserDTO.id_type_code == 'A'){%>
+                    <a href="./passportVerification.html" class="txt-primary upload">上传照片核验</a>
+                    <span class="ml10 idNoTips" style="color: #ff8000;" id="idNoTips">
+                          <i class="icon icon-plaint-fill mr5"></i>您可上传证件照片在线完成核验，或持乘车人有效证件到车站售票窗口办理核验。
+                        </span>
+                    <%}%>
+                    <%}else if(notice == '请报验' || notice == '待核验'){%>
+                    <span class="txt-primary" title="<%=notice1%>"><%= notice %></span>
+                    <!-- <span class="txt-lighter ml30">
+                      <i class="icon icon-plaint-fill mr5"></i>
+                      审核预计需要3-5个工作日，请耐心等待，您也可以前往车站窗口核验。
+                    </span> -->
+                    <%}%>
+                  </div>
+                </div>
+              </div>
+              <div class="form-item" style="position:relative">
+                <div class="form-label"><span class="required">*</span>登录密码：</div>
+                <div class="form-bd"><div class="input-box"><input type="password" id="passwordInput" name="userDTO.password" maxlength="25" class="input" value=""></div></div>
+                <div class="form-tips one-line txt-second" style="position:absolute;top:0px;left:565px;line-height:30px;">正确输入密码才能修改个人资料</div>
+              </div>
+            </div>
+          </div>
+          <div class="line-dashed"></div>
+          <!-- 联系方式 -->
+          <div class="center-form-item">
+            <div class="center-tit">
+              <div class="tit-name">联系方式</div>
+              <div class="pull-right">
+                <a href="javascript:;" class="btn btn-edit" id="relation_way_edit">编辑</a>
+                <a href="javascript:;" class="btn btn-primary btn-save" id="relation_way_save">保存</a>
+              </div>
+            </div>
+            <!-- 显示 -->
+            <div class="form-list form-list-view" id="relation_way_view">
+              <div class="form-item" style="position:relative">
+                <div class="form-label"><span name="mobile_div_span" class="required">*</span>手机号：</div>
+                <div class="form-bd">
+                  <div class="form-bd-txt">
+                    <%if(userDTO.mobile_no!=''&&userDTO.loginUserDTO.mobile_code&&userDTO.loginUserDTO.mobile_code!=''){%>
+                    (+<%= userDTO.loginUserDTO.mobile_code %>)
+                    <%}%>
+                    <%= userDTO.mobile_no %></div>
+                  <%if(isMobileCheck == 'Y' && userDTO!=null && userDTO.is_receive=='Y'){%>
+                  <div class="tips one-line txt-second" style="margin-left:5px;position:absolute;top:4px;left:545px;">已通过核验</div>
+                  <%} else if(userDTO.mobile_no!='' && isMobileCheck=='Y' && userDTO!=null && userDTO.is_receive!='Y'){%>
+                  <div class="tips one-line" style="margin-left:5px;position:absolute;top:4px;left:545px;">
+                    <a href="./userSecurity_bindTel.html" class="txt-second">未通过核验</a></div>
+                  <%}%>
+                </div>
+
+              </div>
+              <!-- <div class="form-item">
+                <div class="form-label">固定电话：</div>
+                <div class="form-bd"><div class="form-bd-txt showTelephone"><%= userDTO.phone_no %></div></div>
+              </div> -->
+              <div class="form-item" style="position:relative">
+                <div class="form-label">邮箱：</div>
+                <%var emailShow = userDTO.email%>
+                <%if(emailShow&&emailShow.length>18){%>
+                <% var longEmail=emailShow.substring(0,18)+"..."%>
+                <div class="form-bd" title="<%=emailShow%>"><div class="form-bd-txt"><%= longEmail %></div></div>
+                <%}else{%>
+                <div class="form-bd" title="<%=emailShow%>"><div class="form-bd-txt"><%= emailShow %></div></div>
+                <%}%>
+                <%if(userDTO.email!='' && userDTO.is_active=='Y'){%>
+                <div class="tips one-line txt-second" style="margin-left:5px;position:absolute;top:4px;left:545px;">已激活</div>
+                <%} else if(userDTO.email!='' && userDTO.is_active!='Y'){%>
+                <div class="tips one-line" style="margin-left:5px;position:absolute;top:4px;left:545px;">
+                  <a class="txt-second" id="to_for_reSendEmail" href="javascript:;">验证邮箱</a></div>
+                <%}%>
+              </div>
+              <!-- <div class="form-item">
+                <div class="form-label">地址：</div>
+                <div class="form-bd"><div class="form-bd-txt showAddress" title="<%= userDTO.address %>"><%= userDTO.address %></div></div>
+              </div>
+              <div class="form-item">
+                <div class="form-label">邮编：</div>
+                <div class="form-bd"><div class="form-bd-txt showPost"><%= userDTO.postalcode %></div></div>
+              </div> -->
+            </div>
+            <!-- 编辑 -->
+            <div class="form-list form-list-edit" style="display: none;" id="relation_way_base">
+              <div class="form-item">
+                <div class="form-label"><span class="required">*</span>手机号：</div>
+                <div class="form-bd">
+                  <div class="form-bd-txt pull-left" style="min-width: 200px;">
+                    <%if(userDTO.mobile_no!=''&&userDTO.loginUserDTO.mobile_code&&userDTO.loginUserDTO.mobile_code!=''){%>
+                    (+<%=userDTO.loginUserDTO.mobile_code%>)
+                    <%}%>
+                    <%= userDTO.mobile_no %></div>
+                  <input type="text" value="<%= userDTO.mobile_no %>" name="userDTO.mobile_no" maxlength="30" style="display:none;"  />
+                  <div class="form-bd-txt pull-left txt-second ml">去 <a href="./userSecurity_bindTel.html" id="phone_binding_href" class="txt-primary underline">
+                    <%if(isMobileCheck == 'N'){%>
+                    <span>手机绑定</span>
+                    <%} else if(isMobileCheck == 'Y'){%>
+                    <span>手机核验</span>
+                    <%}%>
+                  </a> 修改</div>
+                </div>
+              </div>
+              <!-- <div class="form-item">
+                <div class="form-label">固定电话：</div>
+                <div class="form-bd" id="errTemplate" style="line-height: 30px">
+                  <div class="input-box"><input type="text" class="input infoTelephone" name="userDTO.phone_no" value="<%= userDTO.phone_no %>"></div>
+
+                </div>
+              </div> -->
+              <div class="form-item">
+                <div class="form-label"><span name="email_div_span" class="required" style="display:none;">*</span>邮箱：</div>
+                <div class="form-bd">
+                  <div class="form-bd-txt pull-left" style="min-width: 200px;"><%= userDTO.email %></div>
+                  <input type="text" value="<%= userDTO.email %>" name="userDTO.email" style="display:none;"  />
+                  <%if(userDTO.email){%>
+                  <div class="form-bd-txt pull-left txt-second ml">去 <a href="./userSecurity_safeEmail.html" class="txt-primary underline">安全邮箱</a> 修改</div>
+                  <%}%>
+                </div>
+              </div>
+              <!-- <div class="form-item">
+                <div class="form-label">地址：</div>
+                <div class="form-bd" style="line-height: 30px"><div class="input-box"><input type="text" class="input infoAddress" name="userDTO.address" value="<%= userDTO.address %>"></div></div>
+              </div>
+              <div class="form-item">
+                <div class="form-label">邮编：</div>
+                <div class="form-bd" style="line-height: 30px"><div class="input-box"><input type="text" class="input infoPost" name="userDTO.postalcode" value="<%= userDTO.postalcode %>"></div></div>
+              </div> -->
+            </div>
+          </div>
+          <div class="line-dashed"></div>
+          <!-- 附加信息 -->
+          <div class="center-form-item">
+            <div class="center-tit">
+              <div class="tit-name">附加信息</div>
+              <div class="pull-right">
+                <a href="javascript:;" class="btn btn-edit" id="append_info_edit">编辑</a>
+                <a href="javascript:;" class="btn btn-primary btn-save" id="append_info_save">保存</a>
+              </div>
+            </div>
+            <!-- 显示 -->
+            <div class="form-list form-list-view" id="append_info_view">
+              <div class="form-item">
+                <div class="form-label"><span class="required">*</span>优惠(待)类型：</div>
+                <div class="form-bd"><div class="form-bd-txt" id="isStudent"><%= userTypeName %></div></div>
+              </div>
+            </div>
+            <!-- 编辑 -->
+            <div class="form-list form-list-edit" id="append_info_base" style="display: none;">
+              <div class="form-item">
+                <div class="form-label"><span class="required">*</span>优惠(待)类型：</div>
+                <div class="form-bd">
+                  <div class="sel">
+                    <div class="sel-hd">
+                      <div class="sel-inner" id="passenger_type_text" data-val = '<%= userDTO.loginUserDTO.user_type %>'><%= userTypeName %></div>
+                      <i class="icon icon-caret-down"></i>
+                    </div>
+                    <div class="sel-bd">
+                      <ul class="sel-list select-old" id="selectValue">
+                        <% for(var p = 0;p < listPassengerTypes.length;p++) {%>
+                        <li data-val='<%=listPassengerTypes[p].id%>'><%= listPassengerTypes[p].value %></li>
+                        <%}%>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="line-dashed"></div>
+          <!-- 学生资质查询 -->
+          <%if(userTypeName=='学生'){%>
+          <div class="center-form-item">
+            <div class="center-tit">
+              <div class="tit-name">学生资质查询</div>
+              <div class="pull-right">
+                <a href="javascript:;" class="btn btn-primary" id="studentRefresh">刷新</a>
+                <a href="javascript:;" class="btn" id="studentSearch">查询</a>
+              </div>
+            </div>
+            <p class="txt-light">学生资质查询服务，提供查询本人的学生购票资质、购票优惠区间及年度剩余优惠票购票次数。</p>
+            <div id="searchData"></div>
+          </div>
+          <%}%>
+          <!-- 选择车站下拉框 -->
+          <div id="choice_div" style="z-index: 2000; position: absolute;">
+            <div id="form_cities2">
+              <div id="panel_cities2"></div>
+            </div>
+          </div>
+          <input type="text" value="<%= userDTO.is_active %>"  name="userDTO.is_active" style="display: none;"/>
+          <input type="text" value="<%= userDTO.check_code %>"  name="userDTO.check_code" style="display: none;"/>
+          <input type="text" value="<%= userDTO.revSm_code %>"  name="userDTO.revSm_code" style="display: none;"/>
+          <input type="text" value="<%= userDTO.flag %>"  name="userDTO.flag" style="display: none;"/>
+          <input type="text" value="<%= userDTO.last_login_time %>"  name="userDTO.last_login_time" style="display: none;"/>
+          <input type="text" value="<%= userDTO.first_letter %>"  name="userDTO.first_letter" style="display: none;"/>
+          <input type="text" value="<%= userDTO.user_id %>"  name="userDTO.user_id" style="display: none;"/>
+          <input type="text" value="<%= userDTO.phone_flag %>"  name="userDTO.phone_flag" style="display: none;"/>
+          <input type="text" value="<%= userDTO.encourage_flag %>"  name="userDTO.encourage_flag" style="display: none;"/>
+          <input type="text" value="<%= userDTO.needModifyPassword %>"  name="userDTO.needModifyPassword" style="display: none;"/>
+          <input type="text" value="<%= userDTO.needModifyEmail %>"  name="userDTO.needModifyEmail" style="display: none;"/>
+          <input type="text" value="<%= userDTO.flag_member %>"  name="userDTO.flag_member" style="display: none;"/>
+          <input type="text" value="<%= userDTO.loginUserDTO.channel %>"  name="userDTO.loginUserDTO.channel" style="display: none;"/>
+          <input type="text" value="<%= userDTO.loginUserDTO.agent_contact %>"  name="userDTO.loginUserDTO.agent_contact" style="display: none;"/>
+          <input type="text" value="<%= userDTO.loginUserDTO.user_id %>"  name="userDTO.loginUserDTO.user_id" style="display: none;"/>
+          <input type="text" value="<%= userDTO.loginUserDTO.refundLogin %>"  name="userDTO.loginUserDTO.refundLogin" style="display: none;"/>
+          <input type="text" value="<%= userDTO.studentInfoDTO.student_name %>"  name="userDTO.studentInfoDTO.student_name" style="display: none;"/>
+          <input type="text" value="<%= userDTO.studentInfoDTO.city_name %>"  name="userDTO.studentInfoDTO.city_name" style="display: none;"/>
+          <input type="text" value="<%= userDTO.studentInfoDTO.city_code %>"  name="userDTO.studentInfoDTO.city_code" style="display: none;"/>
+  </form>
+</script>
+<form id="_es_hiddenform" method="post"></form>
+
+
+
+<script data-main="../personalJS/dist/information/main_v30008" src="./查看个人信息_files/require.js.下载"></script>
+<script type="text/javascript" src="./查看个人信息_files/route(2).js.下载" charset="utf-8"></script><script type="text/javascript" src="./查看个人信息_files/information.html.js.下载" charset="utf-8"></script><div class="cal-wrap" style="z-index:30000;display:none;position: absolute;left: 23px;top: 23px; "><div class="cal"><div class="cal-top"><a href="javascript:void(0);" class="first"></a><a href="javascript:void(0);" class="prev"></a><div class="month"><input type="text" value="" readonly="readonly" disabled="disabled"><ul class="time-list"><li>一月</li><li>二月</li><li>三月</li><li>四月</li><li>五月</li><li>六月</li><li>七月</li><li>八月</li><li>九月</li><li>十月</li><li>十一月</li><li>十二月</li></ul></div><div class="year"><input type="text" value="" readonly="readonly" disabled="disabled"><div class="time-list"><ul class="clearfix"><li>2016</li></ul><div class="time-list-ft"><a href="javascript:void(0);" class="fl">←</a><a href="javascript:void(0);" class="fr">→</a><a href="javascript:void(0);" class="close">×</a></div></div></div><a href="javascript:void(0);" class="last"></a><a href="javascript:void(0);" class="next"></a></div><ul class="cal-week"><li><b>日</b></li><li>一</li><li>二</li><li>三</li><li>四</li><li>五</li><li><b>六</b></li></ul><div class="cal-cm"></div></div><div class="cal cal-right"><div class="cal-top"><a href="javascript:void(0);" class="last"></a><a href="javascript:void(0);" class="next"></a><div class="year"><input type="text" value="" readonly="readonly" disabled="disabled"><div class="time-list"><ul class="clearfix"><li>2016</li></ul><div class="time-list-ft"><a href="javascript:void(0);" class="fl">←</a><a href="javascript:void(0);" class="fr">→</a><a href="javascript:void(0);" class="close">×</a></div></div></div><div class="month"><input type="text" value="" readonly="readonly" disabled="disabled"><ul class="time-list"><li>一月</li><li>二月</li><li>三月</li><li>四月</li><li>五月</li><li>六月</li><li>七月</li><li>八月</li><li>九月</li><li>十月</li><li>十一月</li><li>十二月</li></ul></div></div><ul class="cal-week"><li><b>日</b></li><li>一</li><li>二</li><li>三</li><li>四</li><li>五</li><li><b>六</b></li></ul><div class="cal-cm"></div></div><div class="cal-ft"><a href="javascript:void(0);" class="cal-btn">今天</a></div></div></div><link id="toolbarCss" rel="stylesheet" type="text/css" href="./查看个人信息_files/toolbar.css"><link id="toolbarMainCss" rel="stylesheet" type="text/css" href="./查看个人信息_files/toolbarmain.css"><style type="text/css">/*  .whiteBlackMode {background-color:#FFFFFF;color:#000000;background-image:none;} .blueYellowMode {background-color:#0000FF;color:#FFFF00;background-image:none;} .yellowBlackMode {background-color:#FFFF00;color:#000000;background-image:none;} .yellowMode {background-color:#000000;color:#FFFF00;background-image:none;}  */ .esdBgG, .esdBgG * {background-color: #ccc !important; color: black !important;}  .esdUnderLine{text-decoration: underline !important;}</style><div id="toolbarHtml" style="display: none; z-index: 5500" role="complementary">	<div id="toolbar" class="clearfix">		<div id="canyou_toolbar_div">			<div class="cy_toolbar_bg_table">				<ul>					<!-- <li id="cy_index" class="li_1"><a href="javascript:void(0);" id="toolbar_home" class="ul_li_a_1" title="首页"><img  src="https://kyfw.12306.cn/otn/resources/toolbar/img/home1.png" alt="首页" title="首页" />					</a> <span class="a_p ul_li_a_1" href="javascript:void(0);" title="首页">首页</span></li> -->					<li id="cy_refrash" class="li_1"><a href="javascript:void(0);" id="toolbar_refresh" class="ul_li_a_1" title="重新设置Shift+1"><img src="./查看个人信息_files/reflash1.png" title="重新设置Shift+1" alt="重新设置Shift+1">					</a> <span class="a_p ul_li_a_1" href="javascript:void(0);" title="重新设置Shift+1">重置</span></li>					<li id="cy_playSpeech" class="li_2"><a href="javascript:void(0);" id="toolbar_speakVolume" class="ul_li_a_1" title="声音"><img src="./查看个人信息_files/sound_normal.png" title="声音" alt="声音">					</a><span class="a_p_3 ul_li_a_1" href="javascript:void(0);" title="声音">声音</span></li>					<li id="cy_pointerRead" class="li_1"><a href="javascript:void(0);" id="toolbar_speakSpeed" class="ul_li_a_1" title="语速"><img src="./查看个人信息_files/vol_normal.png" alt="语速" title="语速">					</a> <span class="a_p ul_li_a_1" href="javascript:void(0);" title="语速">语速</span></li>					<li id="cy_pointerRead" class="li_1"><a href="javascript:void(0);" id="toolbar_readChange" class="ul_li_a_1" title="阅读方式"><img src="./查看个人信息_files/point2.png" alt="阅读方式" title="阅读方式">					</a> <span class="a_p ul_li_a_1" href="javascript:void(0);" title="阅读方式">阅读方式</span></li>					<!-- <li id="cy_continueRead" class="li_1"><a href="javascript:void(0);" id="toolbar_batchRead" class="ul_li_a_1" title="连读"><img  src="https://kyfw.12306.cn/otn/resources/toolbar/img/continuous1.png"							title="连读" alt="连读" />					</a> <span class="a_p ul_li_a_1" href="javascript:void(0);" title="连读">连读</span></li> -->					<!-- <li id="cy_back" class="li_1"><a href="javascript:void(0);" id="toolbar_retreat" class="ul_li_a_1" title="后退"><img  src="https://kyfw.12306.cn/otn/resources/toolbar/img/back1.png" alt="后退"							title="后退" />					</a> <span class="a_p ul_li_a_1" href="javascript:void(0);" title="后退">后退</span></li> -->					<!-- <li id="cy_go" class="li_1"><a href="javascript:void(0);" id="toolbar_ahead" class="ul_li_a_1" title="前进"><img  src="https://kyfw.12306.cn/otn/resources/toolbar/img/forward1.png" title="前进"							alt="前进" />					</a> <span class="a_p ul_li_a_1" href="javascript:void(0);" title="前进">前进</span></li> -->					<li id="cy_color" class="li_2"><a href="javascript:void(0);" class="ul_li_a_1" title="切换配色Shift+5" id="toolbar_colorChange"><img src="./查看个人信息_files/color1.png" title="切换配色Shift+5" alt="切换配色Shift+5">					</a> <span class="a_p ul_li_a_1" href="javascript:void(0);" title="调整配色">配色</span></li>					<!-- <li id="cy_gray_change" class="li_1"><a href="javascript:void(0);" id="toolbar_grayChange" class="ul_li_a_1" title="灰度调节"><img  src="https://kyfw.12306.cn/otn/resources/toolbar/img/gray.png"							alt="灰度调节" title="灰度调节" />					</a> <span class="a_p ul_li_a_1" href="javascript:void(0);" title="灰度调节">灰度</span></li> -->					<li id="cy_bigword" class="li_1"><a href="javascript:void(0);" id="toolbar_pageZoomIc" class="ul_li_a_1" title="网页放大Shift+6"><img src="./查看个人信息_files/enlarge1.png" alt="网页放大Shift+6" title="网页放大Shift+6">					</a> <span class="a_p ul_li_a_1" href="javascript:void(0);" title="网页放大Shift+6">放大</span></li>					<li id="cy_smallword" class="li_1"><a href="javascript:void(0);" id="toolbar_pageZoomDc" class="ul_li_a_1" title="网页缩小Shift+7"><img src="./查看个人信息_files/small1.png" title="网页缩小Shift+7" alt="网页缩小Shift+7">					</a> <span class="a_p ul_li_a_1" href="javascript:void(0);" title="网页缩小Shift+7">缩小</span></li>					<!-- <li id="cy_text" class="li_2"><a href="javascript:void(0);" id="toolbar_textMode" class="ul_li_a_1" title="纯文本模式"><img  src="https://kyfw.12306.cn/otn/resources/toolbar/img/text1.png" alt="纯文本模式"							title="纯文本模式" />					</a> <span class="a_p_1 ul_li_a_1" href="javascript:void(0);" title="纯文本模式">纯文本</span></li> -->					<!-- <li id="cy_bigword" class="li_1"><a href="javascript:void(0);" id="toolbar_text_bigger" class="ul_li_a_1" title="文字放大"><img  src="https://kyfw.12306.cn/otn/resources/toolbar/img/bigword1.png"							alt="文字放大" title="文字放大" />					</a> <span class="a_p ul_li_a_1" href="javascript:void(0);" title="文字放大">大字</span></li>					<li id="cy_smallword" class="li_1"><a href="javascript:void(0);" id="toolbar_text_smaller" class="ul_li_a_1" title="文字缩小"><img  src="https://kyfw.12306.cn/otn/resources/toolbar/img/smallword1.png"							title="文字缩小" alt="文字缩小" />					</a> <span class="a_p ul_li_a_1" href="javascript:void(0);" title="文字缩小">小字</span></li> -->					<li id="cy_arrow" class="li_2">						<a href="javascript:void(0);" id="toolbar_refresh1" class="ul_li_a_1" title="切换鼠标样式Shift+8">						<img src="./查看个人信息_files/reflash2.png" title="切换鼠标样式Shift+8" alt="切换鼠标样式Shift+8">						</a>						<span class="a_p ul_li_a_1" href="javascript:void(0);" title="鼠标样式">鼠标样式</span></li>					<li id="cy_ruler" class="li_1"><a href="javascript:void(0);" id="toolbar_guides" class="ul_li_a_1" title="当前十字光标已关闭，关闭十字光标Shift+9"><img src="./查看个人信息_files/cursor1.png" title="当前十字光标已关闭，关闭十字光标Shift+9" alt="当前十字光标已关闭，关闭十字光标Shift+9">					</a> <span class="a_p ul_li_a_1" href="javascript:void(0);" title="十字光标">光标</span></li>					<li id="cy_displayScreen" class="li_2"><a href="javascript:void(0);" id="toolbar_magnifier" class="ul_li_a_1" title="切换显示屏Shift+0"><img src="./查看个人信息_files/screen1.png" alt="切换显示屏Shift+0" title="切换显示屏Shift+0">					</a> <span class="a_p_2 ul_li_a_1" href="javascript:void(0);" title="显示屏">显示屏</span></li>					<!-- <li id="cy_full_screen" class="li_1"><a href="javascript:void(0);" id="toolbar_fullScreen" class="ul_li_a_1" title="全屏"><img  src="https://kyfw.12306.cn/otn/resources/toolbar/img/full_screen1.png"							alt="全屏" title="全屏" />					</a> <span class="a_p ul_li_a_1" href="javascript:void(0);" title="全屏">全屏</span></li> -->					<li id="cy_help" class="li_1"><a href="javascript:void(0);" id="toolbar_help" class="ul_li_a_1" title="开启帮助Shift+问号键"><img src="./查看个人信息_files/help1.png" alt="开启帮助Shift+问号键" title="开启帮助Shift+问号键">					</a> <span class="a_p ul_li_a_1" href="javascript:void(0);" title="开启帮助Shift+问号键">帮助</span></li>					<li id="cy_more" class="li_1"><a href="https://www.yunmd.net/tools/shortcut/url?n=12306" target="_blank" id="toolbar_more" class="ul_li_a_1" title="下载快捷方式 Shift+D"><img src="./查看个人信息_files/left_img5.png" alt="下载快捷方式 Shift+D" title="下载快捷方式 Shift+D">					</a> <span class="a_p ul_li_a_1" href="javascript:void(0);" title="下载快捷方式 Shift+D">快捷方式</span></li>					<li id="cy_move" class="li_1"><a href="javascript:void(0);" id="toNav" class="ul_li_a_1" title="读屏专用：快捷键Shift+N，适用于使用读屏软件的用户，若无读屏软件可通过Shift+2开启声音获取语音提示"><img src="./查看个人信息_files/toOriginal.png" alt="读屏专用：快捷键Shift+N，适用于使用读屏软件的用户，若无读屏软件可通过Shift+2开启声音获取语音提示" title="读屏专用：快捷键Shift+N，适用于使用读屏软件的用户，若无读屏软件可通过Shift+2开启声音获取语音提示">					</a> <span class="a_p ul_li_a_1" href="javascript:void(0);" title="读屏专用：快捷键Shift+N，适用于使用读屏软件的用户，若无读屏软件可通过Shift+2开启声音获取语音提示">读屏专用</span></li>					<li id="cy_close" class="li_1"><a href="javascript:void(0);" id="toolbar_exit" class="ul_li_a_1" title="关闭辅助工具Shift+Q"><img src="./查看个人信息_files/exit1.png" alt="关闭辅助工具Shift+Q" title="关闭辅助工具Shift+Q">					</a> <span class="a_p ul_li_a_1" href="javascript:void(0);" title="关闭辅助工具Shift+Q">退出</span></li>					<li id="botn" style="clear:both;"></li>				</ul>			</div>		</div>	</div>	<div id="toolbarPage2" class="btn-hide" style="height: 98px;">		<div id="toolbarPage2content">		<!--  -->			<div id="transform_dp">				<div class="navText" style="padding-top: 9px;">					<img style="width: 120px;" src="./查看个人信息_files/top_pic.png" alt="智能导盲区域指引" title="智能导盲区域指引">				</div>				<div id="navNumDiv" class="toolbarTexts">					<span class="textSpan textShow">						<p class="textShow"> 							<span class="textStr textShow">导航区</span> 							<span class="textNum">(<span id="navNum" class="textNum"></span>)</span>						</p>						<p class="textKey textShow">ALT+1</p>					</span>				</div>				<div id="infoWinDiv" class="toolbarTexts">					<span class="textSpan textShow">						<p class="textShow"> 							<span class="textStr textShow">视窗区</span> 							<span class="textNum">(<span id="infoWinNum" class="textNum"></span>)</span>						</p>						<p class="textKey textShow">ALT+2</p>					</span>				</div>				<div id="interactionWinDiv" class="toolbarTexts">					<span class="textSpan textShow">						<p class="textShow"> 							<span class="textStr textShow">交互区</span> 							<span class="textNum">(<span id="interactionWinNum" class="textNum"></span>)</span>						</p>						<p class="textKey textShow">ALT+3</p>					</span>				</div>			</div>			<!--  --> 		<div id="otherBtns">			<div class="readDiv" id="cy_playSpeech_2">				<a href="javascript:void(0);" id="toolbar_speakOnOff" title="声音开关">					<img src="./查看个人信息_files/sound_normal.png" title="声音开关" alt="声音开关">				</a> 				<span class="read-span" title="语音">语音</span>			</div>						<div class="readDiv">				<a href="javascript:void(0);" id="toolbar_help_move" title="开启帮助Shift+问号键">					<img src="./查看个人信息_files/help1.png" alt="开启帮助Shift+问号键" title="开启帮助Shift+问号键">				</a> 				<span class="read-span" title="开启帮助Shift+问号键">帮助</span>			</div>			<div class="readDiv">				<a href="javascript:void(0);" id="toolbar_magnifier_2" title="显示屏">				<img src="./查看个人信息_files/screen1.png" alt="显示屏" title="显示屏">				</a> 				<span class="read-span" title="显示屏">显示屏</span>				</div>			<div class="readDiv">				<a href="javascript:void(0);" id="toFirstPage" title="老人服务：快捷键Shift+N">					<img src="./查看个人信息_files/left_img2.png" alt="老人服务：快捷键Shift+N" title="老人服务：快捷键Shift+N">				</a> 				<span class="read-span" title="老人服务：快捷键Shift+N">老人服务</span>			</div>			<div class="readDiv">				<a href="javascript:void(0);" id="toolbar_exit2" title="关闭辅助工具Shift+Q">					<img src="./查看个人信息_files/exit1.png" alt="关闭辅助工具Shift+Q" title="关闭辅助工具Shift+Q">				</a> 				<span class="read-span" title="关闭辅助工具Shift+Q">退出</span>			</div>		</div>		</div>	</div>	<!-- <div class="overlay"></div>	<div id="AjaxLoading" class="showbox">		<div class="loadingWord">			<img title="正在加载请稍后" alt="正在加载请稍后" src="https://kyfw.12306.cn/otn/resources/toolbar/img/waiting.gif">加载中，请稍候...		</div>	</div> -->	<div id="toolbar_prompt" style="display: none;">		<span>请按F11切换全屏模式</span>	</div>	<div id="zwlj_prompt" style="display: none;">		<span>该链接属站外链接，会导致无障碍工具条失效！</span>		<br>		<span>是否继续访问？</span><br>		<input id="zwlj_bt1" type="button" title="是" value="是">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;		<input id="zwlj_bt2" type="button" title="否" value="否">		<input id="zwlj_href" type="hidden" value="">	</div>	<div id="zwbdtj_prompt" style="display: none;">		<span id="zwbdtj_span1">请注意，该操作链接到其他网站</span><br>		<span id="zwbdtj_span12">该网站无法启动无障碍工具条！</span>	</div>	<div id="no_authorization_prompt" style="display: none;">		<span>当前访问页面超出辅助工具操作范围</span>		<br>		<span>无障碍辅助工具无法正常工作！</span>		<br>		<br>		<input id="na_bt1" type="button" title="点击返回" value="点击返回">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	</div></div></body></html>

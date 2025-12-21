@@ -1,0 +1,51 @@
+ .mask {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+ }
+ .box {
+  width: 600px;
+  background: #fff;
+  border-radius: 6px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+ }
+ .hd {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  border-bottom: 1px solid #e6eef5;
+ }
+ .bd {
+  padding: 20px 24px;
+ }
+ .row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+ }
+ .inptxt {
+  width: 220px;
+  height: 30px;
+  line-height: 30px;
+  border: 1px solid #bdbdbd;
+  border-radius: 4px;
+  padding: 0 8px;
+ }
+ .btn92s {
+  display: inline-block;
+  width: 92px;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  border-radius: 4px;
+  background: #60c6e7;
+  color: #fff;
+ }
+ .actions { display: flex; gap: 12px; }
+ .colorA { color: #ff7f00; }

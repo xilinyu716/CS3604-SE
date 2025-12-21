@@ -1,0 +1,22 @@
+.queue {
+  display: flex;
+  justify-content: space-between;
+  padding: 16px;
+  border: 1px solid #dedede;
+  background: #fff;
+  margin-bottom: 16px;
+}
+.state {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.queueIco {
+  font-size: 24px;
+  color: #ff4646;
+}
+.right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}

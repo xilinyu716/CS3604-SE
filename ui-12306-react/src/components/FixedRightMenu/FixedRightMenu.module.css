@@ -1,0 +1,9 @@
+.fixedRight { position: fixed; right: 10px; top: 50%; transform: translateY(-50%); z-index: 100; }
+.fixedRightMenu { list-style: none; }
+.menuItem { margin-bottom: 6px; position: relative; }
+.menuHd { display: flex; align-items: center; gap: 8px; background: #fff; border: 1px solid #eee; padding: 8px 12px; }
+.menuBd { position: absolute; right: 100%; top: 0; background: #fff; border: 1px solid #eee; padding: 10px; display: none; }
+.menuItem:hover .menuBd { display: block; }
+.menuCodePic img { width: 100px; height: 100px; }
+.codeTips { width: 220px; color: #999; font-size: 12px; }
+

@@ -1,0 +1,24 @@
+.panel {}
+.head { display: none; }
+.item { border: 1px solid #eee; margin-top: 12px; }
+.hd { display: flex; align-items: center; gap: 12px; padding: 12px 16px; border-bottom: 1px solid #f0f0f0; }
+.hdInfo { color: #666; }
+.bd { padding: 0 16px; }
+.table { width: 100%; }
+.tdLeft { padding-right: 12px; }
+.alignTop { vertical-align: top; }
+.title { font-weight: 600; }
+.status { }
+.ft { padding: 0 16px 12px; }
+.checkInline { display: inline-flex; align-items: center; gap: 6px; }
+.operation { text-align: right; }
+.btnRight { display: inline-flex; gap: 12px; }
+.brNone { border-right: none; }
+.noData { padding: 24px 0; text-align: center; color: #666; }
+.emptyPic img { width: 120px; margin: 0 auto; }
+.pagination { margin-top: 12px; }
+.itemDisabled { opacity: 0.7; }
+.serialWrap { position: relative; display: inline-block; }
+.serial { color: #3b99fc; }
+.tooltip { position: absolute; top: 30px; left: -10px; width: 140px; background: #fff; border: 1px solid #eee; padding: 8px; }
+.tooltipTxt { color: #333; }

@@ -1,0 +1,18 @@
+.page {
+  background: #fff;
+}
+.centerBox {
+  display: flex;
+  gap: 20px;
+}
+.centerSide {
+  width: 220px;
+}
+.centerMain {
+  flex: 1;
+}
+.lineDashed {
+  height: 1px;
+  border-bottom: 1px dashed #ddd;
+  margin: 20px 0;
+}

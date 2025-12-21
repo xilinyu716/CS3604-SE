@@ -1,0 +1,7 @@
+.step { display: flex; height: 30px; margin: 10px 0; }
+.step li { flex: none; width: 225px; height: 30px; line-height: 30px; padding-right: 20px; background: #e3edf4; color: #999; text-align: center; font-size: 14px; position: relative; }
+.current { background: #60c6e7 !important; color: #fff !important; font-weight: 700; }
+.past { background: #60c6e7 !important; color: #fff !important; font-weight: 700; }
+.arrow { position: absolute; right: -1px; top: 0; width: 0; height: 0; border-top: 15px solid transparent; border-bottom: 15px solid transparent; border-left: 20px solid #e3edf4; }
+.current .arrow { border-left-color: #60c6e7; }
+.past .arrow { border-left-color: #60c6e7; }

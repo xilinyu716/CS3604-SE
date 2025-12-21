@@ -1,0 +1,15 @@
+.empty {
+  padding: 24px 0;
+}
+.pic img {
+  width: 120px;
+  height: auto;
+  margin: 0 auto;
+}
+.txt {
+  text-align: center;
+  color: #666;
+}
+.txt p + p {
+  margin-top: 8px;
+}

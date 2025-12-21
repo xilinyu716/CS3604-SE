@@ -1,0 +1,12 @@
+.con { height: 270px; padding: 0 30px; }
+.main { height: 200px; position: relative; }
+.pic { position: absolute; top: 20px; left: 80px; width: 160px; height: 160px; border: 1px solid #dedede; }
+.pic img { display: block; width: 158px; height: 158px; }
+.tips { position: absolute; top: 8px; right: -175px; width: 155px; height: 180px; }
+.tips img { display: block; width: 155px; height: 180px; }
+.txt { height: 30px; line-height: 30px; text-align: center; }
+.primary { color: #3b99fc; }
+.ft { padding: 16px 0 16px 30px; }
+.ft li { float: left; height: 28px; line-height: 28px; margin-right: 40px; color: #999; }
+.last { margin-right: 0; }
+.circle { float: left; width: 28px; height: 28px; border-radius: 14px; border: 1px solid #dedede; margin-right: 10px; }

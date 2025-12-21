@@ -1,0 +1,21 @@
+ .error {
+  color: #ff2626;
+  font-size: 12px;
+  line-height: 20px;
+ }
+ .inputError {
+  border-color: #ff2626;
+ }
+ .okIcon {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  margin-right: 6px;
+  background: url('/assets/point2.png') no-repeat center;
+ }
+ .rankA .s1 { background: #ff8585; }
+ .rankB .s1 { background: #f5a623; }
+ .rankB .s2 { background: #f5a623; }
+ .rankC .s1 { background: #60c6e7; }
+ .rankC .s2 { background: #60c6e7; }
+ .rankC .s3 { background: #60c6e7; }

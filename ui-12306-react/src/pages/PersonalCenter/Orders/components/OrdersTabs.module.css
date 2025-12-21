@@ -1,0 +1,16 @@
+.panelTab :global(.tab-hd) {
+  border-bottom: 1px solid #eee;
+}
+.panelTab :global(.tab-hd-list) {
+  display: flex;
+  gap: 24px;
+}
+.panelTab :global(.tab-hd-list li) {
+  padding: 12px 0;
+}
+.panelTab :global(.tab-hd-list li.active a) {
+  color: #3b99fc;
+}
+.tabItem {
+  min-height: 800px;
+}

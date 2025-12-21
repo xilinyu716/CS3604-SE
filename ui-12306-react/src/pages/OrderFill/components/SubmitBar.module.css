@@ -1,0 +1,6 @@
+.bar { display: flex; align-items: center; justify-content: space-between; border: 1px solid #298cce; border-radius: 3px; padding: 12px; margin: 12px 0 24px; background: #eef1f8; }
+.summary { display: flex; align-items: baseline; gap: 12px; }
+.priceLabel { color: #666; }
+.price { font-size: 18px; font-weight: 700; color: #fb7403; }
+.hint { color: #666; }
+.submitBtn { background: #fb7403; color: #fff; height: 36px; padding: 0 18px; border: none; border-radius: 3px; font-size: 14px; }

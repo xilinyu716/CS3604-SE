@@ -1,0 +1,21 @@
+.page {
+  background: #fff;
+}
+.content {
+  min-height: 600px;
+}
+.breadcrumb {
+  margin: 16px 0;
+}
+.centerBox {
+  display: flex;
+}
+.menuPlaceholder {
+  width: 200px;
+}
+.mainPlaceholder {
+  flex: 1;
+}
+.tabsPlaceholder {
+  min-height: 800px;
+}

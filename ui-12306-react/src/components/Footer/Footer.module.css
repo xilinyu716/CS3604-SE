@@ -1,0 +1,13 @@
+.footer { background: #f7f7f7; margin-top: 20px; }
+.wrapper { width: 1200px; margin: 0 auto; }
+.footerCon { display: flex; justify-content: space-between; padding: 20px 0; }
+.footConTit { font-size: 16px; margin-bottom: 8px; }
+.footLinksList { display: flex; gap: 12px; }
+.footCode { display: flex; gap: 12px; }
+.codePic img { width: 100%; display: block; }
+.codeTips { color: #999; font-size: 12px; margin-top: 6px; }
+.footerTxt { text-align: center; color: #c1c1c1; padding: 12px 0 20px; }
+.mr { margin-right: 8px; }
+.slhWrap { position: absolute; top: 17px; left: 50%; margin-left: 465px; width: 130px; height: 46px; }
+.slhWrap img { width: 130px; height: 46px; display: block; }
+

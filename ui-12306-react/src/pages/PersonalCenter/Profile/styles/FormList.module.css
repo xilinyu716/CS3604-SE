@@ -1,0 +1,10 @@
+.listView {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  row-gap: 12px;
+}
+.listEdit {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  row-gap: 12px;
+}

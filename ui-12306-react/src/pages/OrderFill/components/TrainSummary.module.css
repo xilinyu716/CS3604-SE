@@ -1,0 +1,10 @@
+.box { border: 1px solid #298cce; border-radius: 3px; background: #eef1f8; padding: 10px; margin-top: 10px; }
+.info { display: flex; align-items: center; height: 48px; }
+.info li { display: flex; align-items: center; margin-right: 16px; }
+.label { color: #666; margin-right: 6px; }
+.value { font-weight: 700; margin-right: 6px; }
+.time { color: #999; }
+.sep img { height: 20px; }
+.more { margin-left: auto; gap: 12px; }
+.train { font-weight: 700; color: #298cce; margin-right: 12px; }
+.date { color: #666; }

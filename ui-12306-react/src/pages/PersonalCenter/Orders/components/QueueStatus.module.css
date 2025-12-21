@@ -1,0 +1,28 @@
+.queue {
+  display: flex;
+  justify-content: space-between;
+  padding: 16px;
+  border: 1px solid #ffddba;
+  background: #fffbf8;
+  margin-bottom: 16px;
+}
+.state {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.queueIco {
+  width: 40px;
+  height: 40px;
+}
+.info h2 {
+  font-size: 18px;
+}
+.right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.btn {
+  background-color: #fff;
+}

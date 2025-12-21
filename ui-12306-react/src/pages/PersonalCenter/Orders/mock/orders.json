@@ -1,0 +1,24 @@
+{
+  "unfinished": [],
+  "nottrip": [
+    {
+      "order_date": "2025-01-02",
+      "sequence_no": "E1234567890",
+      "refund_serial": "",
+      "tickets": [
+        { "from": "上海虹桥", "to": "杭州东", "code": "G7381", "date": "2025-01-10", "passenger": "张三", "idType": "中国居民身份证", "seatType": "二等座", "coach": "05", "seat": "12A", "ticketType": "成人票", "price": "78.0", "status": "待出行" },
+        { "from": "上海虹桥", "to": "杭州东", "code": "G7381", "date": "2025-01-10", "passenger": "李四", "idType": "中国居民身份证", "seatType": "二等座", "coach": "05", "seat": "12B", "ticketType": "成人票", "price": "78.0", "status": "待出行" }
+      ]
+    }
+  ],
+  "history": [
+    {
+      "order_date": "2024-12-01",
+      "sequence_no": "E9876543210",
+      "refund_serial": "W2018090335384997",
+      "tickets": [
+        { "from": "北京南", "to": "天津南", "code": "C2011", "date": "2024-12-05", "passenger": "王五", "idType": "中国居民身份证", "seatType": "二等座", "coach": "03", "seat": "08C", "ticketType": "成人票", "price": "54.5", "status": "已退票" }
+      ]
+    }
+  ]
+}

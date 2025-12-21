@@ -1,0 +1,10 @@
+.breadcrumb {
+  margin: 16px 0;
+}
+.breadcrumb .sep {
+  margin: 0 6px;
+  color: #999;
+}
+.breadcrumb .active {
+  color: #666;
+}

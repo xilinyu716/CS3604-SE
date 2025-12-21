@@ -1,0 +1,16 @@
+.menu {
+  width: 200px;
+}
+.menu :global(.menu-tit) {
+  padding: 12px 16px;
+  font-size: 16px;
+}
+.menu :global(.menu-sub) {
+  padding: 6px 0 12px 0;
+}
+.menu :global(.menu-sub li) {
+  padding: 8px 16px;
+}
+.menu :global(.menu-sub li.active) a {
+  color: #3b99fc;
+}

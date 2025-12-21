@@ -1,0 +1,5 @@
+.section { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 10px; }
+.block { border: 1px solid #e6eff7; border-radius: 3px; padding: 12px; }
+.tit { font-size: 14px; font-weight: 700; margin-bottom: 8px; }
+.row { display: flex; gap: 12px; line-height: 24px; }
+.label { color: #666; width: 80px; text-align: right; }

@@ -1,0 +1,4 @@
+.gototop { position: fixed; right: 20px; bottom: 20px; opacity: 0; pointer-events: none; transition: opacity .3s; }
+.show { opacity: 1; pointer-events: auto; }
+.jsGotop { display: inline-flex; width: 40px; height: 40px; align-items: center; justify-content: center; background: #3b99fc; color: #fff; border-radius: 20px; }
+

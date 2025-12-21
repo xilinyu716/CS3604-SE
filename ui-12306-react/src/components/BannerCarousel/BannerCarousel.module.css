@@ -1,0 +1,9 @@
+.fullSlide { position: relative; width: 100%; }
+.bd { position: relative; height: 450px; overflow: hidden; }
+.slide { position: absolute; inset: 0; background-position: center center; background-repeat: no-repeat; background-size: cover; opacity: 0; transition: opacity .6s ease; }
+.active { opacity: 1; }
+.hd { position: absolute; bottom: 0; left: 0; right: 0; text-align: center; }
+.hd ul { padding: 10px 0; }
+.hd li { display: inline-block; width: 12px; height: 12px; line-height: 12px; font-size: 0; background: #fff; opacity: .6; margin: 0 6px; border-radius: 20px; cursor: pointer; }
+.on { opacity: 1; }
+

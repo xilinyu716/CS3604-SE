@@ -1,0 +1,26 @@
+.wrap {
+  margin-bottom: 16px;
+}
+.panelError {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px;
+  border: 1px solid #dedede;
+}
+.errorPic {
+  width: 40px;
+  height: 40px;
+  background: #ffdedb;
+}
+.errorTit {
+  font-size: 18px;
+}
+.ticketInfo {
+  padding: 16px;
+  border: 1px dashed #dedede;
+  margin-top: 12px;
+}
+.btnCenter {
+  margin-top: 12px;
+}

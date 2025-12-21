@@ -1,0 +1,15 @@
+.section { margin-top: 10px; }
+.header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+.title { font-size: 16px; font-weight: 700; }
+.tips { color: #666; margin-left: 16px; flex: 1; }
+.search { display: flex; gap: 8px; }
+.searchInput { width: 220px; height: 30px; border: 1px solid #cfcdc7; padding: 0 8px; }
+.searchBtn { background: #298cce; color: #fff; height: 30px; padding: 0 12px; border: none; border-radius: 3px; }
+.addBtn { background: #60c6e7; color: #fff; height: 30px; padding: 0 12px; border: none; border-radius: 3px; }
+.table { width: 100%; border: 1px solid #298cce; border-radius: 3px; border-collapse: collapse; }
+.table th, .table td { border-bottom: 1px solid #e6eff7; padding: 10px; text-align: left; }
+.table thead th { background: #eef1f8; color: #666; }
+.tag { display: inline-block; background: #298cce; color: #fff; padding: 0 8px; border-radius: 3px; height: 22px; line-height: 22px; }
+.tagChild { display: inline-block; background: #fb7403; color: #fff; padding: 0 8px; border-radius: 3px; height: 22px; line-height: 22px; }
+.select { height: 28px; border: 1px solid #999; }
+.linkBtn { background: transparent; color: #07f; border: none; margin-right: 8px; }
