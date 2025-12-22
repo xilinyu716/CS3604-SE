@@ -12,6 +12,7 @@ import styles from './RegisterPage.module.css'
 export default function RegisterPage() {
   const [step, setStep] = useState(1)
   const [verifyOpen, setVerifyOpen] = useState(false)
+  const [formData, setFormData] = useState(null)
   const navigate = useNavigate()
   const location = useLocation()
 
@@ -21,6 +22,29 @@ export default function RegisterPage() {
       document.body.classList.remove('page-register')
     }
   }, [])
+
+  const handleRegister = async (code) => {
+    try {
+      const res = await fetch('/api/auth/register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ...formData, code })
+      })
+      const data = await res.json()
+      
+      if (data.code === 0) {
+        setVerifyOpen(false)
+        setStep(3)
+        const redirect = location.state && location.state.redirect
+        setTimeout(() => navigate('/login', { state: redirect ? { redirect } : undefined }), 1500)
+      } else {
+        alert(data.msg)
+      }
+    } catch (err) {
+      alert('注册失败，请重试')
+      console.error(err)
+    }
+  }
 
   return (
     <div className={styles.page}>
@@ -33,7 +57,10 @@ export default function RegisterPage() {
             {step === 1 && (
               <>
                 <div className={styles.title}>账户信息</div>
-                <RegisterForm onNext={() => setVerifyOpen(true)} />
+                <RegisterForm onNext={(data) => {
+                  setFormData(data)
+                  setVerifyOpen(true)
+                }} />
               </>
             )}
             {step === 3 && (
@@ -53,13 +80,9 @@ export default function RegisterPage() {
       <GoToTop />
       <MobileVerifyModal
         open={verifyOpen}
+        mobileNo={formData?.mobileNo}
         onClose={() => setVerifyOpen(false)}
-        onSuccess={() => {
-          setVerifyOpen(false)
-          setStep(3)
-          const redirect = location.state && location.state.redirect
-          setTimeout(() => navigate('/login', { state: redirect ? { redirect } : undefined }), 1500)
-        }}
+        onSuccess={handleRegister}
       />
     </div>
   )

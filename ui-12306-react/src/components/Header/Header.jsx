@@ -1,7 +1,24 @@
 import { Link, useNavigate } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+import * as auth from '../../utils/auth'
 
 export default function Header() {
   const navigate = useNavigate()
+  const [user, setUser] = useState(auth.currentUser())
+
+  useEffect(() => {
+    const handleAuthChange = () => {
+      setUser(auth.currentUser())
+    }
+    window.addEventListener('auth-change', handleAuthChange)
+    return () => window.removeEventListener('auth-change', handleAuthChange)
+  }, [])
+
+  const handleLogout = () => {
+    auth.logout()
+    navigate('/login')
+  }
+
   return (
     <header className="header" role="banner">
       <div className="wrapper">
@@ -34,9 +51,9 @@ export default function Header() {
               </li>
               <li className="menu-item menu-line">|</li>
               <li className="menu-item menu-nav" role="menuitem">
-                <Link to="/login" className="menu-nav-hd item">我的12306<i className="icon icon-down"></i></Link>
+                <Link to={user ? "/center/profile" : "/login"} className="menu-nav-hd item">我的12306<i className="icon icon-down"></i></Link>
                 <ul className="menu-nav-bd" role="menu">
-                  <li><a href="#">火车票订单</a></li>
+                  <li><Link to="/center/orders">火车票订单</Link></li>
                   <li><a href="#">候补订单</a></li>
                   <li><a href="#">计次•定期票订单</a></li>
                   <li><a href="#">约号订单</a></li>
@@ -47,20 +64,27 @@ export default function Header() {
                   <li><a href="#">我的保险</a></li>
                   <li><a href="#">我的会员</a></li>
                   <li className="nav-line"></li>
-                  <li><a href="#">查看个人信息</a></li>
+                  <li><Link to="/center/profile">查看个人信息</Link></li>
                   <li><a href="#">账户安全</a></li>
                   <li className="nav-line"></li>
-                  <li><a href="#">乘车人</a></li>
+                  <li><Link to="/center/passengers">乘车人</Link></li>
                   <li><a href="#">地址管理</a></li>
                   <li className="nav-line"></li>
                   <li><a href="#">温馨服务查询</a></li>
                 </ul>
               </li>
               <li className="menu-item menu-line">|</li>
-              <li className="menu-item menu-login" role="menuitem">
-                <Link to="/login">登录</Link>
-                <Link to="/register" className="ml">注册</Link>
-              </li>
+              {user ? (
+                <li className="menu-item menu-login" role="menuitem">
+                  <span style={{color:'#666'}}>欢迎您，{user.username || user}</span>
+                  <a onClick={handleLogout} className="ml" style={{cursor:'pointer'}}>退出</a>
+                </li>
+              ) : (
+                <li className="menu-item menu-login" role="menuitem">
+                  <Link to="/login">登录</Link>
+                  <Link to="/register" className="ml">注册</Link>
+                </li>
+              )}
             </ul>
           </div>
         </div>
@@ -84,18 +108,18 @@ function Nav() {
             <div className="nav-bd-item nav-col2">
               <h3 className="nav-tit">购买</h3>
               <ul className="nav-con" role="menu">
-                <li><a onClick={() => navigate('/trains', { state: { tripType: 'dc' } })}>单程</a></li>
-                <li><a onClick={() => navigate('/trains', { state: { tripType: 'wf' } })}>往返</a></li>
-                <li><a href="#">中转换乘</a></li>
-                <li><a href="#">计次•定期票</a></li>
+                <li><a onClick={() => navigate('/trains', { state: { tripType: 'dc' } })} style={{cursor:'pointer'}}>单程</a></li>
+                <li><a onClick={() => navigate('/trains', { state: { tripType: 'wf' } })} style={{cursor:'pointer'}}>往返</a></li>
+                <li><a onClick={() => navigate('/trains')} style={{cursor:'pointer'}}>中转换乘</a></li>
+                <li><a onClick={() => navigate('/center/orders')} style={{cursor:'pointer'}}>计次•定期票</a></li>
               </ul>
             </div>
             <div className="nav-bd-item nav-col2">
               <h3 className="nav-tit">变更</h3>
               <ul className="nav-con" role="menu">
-                <li><a href="#">退票</a></li>
-                <li><a href="#">改签</a></li>
-                <li><a href="#">变更到站</a></li>
+                <li><a onClick={() => navigate('/center/orders')} style={{cursor:'pointer'}}>退票</a></li>
+                <li><a onClick={() => navigate('/center/orders')} style={{cursor:'pointer'}}>改签</a></li>
+                <li><a onClick={() => navigate('/center/orders')} style={{cursor:'pointer'}}>变更到站</a></li>
               </ul>
             </div>
             <div className="nav-bd-item nav-col2">

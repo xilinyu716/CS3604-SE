@@ -10,7 +10,7 @@ export default function AccountLogin() {
 
   const navigate = useNavigate()
   const location = useLocation()
-  const submit = () => {
+  const submit = async () => {
     if (!user || !pwd) {
       setError('用户名或密码输入错误')
       return
@@ -20,11 +20,30 @@ export default function AccountLogin() {
       return
     }
     setError('')
-    auth.login(user)
-    const params = new URLSearchParams(location.search)
-    const redirectQ = params.get('redirect')
-    const redirectS = location.state && location.state.redirect
-    navigate(redirectQ || redirectS || '/')
+    
+    try {
+      const res = await fetch('/api/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username: user, password: pwd })
+      })
+      const data = await res.json()
+      
+      if (data.code === 0) {
+        // Save user and token
+        auth.login(data.data.user, data.data.token)
+        
+        const params = new URLSearchParams(location.search)
+        const redirectQ = params.get('redirect')
+        const redirectS = location.state && location.state.redirect
+        navigate(redirectQ || redirectS || '/')
+      } else {
+        setError(data.msg || '登录失败')
+      }
+    } catch (err) {
+      console.error(err)
+      setError('登录服务异常')
+    }
   }
 
   return (

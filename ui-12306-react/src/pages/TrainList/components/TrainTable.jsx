@@ -1,57 +1,45 @@
 import styles from './TrainTable.module.css'
 import { useNavigate, useLocation } from 'react-router-dom'
+import { useState, useMemo } from 'react'
 import * as auth from '../../../utils/auth'
 
-const sampleRows = [
-  {
-    code: 'G1234',
-    from: '北京南',
-    to: '上海虹桥',
-    depart: '08:00',
-    arrive: '12:28',
-    duration: '04:28',
-    seats: {
-      business: '有',
-      prefer: '有',
-      first: '候补',
-      second: '有',
-      softSleeper: '无',
-      dynSleeper: '无',
-      hardSleeper: '无',
-      softSeat: '—',
-      hardSeat: '—',
-      noSeat: '—',
-      other: '—'
-    },
-    remark: ''
-  },
-  {
-    code: 'D223',
-    from: '北京',
-    to: '哈尔滨',
-    depart: '09:12',
-    arrive: '16:10',
-    duration: '06:58',
-    seats: {
-      business: '—',
-      prefer: '有',
-      first: '有',
-      second: '候补',
-      softSleeper: '—',
-      dynSleeper: '—',
-      hardSleeper: '—',
-      softSeat: '—',
-      hardSeat: '—',
-      noSeat: '—',
-      other: '—'
-    },
-    remark: ''
-  }
-]
-
-export default function TrainTable() {
+export default function TrainTable({ data = [], loading, error }) {
   const navigate = useNavigate()
   const location = useLocation()
+  const [sortField, setSortField] = useState('depart')
+  const [sortOrder, setSortOrder] = useState('asc')
+
+  const sortedData = useMemo(() => {
+    if (!data) return []
+    const list = [...data]
+    list.sort((a, b) => {
+      let valA = a[sortField]
+      let valB = b[sortField]
+      if (valA < valB) return sortOrder === 'asc' ? -1 : 1
+      if (valA > valB) return sortOrder === 'asc' ? 1 : -1
+      return 0
+    })
+    return list
+  }, [data, sortField, sortOrder])
+
+  const handleSort = (field) => {
+    if (sortField === field) {
+      setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc')
+    } else {
+      setSortField(field)
+      setSortOrder('asc')
+    }
+  }
+
+  const SortIcon = ({ field }) => {
+    if (sortField !== field) return <i className={styles.iconSort} />
+    return sortOrder === 'asc' ? <i className={styles.iconSortAsc} /> : <i className={styles.iconSortDesc} />
+  }
+
+  if (loading) return <div className={styles.loading}>加载中...</div>
+  if (error) return <div className={styles.error}>{error}</div>
+  if (!data || data.length === 0) return <div className={styles.empty}>没有符合条件的车次</div>
+
   return (
     <div className={styles.wrap}>
       <div className={styles.showOpts}>
@@ -65,10 +53,13 @@ export default function TrainTable() {
             <tr className={styles.headRow}>
               <th className={styles.th} style={{ width: 90 }}>车次</th>
               <th className={styles.th} style={{ width: 100 }}>出发站<br />到达站</th>
-              <th className={styles.th} style={{ width: 82 }}>
-                <span className={styles.sortable}>出发时间</span><br /><span className={styles.sortable}>到达时间</span>
+              <th className={styles.th} style={{ width: 82 }} onClick={() => handleSort('depart')}>
+                <span className={styles.sortable}>出发时间 <SortIcon field="depart" /></span><br />
+                <span className={styles.sortable} onClick={(e) => { e.stopPropagation(); handleSort('arrive') }}>到达时间 <SortIcon field="arrive" /></span>
               </th>
-              <th className={styles.th} style={{ width: 82 }}><span className={styles.sortable}>历时</span></th>
+              <th className={styles.th} style={{ width: 82 }} onClick={() => handleSort('duration')}>
+                <span className={styles.sortable}>历时 <SortIcon field="duration" /></span>
+              </th>
               <th className={styles.th} style={{ width: 66 }}>商务座<br />特等座</th>
               <th className={styles.th} style={{ width: 66 }}>优选<br />一等座</th>
               <th className={styles.th} style={{ width: 66 }}>一等座</th>
@@ -84,7 +75,7 @@ export default function TrainTable() {
             </tr>
           </thead>
           <tbody>
-            {sampleRows.map(r => (
+            {sortedData.map(r => (
               <tr key={r.code} className={styles.row}>
                 <td className={styles.cellCode}><div className={styles.trainCode}>{r.code}</div><button className={styles.btnBook} onClick={() => {
                   const query = location.state || {}

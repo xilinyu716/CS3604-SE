@@ -14,10 +14,20 @@ const TRAIN_TYPES = [
 
 const SEATS = ['商务座', '特等座', '优选', '一等座', '二等座', '高级软卧', '软卧/动卧/一等卧', '硬卧/二等卧', '软座', '硬座', '无座', '其他']
 
-export default function FilterPanel() {
+export default function FilterPanel({ filters, onFilterChange }) {
   const [expanded, setExpanded] = useState(false)
-  const [startTime, setStartTime] = useState('00002400')
-  const [typeChecked, setTypeChecked] = useState({})
+  // Local state is not needed if we rely on props, but let's just use props directly.
+  
+  if (!filters) return null // Guard
+
+  const handleTimeChange = (e) => {
+    onFilterChange({ ...filters, startTime: e.target.value })
+  }
+
+  const handleTypeChange = (key) => {
+    const newTypes = { ...filters.trainTypes, [key]: !filters.trainTypes[key] }
+    onFilterChange({ ...filters, trainTypes: newTypes })
+  }
 
   return (
     <div className={styles.panel}>
@@ -25,7 +35,7 @@ export default function FilterPanel() {
       <div className={styles.body} style={{ height: expanded ? 204 : 72 }}>
         <div className={styles.topRow}>
           <span className={styles.topLabel}>发车时间：</span>
-          <select className={styles.select} value={startTime} onChange={e => setStartTime(e.target.value)} aria-label="请选择发车时间">
+          <select className={styles.select} value={filters.startTime} onChange={handleTimeChange} aria-label="请选择发车时间">
             <option value="00002400">00:00--24:00</option>
             <option value="00000600">00:00--06:00</option>
             <option value="06001200">06:00--12:00</option>
@@ -36,12 +46,18 @@ export default function FilterPanel() {
         <div className={styles.section}>
           <div className={styles.sectionHd}>车次类型：</div>
           <div className={styles.sectionBd}>
-            <span className={styles.btnAll}>全部</span>
+            <span className={styles.btnAll} onClick={() => onFilterChange({...filters, trainTypes: {}})} style={{cursor:'pointer'}}>全部</span>
             <ul className={styles.checkList}>
               {TRAIN_TYPES.map(t => (
                 <li key={t.key} className={styles.checkItem}>
                   <label className={styles.checkLabel}>
-                    <input type="checkbox" checked={!!typeChecked[t.key]} onChange={() => setTypeChecked(s => ({ ...s, [t.key]: !s[t.key] }))} className={styles.checkbox} aria-label={t.label} />
+                    <input 
+                      type="checkbox" 
+                      checked={!!filters.trainTypes[t.key]} 
+                      onChange={() => handleTypeChange(t.key)} 
+                      className={styles.checkbox} 
+                      aria-label={t.label} 
+                    />
                     {t.label}
                   </label>
                 </li>

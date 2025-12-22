@@ -10,12 +10,39 @@ import ExtraInfoSection from './sections/ExtraInfoSection'
 import StudentQualification from './sections/StudentQualification'
 import PassportTips from './sections/PassportTips'
 import styles from './styles/ProfilePage.module.css'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import MaskLoading from './components/MaskLoading'
-import data from './mock/profileData'
+import * as auth from '../../../utils/auth'
 
 export default function ProfilePage() {
   const [saving, setSaving] = useState(false)
+  const [loading, setLoading] = useState(true)
+  const [profile, setProfile] = useState(null)
+
+  useEffect(() => {
+    const fetchProfile = async () => {
+      const currentUser = auth.currentUser()
+      if (!currentUser) return // Or redirect to login
+
+      try {
+        const username = typeof currentUser === 'string' ? currentUser : currentUser.username
+        const res = await fetch(`/api/user/profile?username=${username}`)
+        const data = await res.json()
+        if (data.code === 0) {
+          setProfile(data.data)
+        }
+      } catch (err) {
+        console.error(err)
+      } finally {
+        setLoading(false)
+      }
+    }
+    fetchProfile()
+  }, [])
+
+  if (loading) return <div style={{padding: 50, textAlign:'center'}}>加载中...</div>
+  if (!profile) return <div style={{padding: 50, textAlign:'center'}}>加载失败</div>
+
   return (
     <div className={styles.page}>
       <Header />
@@ -26,12 +53,12 @@ export default function ProfilePage() {
             <CenterSidebar activeKey="profile" />
           </div>
           <div className={styles.centerMain}>
-            <BasicInfoSection initial={data.basic} onSaving={() => { setSaving(true); setTimeout(() => setSaving(false), 800) }} />
+            <BasicInfoSection initial={profile.basic} onSaving={() => { setSaving(true); setTimeout(() => setSaving(false), 800) }} />
             <div className={styles.lineDashed} />
-            <ContactSection initial={data.contact} onSaving={() => { setSaving(true); setTimeout(() => setSaving(false), 800) }} />
+            <ContactSection initial={profile.contact} onSaving={() => { setSaving(true); setTimeout(() => setSaving(false), 800) }} />
             <div className={styles.lineDashed} />
-            <ExtraInfoSection initial={data.extra} onSaving={() => { setSaving(true); setTimeout(() => setSaving(false), 800) }} />
-            <StudentQualification initial={data.student} />
+            <ExtraInfoSection initial={profile.extra} onSaving={() => { setSaving(true); setTimeout(() => setSaving(false), 800) }} />
+            <StudentQualification initial={profile.student} />
             <PassportTips />
           </div>
         </div>

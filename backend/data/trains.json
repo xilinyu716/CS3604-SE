@@ -1,0 +1,156 @@
+[
+  {
+    "code": "G1",
+    "from": "北京南",
+    "to": "上海虹桥",
+    "depart": "09:00",
+    "arrive": "13:28",
+    "duration": "04:28",
+    "seats": {
+      "business": "10",
+      "prefer": "有",
+      "first": "有",
+      "second": "有",
+      "softSleeper": "—",
+      "dynSleeper": "—",
+      "hardSleeper": "—",
+      "softSeat": "—",
+      "hardSeat": "—",
+      "noSeat": "—",
+      "other": "—"
+    },
+    "remark": "复兴号智能动车组"
+  },
+  {
+    "code": "G3",
+    "from": "北京南",
+    "to": "上海虹桥",
+    "depart": "10:00",
+    "arrive": "14:28",
+    "duration": "04:28",
+    "seats": {
+      "business": "无",
+      "prefer": "候补",
+      "first": "有",
+      "second": "有",
+      "softSleeper": "—",
+      "dynSleeper": "—",
+      "hardSleeper": "—",
+      "softSeat": "—",
+      "hardSeat": "—",
+      "noSeat": "—",
+      "other": "—"
+    },
+    "remark": "复兴号智能动车组"
+  },
+  {
+    "code": "G5",
+    "from": "北京南",
+    "to": "上海虹桥",
+    "depart": "11:00",
+    "arrive": "15:28",
+    "duration": "04:28",
+    "seats": {
+      "business": "有",
+      "prefer": "有",
+      "first": "有",
+      "second": "有",
+      "softSleeper": "—",
+      "dynSleeper": "—",
+      "hardSleeper": "—",
+      "softSeat": "—",
+      "hardSeat": "—",
+      "noSeat": "—",
+      "other": "—"
+    },
+    "remark": ""
+  },
+  {
+    "code": "G101",
+    "from": "北京南",
+    "to": "上海虹桥",
+    "depart": "06:43",
+    "arrive": "12:38",
+    "duration": "05:55",
+    "seats": {
+      "business": "有",
+      "prefer": "—",
+      "first": "有",
+      "second": "有",
+      "softSleeper": "—",
+      "dynSleeper": "—",
+      "hardSleeper": "—",
+      "softSeat": "—",
+      "hardSeat": "—",
+      "noSeat": "—",
+      "other": "—"
+    },
+    "remark": ""
+  },
+  {
+    "code": "D701",
+    "from": "北京",
+    "to": "上海",
+    "depart": "19:21",
+    "arrive": "07:23",
+    "duration": "12:02",
+    "seats": {
+      "business": "—",
+      "prefer": "—",
+      "first": "—",
+      "second": "有",
+      "softSleeper": "有",
+      "dynSleeper": "有",
+      "hardSleeper": "—",
+      "softSeat": "—",
+      "hardSeat": "—",
+      "noSeat": "—",
+      "other": "—"
+    },
+    "remark": "次日到达"
+  },
+  {
+    "code": "T109",
+    "from": "北京",
+    "to": "上海",
+    "depart": "19:54",
+    "arrive": "10:55",
+    "duration": "15:01",
+    "seats": {
+      "business": "—",
+      "prefer": "—",
+      "first": "—",
+      "second": "—",
+      "softSleeper": "有",
+      "dynSleeper": "—",
+      "hardSleeper": "有",
+      "softSeat": "—",
+      "hardSeat": "有",
+      "noSeat": "有",
+      "other": "—"
+    },
+    "remark": "次日到达"
+  },
+  {
+    "code": "G2",
+    "from": "上海虹桥",
+    "to": "北京南",
+    "depart": "09:00",
+    "arrive": "13:28",
+    "duration": "04:28",
+    "seats": {
+      "business": "有",
+      "prefer": "有",
+      "first": "有",
+      "second": "有",
+      "softSleeper": "—",
+      "dynSleeper": "—",
+      "hardSleeper": "—",
+      "softSeat": "—",
+      "hardSeat": "—",
+      "noSeat": "—",
+      "other": "—"
+    },
+    "remark": ""
+  }
+]

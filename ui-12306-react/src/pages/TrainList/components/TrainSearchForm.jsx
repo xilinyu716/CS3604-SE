@@ -2,7 +2,7 @@ import { useMemo, useState, useEffect } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import styles from './TrainSearchForm.module.css'
 
-export default function TrainSearchForm() {
+export default function TrainSearchForm({ onSearch }) {
   const location = useLocation()
   const navigate = useNavigate()
   const init = (location.state || {})
@@ -62,7 +62,10 @@ export default function TrainSearchForm() {
             disabled={queryDisabled}
             aria-label="查询"
             onClick={() => {
-              navigate('/trains', { state: { tripType, from: fromStation, to: toStation, date: trainDate, backDate, isStudent: identity === 'student' } })
+              const params = { tripType, from: fromStation, to: toStation, date: trainDate, backDate, isStudent: identity === 'student' }
+              navigate('/trains', { state: params })
+              // Also trigger onSearch directly if provided (optional, but good for immediate feedback)
+              if (onSearch) onSearch(params)
             }}
           >查询</button>
         </div>

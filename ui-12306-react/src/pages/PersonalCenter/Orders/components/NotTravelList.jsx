@@ -2,7 +2,30 @@ import styles from './NotTravelList.module.css'
 import OrderItem from './OrderItem'
 import OrderOperationBar from './OrderOperationBar'
 
-export default function NotTravelList({ orders = [] }) {
+export default function NotTravelList({ orders = [], onRefresh }) {
+  
+  const handleCancel = async (sequence_no) => {
+    if (!window.confirm('确定要退票吗？')) return
+    
+    try {
+      const res = await fetch('/api/order/cancel', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ sequence_no })
+      })
+      const data = await res.json()
+      if (data.code === 0) {
+        alert('退票成功')
+        if (onRefresh) onRefresh()
+      } else {
+        alert(data.msg || '退票失败')
+      }
+    } catch (err) {
+      console.error(err)
+      alert('网络请求失败')
+    }
+  }
+
   return (
     <div className={`order-panel order-panel-history ${styles.panel}`}>
       <table className={`order-panel-head title-text ${styles.head}`}>
@@ -68,7 +91,7 @@ export default function NotTravelList({ orders = [] }) {
                         </label>
                       </td>
                       <td className={styles.operation} colSpan={6}>
-                        <OrderOperationBar />
+                        <OrderOperationBar onCancel={() => handleCancel(o.sequence_no)} />
                       </td>
                     </tr>
                   </tbody>

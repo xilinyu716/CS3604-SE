@@ -58,7 +58,22 @@ export default function RegisterForm({ onNext }) {
   }
 
   function handleNext() {
-    if (validateAll()) onNext()
+    if (validateAll()) {
+      onNext({
+        userName,
+        password,
+        cardType,
+        name,
+        idNo,
+        bornDate,
+        sex,
+        nation,
+        passengerType,
+        email,
+        mobileCode,
+        mobileNo
+      })
+    }
   }
 
   const rankCls = strength === 'a' ? vcss.rankA : strength === 'b' ? vcss.rankB : vcss.rankC

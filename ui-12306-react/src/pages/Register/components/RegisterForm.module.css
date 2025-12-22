@@ -65,6 +65,7 @@
   border-radius: 4px;
   background: #60c6e7;
   color: #fff;
+  cursor: pointer;
  }
  .agreeline {
   display: flex;
