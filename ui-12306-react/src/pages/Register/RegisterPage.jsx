@@ -4,7 +4,6 @@ import Header from '../../components/Header/Header'
 import Footer from '../../components/Footer/Footer'
 import FixedRightMenu from '../../components/FixedRightMenu/FixedRightMenu'
 import GoToTop from '../../components/GoToTop/GoToTop'
-import StepBar from './components/StepBar'
 import RegisterForm from './components/RegisterForm'
 import MobileVerifyModal from './components/MobileVerifyModal'
 import styles from './RegisterPage.module.css'
@@ -52,16 +51,15 @@ export default function RegisterPage() {
       <div className={styles.wrapper}>
         <div className={styles.crumbs}>您现在的位置：<a href="/">客运首页</a>&nbsp;&gt;&nbsp;注册</div>
         <div className={styles.content}>
-          <div className={styles.step}><StepBar current={step} /></div>
           <div className={styles.section}>
             {step === 1 && (
-              <>
+              <div className={styles.inner}>
                 <div className={styles.title}>账户信息</div>
                 <RegisterForm onNext={(data) => {
                   setFormData(data)
                   setVerifyOpen(true)
                 }} />
-              </>
+              </div>
             )}
             {step === 3 && (
               <div className={styles.success}>

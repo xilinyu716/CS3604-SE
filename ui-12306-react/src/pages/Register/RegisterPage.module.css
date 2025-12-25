@@ -2,7 +2,7 @@
   background: #f5f9fc;
  }
  .wrapper {
-  width: 1200px;
+  width: 1100px;
   margin: 0 auto;
  }
  .crumbs {
@@ -10,23 +10,29 @@
   color: #666;
   padding: 12px 0;
  }
- .content {
+.content {
   background: #fff;
-  border: 1px solid #e6eef5;
+  border: 1px solid #2e7bc7;
   box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+  border-radius: 4px;
  }
- .section {
-  padding: 20px 40px;
- }
- .title {
-  font-size: 18px;
-  color: #333;
-  line-height: 48px;
-  border-bottom: 1px solid #e6eef5;
- }
- .step {
-  padding: 20px 40px 0;
- }
+.section {
+  padding: 0 40px 20px;
+}
+.inner {
+  width: 900px;
+  margin: 0 auto;
+}
+.title {
+  font-size: 16px;
+  color: #fff;
+  height: 42px;
+  line-height: 42px;
+  padding: 0 16px;
+  background: linear-gradient(180deg, #0e77d8 0%, #0a64bd 100%);
+  border-radius: 4px 4px 0 0;
+}
+ .step { display: none; }
  .success {
   padding: 40px;
   text-align: center;

@@ -64,16 +64,20 @@ function LabeledInput({ label, icon, placeholder, value, onChange }) {
 function TicketOne({ onQuery }) {
   const [from, setFrom] = useState('')
   const [to, setTo] = useState('')
-  const [date, setDate] = useState('')
+  const [date, setDate] = useState('2025-12-25')
   const [isStudent, setIsStudent] = useState(false)
   const [isHigh, setIsHigh] = useState(false)
   return (
     <div className="search-tab-item" style={{ display: 'block' }}>
       <div className="search-form">
         <div className="form-item-group">
-          <LabeledInput label="出发地" icon="icon-place" placeholder="请输入或选择出发地" value={from} onChange={setFrom} />
-          <LabeledInput label="到达地" icon="icon-place" placeholder="请输入或选择到达地" value={to} onChange={setTo} />
-          <div className="city-change"><i className={`icon icon-qiehuan`} title="切换"></i></div>
+          <LabeledInput label="出发地" icon="icon-place" placeholder="简拼/全拼/汉字" value={from} onChange={setFrom} />
+          <LabeledInput label="到达地" icon="icon-place" placeholder="简拼/全拼/汉字" value={to} onChange={setTo} />
+          <div className="city-change" title="切换" role="button" aria-label="切换出发地与到达地">
+            <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+              <path fill="#ff8d2b" d="M12 2a10 10 0 1 1 0 20 10 10 0 0 1 0-20zm4.3 6.3 1.4 1.4-3.6 3.6-1.4-1.4 1.2-1.2H8V9h6.6l1.7-1.7zM7.7 15.7l-1.4-1.4 3.6-3.6 1.4 1.4-1.2 1.2H16v1.3H9.4L7.7 15.7z"/>
+            </svg>
+          </div>
         </div>
         <LabeledInput label="出发日期" icon="icon-date" value={date} onChange={setDate} />
         <div className={`form-item form-item-check`}>

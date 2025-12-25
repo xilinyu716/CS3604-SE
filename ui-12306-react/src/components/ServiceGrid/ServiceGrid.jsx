@@ -1,4 +1,4 @@
-// 使用原始页面类名
+// 使用全局样式类名以匹配 index.html 中的雪碧图规则
 
 const serviceLg = [
   { img: '/assets/abanner01.jpg', title: '铁路畅行 惠享出行 尊享体验', link: 'https://cx.12306.cn/tlcx/index.html' },
@@ -19,7 +19,7 @@ export default function ServiceGrid() {
     <div>
       <ul className="service-list">
         <li style={{ display: 'none' }}>
-          <a href="#"><i className={`service-icon ico-s1`}></i><div>接送站</div></a>
+          <a href="#"><i className={`service-icon`}></i><div>接送站</div></a>
         </li>
         <li>
           <a href="#"><i className={`service-icon ico-s2`}></i><div>重点旅客预约</div></a>

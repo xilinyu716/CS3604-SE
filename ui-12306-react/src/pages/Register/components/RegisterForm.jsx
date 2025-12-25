@@ -181,6 +181,7 @@ export default function RegisterForm({ onNext }) {
           </div>
           <div className={styles.tipsCol}></div>
         </li>
+        <li className={styles.itemDivider}></li>
         <li className={styles.item}>
           <div className={styles.labelCol}>邮    箱：</div>
           <div className={styles.inputCol}>
@@ -202,7 +203,7 @@ export default function RegisterForm({ onNext }) {
           <div className={styles.tipsCol} style={{color:'#FF7F00'}}>请正确填写手机号码，稍后将向该手机号码发送短信验证码</div>
         </li>
         <li className={styles.item}>
-          <div className={styles.labelCol} style={{width:373}}>&nbsp;</div>
+          <div className={styles.labelCol} style={{width:180}}>&nbsp;</div>
           <div className={styles.inputCol}>
             <div className={styles.agreeline}>
               <input type="checkbox" checked={agree} onChange={e=>setAgree(e.target.checked)} />

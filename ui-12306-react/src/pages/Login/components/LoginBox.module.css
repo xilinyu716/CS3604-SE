@@ -1,4 +1,4 @@
-.box { background: #fff; width: 380px; }
+.box { background: #fff; width: 420px; border: 1px solid #eaeaea; border-radius: 0px; box-shadow: 0 2px 12px rgba(0,0,0,.06); }
 .hd { height: 78px; line-height: 78px; padding: 0 30px; display: flex; }
 .tab { width: 130px; text-align: center; position: relative; }
 .tab a { display: block; color: #666; font-size: 16px; }
