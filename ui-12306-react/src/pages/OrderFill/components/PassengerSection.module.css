@@ -1,14 +1,29 @@
 .section { margin-top: 10px; }
+.box { margin-top: 0; border: 1px solid #2e7bc7; border-radius: 3px; background: #eef6ff; color: #333; }
+.hd { background: #2e7bc7; color: #fff; padding: 8px 12px; border-radius: 2px 2px 0 0; font-weight: 700; }
+.info { padding: 10px 12px; display: block; }
+.subHd { display: flex; align-items: center; gap: 8px; color: #298cce; font-weight: 700; margin-bottom: 8px; }
+.personIcon { display: inline-flex; width: 20px; height: 20px; }
+.personIcon svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.6; }
 .header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
 .title { font-size: 16px; font-weight: 700; }
 .tips { color: #666; margin-left: 16px; flex: 1; }
-.search { display: flex; gap: 8px; }
+.search { display: none; }
 .searchInput { width: 220px; height: 30px; border: 1px solid #cfcdc7; padding: 0 8px; }
 .searchBtn { background: #298cce; color: #fff; height: 30px; padding: 0 12px; border: none; border-radius: 3px; }
 .addBtn { background: #60c6e7; color: #fff; height: 30px; padding: 0 12px; border: none; border-radius: 3px; }
-.table { width: 100%; border: 1px solid #298cce; border-radius: 3px; border-collapse: collapse; }
-.table th, .table td { border-bottom: 1px solid #e6eff7; padding: 10px; text-align: left; }
-.table thead th { background: #eef1f8; color: #666; }
+.listWrap { padding: 4px 12px 12px; }
+.list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(260px, 1fr)); gap: 8px 24px; }
+.listItem { background: #fff; border: 1px solid #dbeaf8; border-radius: 3px; padding: 8px 10px; }
+.listLabel { display: flex; align-items: center; gap: 8px; color: #333; }
+.name { color: #333; }
+.selTableWrap { padding: 0 12px 12px; }
+.selTable { width: 100%; border: 1px solid #cfe0f4; border-radius: 3px; border-collapse: collapse; background: #fff; }
+.selTable thead th { background: #f5f8fd; color: #666; padding: 8px 10px; border-bottom: 1px solid #e6eff7; font-weight: 700; }
+.selTable td { padding: 8px 10px; border-bottom: 1px solid #e6eff7; }
+.emptyCell { text-align: center; color: #888; padding: 14px 0; }
+.input { height: 28px; border: 1px solid #999; padding: 0 8px; width: 100%; box-sizing: border-box; }
+.removeBtn { background: #f5f8fd; border: 1px solid #e6eff7; width: 24px; height: 24px; border-radius: 50%; cursor: pointer; color: #f06; line-height: 22px; }
 .tag { display: inline-block; background: #298cce; color: #fff; padding: 0 8px; border-radius: 3px; height: 22px; line-height: 22px; }
 .tagChild { display: inline-block; background: #fb7403; color: #fff; padding: 0 8px; border-radius: 3px; height: 22px; line-height: 22px; }
 .select { height: 28px; border: 1px solid #999; }

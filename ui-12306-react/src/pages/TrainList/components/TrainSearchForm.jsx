@@ -1,4 +1,4 @@
-import { useMemo, useState, useEffect } from 'react'
+import { useMemo, useState, useEffect, useRef } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import styles from './TrainSearchForm.module.css'
 
@@ -30,6 +30,7 @@ export default function TrainSearchForm({ onSearch }) {
 
   function DropdownInput({ type, value, onChange, placeholder, selected }) {
     const [open, setOpen] = useState(false)
+    const wrapRef = useRef(null)
     const [panel, setPanel] = useState('cn')
     const [group, setGroup] = useState('热门')
     const isDate = type === 'date'
@@ -75,14 +76,32 @@ export default function TrainSearchForm({ onSearch }) {
     }
     const stations = (panel === 'cn' ? CN : INTL)[group] || []
     const handleSelect = (name) => { onChange && onChange(name); setOpen(false) }
+    useEffect(() => {
+      if (!open) return
+      const handleDocMouseDown = (e) => {
+        if (wrapRef.current && !wrapRef.current.contains(e.target)) {
+          setOpen(false)
+        }
+      }
+      const handleKeyDown = (e) => {
+        if (e.key === 'Escape') setOpen(false)
+      }
+      document.addEventListener('mousedown', handleDocMouseDown)
+      document.addEventListener('keydown', handleKeyDown)
+      return () => {
+        document.removeEventListener('mousedown', handleDocMouseDown)
+        document.removeEventListener('keydown', handleKeyDown)
+      }
+    }, [open])
     return (
-      <div style={{ position: 'relative', width: '100%', height: '100%' }}>
+      <div ref={wrapRef} style={{ position: 'relative', width: '100%', height: '100%' }}>
         <input
           className={selected ? styles.inpSelected : styles.inpTxt}
           value={value}
           placeholder={placeholder || ''}
           onFocus={() => { setOpen(true); if (isDate) setMonthBase(parseDate(value) || new Date()) }}
           onClick={() => { setOpen(true); if (isDate) setMonthBase(parseDate(value) || new Date()) }}
+          onBlur={() => setOpen(false)}
           onChange={e => onChange && onChange(e.target.value)}
           aria-label={placeholder || '输入'}
         />

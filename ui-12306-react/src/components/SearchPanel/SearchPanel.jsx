@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
 // 使用原始页面类名
 
@@ -49,6 +49,7 @@ export default function SearchPanel() {
 
 function LabeledInput({ label, icon, placeholder, value, onChange }) {
   const [open, setOpen] = useState(false)
+  const wrapRef = useRef(null)
   const [panel, setPanel] = useState('cn')
   const [group, setGroup] = useState('热门')
   const isCity = icon !== 'icon-date'
@@ -95,8 +96,25 @@ function LabeledInput({ label, icon, placeholder, value, onChange }) {
   }
   const stations = (panel === 'cn' ? CN : INTL)[group] || []
   const handleSelect = (name) => { onChange && onChange(name); setOpen(false) }
+  useEffect(() => {
+    if (!open) return
+    const handleDocMouseDown = (e) => {
+      if (wrapRef.current && !wrapRef.current.contains(e.target)) {
+        setOpen(false)
+      }
+    }
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') setOpen(false)
+    }
+    document.addEventListener('mousedown', handleDocMouseDown)
+    document.addEventListener('keydown', handleKeyDown)
+    return () => {
+      document.removeEventListener('mousedown', handleDocMouseDown)
+      document.removeEventListener('keydown', handleKeyDown)
+    }
+  }, [open])
   return (
-    <div className="form-item" style={{ position: 'relative' }}>
+    <div ref={wrapRef} className="form-item" style={{ position: 'relative' }}>
       <label className="form-label">{label}</label>
       <div className="form-bd">
         <div className={`input-box ${icon==='icon-date'?'input-data':'input-city'}`}>
@@ -107,6 +125,7 @@ function LabeledInput({ label, icon, placeholder, value, onChange }) {
             value={value}
             onFocus={() => { setOpen(true); if (isDate) setMonthBase(parseDate(value) || new Date()) }}
             onClick={() => { setOpen(true); if (isDate) setMonthBase(parseDate(value) || new Date()) }}
+            onBlur={() => setOpen(false)}
             onChange={e => onChange && onChange(e.target.value)}
             aria-label={label}
           />
