@@ -1,0 +1,14 @@
+.wrap { padding: 12px 20px; }
+.layout { display: flex; align-items: stretch; }
+.right { flex: 1; margin-left: 20px; }
+.frame { border: 1px solid #e6e6e6; border-radius: 2px; background: #fff; }
+.sectionHd { margin: 8px 0 10px; border-bottom: none !important; }
+.sectionHd { padding-bottom: 8px; }
+.sectionTit { font-size: 14px; color: #333; font-weight: 600; }
+.sectionBd { padding: 10px 0; }
+.formItem { display: flex; align-items: center; padding: 6px 0; }
+.formLabel { width: 100px; text-align: right; font-size: 12px; color: #666; }
+.inputBox { margin-left: 10px; }
+.input { height: 30px; line-height: 30px; font-size: 12px; }
+.primaryLink { color: #3b99fc; }
+.tipBar { background: #fff8ef; border: 1px solid #ffd9b3; color: #8a5a00; padding: 10px 12px; margin-bottom: 12px; }
