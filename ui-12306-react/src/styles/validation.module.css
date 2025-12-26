@@ -13,9 +13,12 @@
   margin-right: 6px;
   background: url('/assets/point2.png') no-repeat center;
  }
- .rankA .s1 { background: #ff8585; }
- .rankB .s1 { background: #f5a623; }
+ .s1 {}
+ .s2 {}
+ .s3 {}
+ .rankA .s1 { background: #ff3b30; }
+ .rankB .s1 { background: #ff3b30; }
  .rankB .s2 { background: #f5a623; }
- .rankC .s1 { background: #60c6e7; }
- .rankC .s2 { background: #60c6e7; }
- .rankC .s3 { background: #60c6e7; }
+ .rankC .s1 { background: #ff3b30; }
+ .rankC .s2 { background: #f5a623; }
+ .rankC .s3 { background: #28a745; }
