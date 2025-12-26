@@ -223,7 +223,7 @@ function LabeledInput({ label, icon, placeholder, value, onChange }) {
 function TicketOne({ onQuery }) {
   const [from, setFrom] = useState('')
   const [to, setTo] = useState('')
-  const [date, setDate] = useState('2025-12-25')
+  const [date, setDate] = useState(() => { const t=new Date(); return `${t.getFullYear()}-${String(t.getMonth()+1).padStart(2,'0')}-${String(t.getDate()).padStart(2,'0')}` })
   const [isStudent, setIsStudent] = useState(false)
   const [isHigh, setIsHigh] = useState(false)
   return (
@@ -276,8 +276,8 @@ function TicketOne({ onQuery }) {
 function TicketRound({ onQuery }) {
   const [from, setFrom] = useState('')
   const [to, setTo] = useState('')
-  const [goDate, setGoDate] = useState('2025-12-26')
-  const [backDate, setBackDate] = useState('2025-12-26')
+  const [goDate, setGoDate] = useState(() => { const t=new Date(); return `${t.getFullYear()}-${String(t.getMonth()+1).padStart(2,'0')}-${String(t.getDate()).padStart(2,'0')}` })
+  const [backDate, setBackDate] = useState(() => { const t=new Date(); return `${t.getFullYear()}-${String(t.getMonth()+1).padStart(2,'0')}-${String(t.getDate()).padStart(2,'0')}` })
   const [isStudent, setIsStudent] = useState(false)
   const [isHigh, setIsHigh] = useState(false)
   return (
@@ -329,7 +329,7 @@ function TicketRound({ onQuery }) {
 function TicketSerial({ onQuery }) {
   const [from, setFrom] = useState('')
   const [to, setTo] = useState('')
-  const [date, setDate] = useState('2025-12-26')
+  const [date, setDate] = useState(() => { const t=new Date(); return `${t.getFullYear()}-${String(t.getMonth()+1).padStart(2,'0')}-${String(t.getDate()).padStart(2,'0')}` })
   const [isStudent, setIsStudent] = useState(false)
   return (
     <div className="search-tab-item" style={{ display: 'block' }}>
@@ -384,13 +384,13 @@ function TicketRefund() {
 
 function TicketRefundNew() {
   const [type, setType] = useState('order')
-  const [fromDate, setFromDate] = useState('2025-11-27')
-  const [toDate, setToDate] = useState('2025-12-26')
+  const [fromDate, setFromDate] = useState(() => { const t=new Date(); return `${t.getFullYear()}-${String(t.getMonth()+1).padStart(2,'0')}-${String(t.getDate()).padStart(2,'0')}` })
+  const [toDate, setToDate] = useState(() => { const t=new Date(); return `${t.getFullYear()}-${String(t.getMonth()+1).padStart(2,'0')}-${String(t.getDate()).padStart(2,'0')}` })
   const [keyword, setKeyword] = useState('')
   return (
     <div className="search-tab-item" style={{ display: 'block' }}>
       <div className="search-form">
-        <div className="form-item"><span className="form-label">查询类型</span><div className="form-bd"><ul className={`radio-list radio-list-ding`}><li className={type==='order'?`active`:''} onClick={() => setType('order')}><i></i>订票日期</li><li className={type==='ride'?`active`:''} onClick={() => setType('ride')}><i></i>乘车日期</li></ul></div></div>
+        <div className="form-item"><span className="form-label">查询类型</span><div className="form-bd"><ul className={`radio-list radio-list-ding`}><li className={type==='order'?`active`:''} onClick={() => setType('order')}><input type="checkbox" checked={type==='order'} onChange={()=>setType('order')} aria-label="订票日期" style={{ marginRight: 6 }} />订票日期</li><li className={type==='ride'?`active`:''} onClick={() => setType('ride')}><input type="checkbox" checked={type==='ride'} onChange={()=>setType('ride')} aria-label="乘车日期" style={{ marginRight: 6 }} />乘车日期</li></ul></div></div>
         <div className="form-item"><label className="form-label">开始日期</label><div className="form-bd"><div className={`input-box input-data`}><input type="text" className="input" value={fromDate} onChange={e => setFromDate(e.target.value)} aria-label="请输入开始日期" /><i className={`icon icon-date`}></i></div></div></div>
         <div className="form-item"><label className="form-label">结束日期</label><div className="form-bd"><div className={`input-box input-data`}><input type="text" className="input" value={toDate} onChange={e => setToDate(e.target.value)} aria-label="请输入结束日期" /><i className={`icon icon-date`}></i></div></div></div>
         <div className="form-item"><label className="form-label">关键字</label><div className="form-bd"><div className={`input-box`}><input type="text" className={`input search-input`} value={keyword} onChange={e => setKeyword(e.target.value)} placeholder="订单号/车次/乘客姓名" aria-label="订单号/车次/乘客姓名" /></div></div></div>
@@ -402,11 +402,32 @@ function TicketRefundNew() {
 
 function CommonQuery() {
   const [tab, setTab] = useState(0)
-  const [saleDate, setSaleDate] = useState('2025-12-26')
+  const [saleDate, setSaleDate] = useState(() => { const t=new Date(); return `${t.getFullYear()}-${String(t.getMonth()+1).padStart(2,'0')}-${String(t.getDate()).padStart(2,'0')}` })
   const [saleStation, setSaleStation] = useState('')
-  const [rideDate, setRideDate] = useState('2025-12-26')
+  const [rideDate, setRideDate] = useState(() => { const t=new Date(); return `${t.getFullYear()}-${String(t.getMonth()+1).padStart(2,'0')}-${String(t.getDate()).padStart(2,'0')}` })
   const [carNo, setCarNo] = useState('')
   const [rideStation, setRideStation] = useState('')
+  const [stationZwd, setStationZwd] = useState('')
+  const [stationType, setStationType] = useState('arrive')
+  const [weatherCity, setWeatherCity] = useState('')
+  const [forecast, setForecast] = useState([])
+  const iconSvg = (t) => {
+    if (t === 'sunny') return (
+      <svg width="28" height="28" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="5" fill="#ffb400"></circle><g stroke="#ffb400" strokeWidth="2"><line x1="12" y1="2" x2="12" y2="5"></line><line x1="12" y1="19" x2="12" y2="22"></line><line x1="2" y1="12" x2="5" y2="12"></line><line x1="19" y1="12" x2="22" y2="12"></line><line x1="4.5" y1="4.5" x2="6.8" y2="7"></line><line x1="17.2" y1="17" x2="19.5" y2="19.5"></line><line x1="4.5" y1="19.5" x2="7" y2="17.2"></line><line x1="17" y1="6.8" x2="19.5" y2="4.5"></line></g></svg>
+    )
+    if (t === 'cloudy') return (
+      <svg width="28" height="28" viewBox="0 0 24 24" aria-hidden="true"><g fill="#7aaefb"><circle cx="9" cy="10" r="4"></circle><circle cx="14" cy="12" r="5"></circle><rect x="5" y="13" width="14" height="4" rx="2"></rect></g></svg>
+    )
+    if (t === 'rain') return (
+      <svg width="28" height="28" viewBox="0 0 24 24" aria-hidden="true"><g fill="#7aaefb"><circle cx="10" cy="10" r="4"></circle><circle cx="15" cy="12" r="5"></circle></g><g stroke="#3b99fc" strokeWidth="2"><line x1="8" y1="17" x2="6" y2="21"></line><line x1="12" y1="17" x2="10" y2="21"></line><line x1="16" y1="17" x2="14" y2="21"></line></g></svg>
+    )
+    if (t === 'snow') return (
+      <svg width="28" height="28" viewBox="0 0 24 24" aria-hidden="true"><g fill="#7aaefb"><circle cx="10" cy="10" r="4"></circle><circle cx="15" cy="12" r="5"></circle></g><g stroke="#7aaefb" strokeWidth="2"><line x1="8" y1="17" x2="8" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line><line x1="16" y1="17" x2="16" y2="21"></line></g></svg>
+    )
+    return (
+      <svg width="28" height="28" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 16h14" stroke="#3b99fc" strokeWidth="2"></path><path d="M6 12l3-3 3 3" stroke="#3b99fc" strokeWidth="2" fill="none"></path><circle cx="17" cy="9" r="3" fill="#7aaefb"></circle></svg>
+    )
+  }
   return (
     <div className="search-main-tab">
       <div className="search-tab-hd">
@@ -422,8 +443,8 @@ function CommonQuery() {
         {tab===0 && (
           <div className="search-tab-item" style={{ display: 'block' }}>
             <div className="search-form">
-              <div className="form-item"><span className="form-label">查询类型</span><div className="form-bd"><ul className={`radio-list radio-list-station`}><li className={`active`}><i></i>到达站</li><li><i></i>出发站</li></ul></div></div>
-              <LabeledInput label="车站" placeholder="简拼／全拼／汉字" />
+              <div className="form-item"><span className="form-label">查询类型</span><div className="form-bd"><ul className={`radio-list radio-list-station`}><li className={stationType==='arrive'?`active`:''} onClick={()=>setStationType('arrive')}><input type="checkbox" checked={stationType==='arrive'} onChange={()=>setStationType('arrive')} aria-label="到达站" style={{ marginRight: 6 }} />到达站</li><li className={stationType==='depart'?`active`:''} onClick={()=>setStationType('depart')}><input type="checkbox" checked={stationType==='depart'} onChange={()=>setStationType('depart')} aria-label="出发站" style={{ marginRight: 6 }} />出发站</li></ul></div></div>
+              <LabeledInput label="车站" icon="icon-place" value={stationZwd} onChange={setStationZwd} placeholder="简拼／全拼／汉字" />
               <div className="form-item"><label className="form-label">车次</label><div className="form-bd"><div className={`input-box`}><input type="text" className={`input`} placeholder="请输入车次" /></div></div></div>
               <div className={`form-item form-item-btn mt-mlg`}><a href="#" className={`btn btn-primary form-block`}>查&nbsp;&nbsp;&nbsp;&nbsp;询</a></div>
             </div>
@@ -449,10 +470,25 @@ function CommonQuery() {
           </div>
         )}
         {tab===3 && (
-          <div className="search-tab-item" style={{ display: 'none' }}>
+          <div className="search-tab-item" style={{ display: 'block' }}>
             <div className="search-form">
-              <LabeledInput label="目的地" placeholder="简拼／全拼／汉字" />
-              <div className={`form-item form-item-btn mt-mlg`}><a href="#" className={`btn btn-primary form-block`}>查&nbsp;&nbsp;&nbsp;&nbsp;询</a></div>
+              <LabeledInput label="目的地" icon="icon-place" value={weatherCity} onChange={setWeatherCity} placeholder="简拼／全拼／汉字" />
+              <div className={`form-item form-item-btn mt-mlg`}>
+                <a href="#" className={`btn btn-primary form-block`} onClick={(e)=>{ e.preventDefault(); const types=['sunny','cloudy','rain','snow','wind']; const base=weatherCity||'北京'; const h=Array.from(base).reduce((a,c)=>a+c.charCodeAt(0),0); const list=Array(5).fill(0).map((_,i)=>{ const t=types[(h+i)%types.length]; const hi=20+((h+i)%10); const lo=hi-5; const label=i===0?'今天':i===1?'明天':i===2?'后天':`第${i+1}天`; return {type:t,hi,lo,label}; }); setForecast(list); }}>查&nbsp;&nbsp;&nbsp;&nbsp;询</a>
+              </div>
+              {forecast.length>0 && (
+                <div style={{ marginTop: 12 }}>
+                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: 8 }}>
+                    {forecast.map((f,i)=> (
+                      <div key={i} style={{ border: '1px solid #dbeaf8', borderRadius: 4, padding: '10px 8px', textAlign: 'center' }}>
+                        <div style={{ height: 40, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>{iconSvg(f.type)}</div>
+                        <div style={{ color: '#333', marginTop: 6 }}>{f.label}</div>
+                        <div style={{ color: '#888', fontSize: 12 }}>{`${f.lo}° ~ ${f.hi}°`}</div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         )}
@@ -462,6 +498,7 @@ function CommonQuery() {
 }
 
 function Dinner() {
+  const [depDate, setDepDate] = useState(() => { const t=new Date(); return `${t.getFullYear()}-${String(t.getMonth()+1).padStart(2,'0')}-${String(t.getDate()).padStart(2,'0')}` })
   return (
     <div className="search-main-tab">
       <div className="search-tab-hd">
@@ -473,7 +510,7 @@ function Dinner() {
       <div className="search-tab-bd">
         <div className={`search-tab-item dinner-yuding`} style={{ display: 'block' }}> 
           <div className="search-form">
-            <div className="form-item"><label className="form-label">出发日期</label><div className="form-bd"><div className={`input-box input-data`}><input type="text" className={`input`} /><i className={`icon icon-date`}></i></div></div></div>
+            <LabeledInput label="出发日期" icon="icon-date" value={depDate} onChange={setDepDate} />
             <div className="form-item"><label className="form-label">出发车次</label><div className="form-bd"><div className={`input-box`}><input type="text" className={`input`} placeholder="仅支持G、D字头的动车组列车" /></div></div></div>
             <div className={`form-item form-item-btn mt-mlg`}><a href="#" className={`btn btn-primary form-block`}>查&nbsp;&nbsp;&nbsp;&nbsp;询</a></div>
           </div>

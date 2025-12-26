@@ -9,7 +9,12 @@ export default function TrainSearchForm({ onSearch }) {
   const [tripType, setTripType] = useState(init.tripType || 'dc')
   const [fromStation, setFromStation] = useState(init.from || '')
   const [toStation, setToStation] = useState(init.to || '')
-  const [trainDate, setTrainDate] = useState(init.date || '2025-11-24 周一')
+  const [trainDate, setTrainDate] = useState(() => {
+    if (init.date) return init.date
+    const t = new Date()
+    const w = ['周日','周一','周二','周三','周四','周五','周六'][t.getDay()]
+    return `${t.getFullYear()}-${String(t.getMonth()+1).padStart(2,'0')}-${String(t.getDate()).padStart(2,'0')} ${w}`
+  })
   const [backDate, setBackDate] = useState(init.backDate || '')
   const [identity, setIdentity] = useState(init.isStudent ? 'student' : 'normal')
 
