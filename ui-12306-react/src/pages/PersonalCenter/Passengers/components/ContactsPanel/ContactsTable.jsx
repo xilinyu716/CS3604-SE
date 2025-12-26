@@ -14,7 +14,9 @@ function mapMobileStatus(p) {
   return phoneChecked ? 'mobile-ok' : 'mobile-error'
 }
 
-export default function ContactsTable({ items, onDelete }) {
+import { Link } from 'react-router-dom'
+
+export default function ContactsTable({ items, onDelete, selectedIds, onToggleSelect, onBatchDelete }) {
   return (
     <div>
       <table className={`order-panel-head`}>
@@ -41,8 +43,8 @@ export default function ContactsTable({ items, onDelete }) {
       </table>
       <div className={`order-item`}>
         <div className={`order-item-hd`}>
-          <div className={`order-hd-info`}><a href="#"><i className={`icon icon-add-fill txt-success mr-sm`}></i>添加</a></div>
-          <div className={`order-hd-info`}><a href="#"><i className={`icon icon-del txt-error mr-sm`}></i>批量删除</a></div>
+          <div className={`order-hd-info`}><Link to="/center/passengers/add"><i className={`icon icon-add-fill txt-success mr-sm`}></i>添加</Link></div>
+          <div className={`order-hd-info`}><a href="#" onClick={(e)=>{ e.preventDefault(); onBatchDelete?.() }}><i className={`icon icon-del txt-error mr-sm`}></i>批量删除</a></div>
         </div>
         <div className={`order-item-bd`} style={{ maxHeight: '100%' }}>
           <table className={`order-item-table ${styles.table}`}>
@@ -66,7 +68,14 @@ export default function ContactsTable({ items, onDelete }) {
                   <tr key={p.allEncStr}>
                     <td>
                       <label className={`check-inline`}>
-                        <input type="checkbox" className={isSelf ? 'UserSelf' : ''} disabled={isSelf} aria-label={`${p.passenger_name}`} />{i + 1}
+                        <input 
+                          type="checkbox" 
+                          className={isSelf ? 'UserSelf' : ''} 
+                          disabled={isSelf} 
+                          aria-label={`${p.passenger_name}`} 
+                          checked={selectedIds?.has(p.allEncStr) || false}
+                          onChange={(e)=>onToggleSelect?.(p.allEncStr, e.target.checked)}
+                        />{i + 1}
                       </label>
                     </td>
                     <td className={`br-none`}>
@@ -115,4 +124,3 @@ function formatDeleteTip(iso) {
   const y = iso.slice(0,4), m = iso.slice(5,7), d = iso.slice(8,10)
   return `${y}年${m}月${d}日前不能删除`
 }
-
