@@ -28,20 +28,6 @@
     "is_active": "N"
   },
   {
-    "passenger_name": "李四",
-    "passenger_id_type_code": "1",
-    "passenger_id_type_name": "居民身份证",
-    "passenger_id_no": "3103***********456",
-    "mobile_code": "86",
-    "mobile_no": "139****0002",
-    "isUserSelf": "N",
-    "allEncStr": "enc-002",
-    "delete_time": "2024-01-01T00:00:00.000Z",
-    "total_times": "93",
-    "if_receive": "N",
-    "is_active": "N"
-  },
-  {
     "passenger_name": "王五",
     "passenger_id_type_code": "1",
     "passenger_id_type_name": "居民身份证",
@@ -54,5 +40,7 @@
     "total_times": "94",
     "if_receive": "N",
     "is_active": "N"
+  }
+]  "is_active": "N"
   }
 ]
