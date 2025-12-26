@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>中国铁路12306 - React复刻</title>
+    <link rel="icon" href="/assets/favicon.ico" />
+    <link rel="stylesheet" href="/assets/iconfont.css" />
+    <link rel="stylesheet" href="/assets/index_y_v50003.css" />
+    <style>
+      .header .logo a { display: inline-block; }
+      .header .logo img { display: block; height: 50px; width: auto; }
+      .dropdown-arrow { transition: transform .2s; transform-origin: 50% 50%; }
+      .nav .nav-item:hover .dropdown-arrow:not(.dropdown-arrow-static) { transform: rotate(180deg) translateY(1px) !important; }
+      .header-menu .menu-item.menu-nav:hover .dropdown-arrow:not(.dropdown-arrow-static) { transform: rotate(180deg) translateY(1px) !important; }
+      .search-index .form-item-group { position: relative; }
+      .search-index .city-change { position: absolute; right: -12px; top: 28px; width: 24px; height: 24px; border-radius: 50%; border: 1.5px solid #ff8d2b; background: #fff; display: flex; align-items: center; justify-content: center; }
+      .search-index .city-change svg { display: block; width: 16px; height: 16px; }
+      .search-index .input-box.input-city .icon { color: #7aaefb; }
+      .search-index .input-box.input-data .icon { color: #7aaefb; }
+      .service-list { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; }
+      .service-list li { position: relative; }
+      .service-list li a { display: inline-flex; align-items: center; gap: 8px; color: #333; }
+      .service-list li:not(:first-child)::before { content: ""; position: absolute; left: -32px; top: 50%; width: 36px; height: 1px; background: linear-gradient(to right, rgba(0,0,0,0), #eaf0fb 60%, rgba(0,0,0,0)); transform: rotate(70deg) translateY(-50%); }
+
+      .service-icon { display: inline-block; width: 40px; height: 40px; background-repeat: no-repeat; background-size: 280px 40px; background-image: url('/assets/service.png'); }
+      @media (min-resolution: 2dppx), (-webkit-min-device-pixel-ratio: 2) {
+        .service-icon { background-image: url('/assets/service@2x.png'); background-size: 280px 40px; }
+      }
+      .service-icon.ico-s2 { background-position: 0 0; }
+      .service-icon.ico-s6 { background-position: -40px 0; }
+      .service-icon.ico-s4 { background-position: -80px 0; }
+      .service-icon.ico-s5 { background-position: -120px 0; }
+      .service-icon.ico-s3 { background-position: -160px 0; }
+      .service-icon.ico-s7 { background-position: -200px 0; }
+      .service-icon.ico-s9 { background-position: -240px 0; }
+
+    </style>
+    <script type="module" crossorigin src="/assets/index-VHUS2oEj.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-5XByWxPR.css">
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>

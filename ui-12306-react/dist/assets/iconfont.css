@@ -1,0 +1,33 @@
+/* 来自原页面的iconfont定义，需同时提供字体文件至 /assets 目录 */
+@font-face {
+  font-family: "icon";
+  src: url('/assets/iconfont.woff2') format('woff2'),
+       url('/assets/iconfont.woff') format('woff'),
+       url('/assets/iconfont.ttf') format('truetype');
+}
+.icon { font-family: "icon" !important; font-size: 16px; font-style: normal; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+/* 仅保留页面用到的部分图标，完整集合请替换为原始 iconfont.css */
+.icon-search:before { content: "\e690"; }
+.icon-down:before { content: "\e728"; }
+.icon-huochepiao:before { content: "\e6c8"; }
+.icon-cycx:before { content: "\e691"; }
+.icon-dingcan:before { content: "\e679"; }
+.icon-dancheng:before { content: "\e6c4"; }
+.icon-wangfan:before { content: "\e673"; }
+.icon-huancheng:before { content: "\e680"; }
+.icon-chepiao:before { content: "\e6cc"; }
+.icon-place:before { content: "\e6b9"; }
+.icon-date:before { content: "\e6c1"; }
+.icon-shijian:before { content: "\e6ca"; }
+.icon-jianpiaokou:before { content: "\e6cf"; }
+.icon-qishou:before { content: "\e6ce"; }
+.icon-tianqi:before { content: "\e6cd"; }
+.icon-notice:before { content: "\e700"; }
+.icon-phone:before { content: "\e693"; }
+.icon-code:before { content: "\e6bc"; }
+.icon-close:before { content: "\e647"; }
+.icon-gotop:before { content: "\e6bf"; }
+.icon-more:before { content: "\e6be"; }
+.icon-shixin01:before { content: "\e6ab"; }
+.icon-shixin02:before { content: "\e6aa"; }
+

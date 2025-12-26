@@ -1,9 +1,9 @@
 /* 来自原页面的iconfont定义，需同时提供字体文件至 /assets 目录 */
 @font-face {
   font-family: "icon";
-  src: url('/assets/iconfont.woff2') format('woff2'),
-       url('/assets/iconfont.woff') format('woff'),
-       url('/assets/iconfont.ttf') format('truetype');
+  src: url('iconfont.woff2') format('woff2'),
+       url('iconfont.woff') format('woff'),
+       url('iconfont.ttf') format('truetype');
 }
 .icon { font-family: "icon" !important; font-size: 16px; font-style: normal; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
 /* 仅保留页面用到的部分图标，完整集合请替换为原始 iconfont.css */
