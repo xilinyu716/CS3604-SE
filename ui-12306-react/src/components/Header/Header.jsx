@@ -2,6 +2,14 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import * as auth from '../../utils/auth'
 
+function goWithLogin(navigate, path) {
+  if (!auth.isLoggedIn()) {
+    navigate('/login?redirect=' + encodeURIComponent(path))
+  } else {
+    navigate(path)
+  }
+}
+
 export default function Header() {
   const navigate = useNavigate()
   const [user, setUser] = useState(auth.currentUser())
@@ -58,13 +66,13 @@ export default function Header() {
               </li>
               <li className="menu-item menu-line">|</li>
               <li className="menu-item menu-nav" role="menuitem">
-                <Link to={user ? "/center/profile" : "/login"} className="menu-nav-hd item">我的12306
+                <Link to={user ? "/center/profile" : "/login?redirect=%2Fcenter%2Fprofile"} className="menu-nav-hd item">我的12306
                   <svg className="dropdown-arrow dropdown-arrow-static" width="10" height="10" viewBox="0 0 10 10" style={{ marginLeft: 4, display: 'inline-block' }}>
                     <polygon points="5,7 2,4 8,4" fill="#9ec6ff" />
                   </svg>
                 </Link>
                 <ul className="menu-nav-bd" role="menu">
-                  <li><Link to="/center/orders">火车票订单</Link></li>
+                  <li><Link to={user ? "/center/orders" : "/login?redirect=%2Fcenter%2Forders"}>火车票订单</Link></li>
                   <li><a href="#">候补订单</a></li>
                   <li><a href="#">计次•定期票订单</a></li>
                   <li><a href="#">约号订单</a></li>
@@ -75,10 +83,10 @@ export default function Header() {
                   <li><a href="#">我的保险</a></li>
                   <li><a href="#">我的会员</a></li>
                   <li className="nav-line"></li>
-                  <li><Link to="/center/profile">查看个人信息</Link></li>
+                  <li><Link to={user ? "/center/profile" : "/login?redirect=%2Fcenter%2Fprofile"}>查看个人信息</Link></li>
                   <li><a href="#">账户安全</a></li>
                   <li className="nav-line"></li>
-                  <li><Link to="/center/passengers">乘车人</Link></li>
+                  <li><Link to={user ? "/center/passengers" : "/login?redirect=%2Fcenter%2Fpassengers"}>乘车人</Link></li>
                   <li><a href="#">地址管理</a></li>
                   <li className="nav-line"></li>
                   <li><a href="#">温馨服务查询</a></li>
@@ -126,15 +134,15 @@ function Nav() {
                 <li><a onClick={() => navigate('/trains', { state: { tripType: 'dc' } })} style={{cursor:'pointer'}}>单程</a></li>
                 <li><a onClick={() => navigate('/trains', { state: { tripType: 'wf' } })} style={{cursor:'pointer'}}>往返</a></li>
                 <li><a onClick={() => navigate('/trains')} style={{cursor:'pointer'}}>中转换乘</a></li>
-                <li><a onClick={() => navigate('/center/orders')} style={{cursor:'pointer'}}>计次•定期票</a></li>
+                <li><a onClick={() => goWithLogin(navigate, '/center/orders')} style={{cursor:'pointer'}}>计次•定期票</a></li>
               </ul>
             </div>
             <div className="nav-bd-item nav-col2">
               <h3 className="nav-tit">变更</h3>
               <ul className="nav-con" role="menu">
-                <li><a onClick={() => navigate('/center/orders')} style={{cursor:'pointer'}}>退票</a></li>
-                <li><a onClick={() => navigate('/center/orders')} style={{cursor:'pointer'}}>改签</a></li>
-                <li><a onClick={() => navigate('/center/orders')} style={{cursor:'pointer'}}>变更到站</a></li>
+                <li><a onClick={() => goWithLogin(navigate, '/center/orders')} style={{cursor:'pointer'}}>退票</a></li>
+                <li><a onClick={() => goWithLogin(navigate, '/center/orders')} style={{cursor:'pointer'}}>改签</a></li>
+                <li><a onClick={() => goWithLogin(navigate, '/center/orders')} style={{cursor:'pointer'}}>变更到站</a></li>
               </ul>
             </div>
             <div className="nav-bd-item nav-col2">
