@@ -109,7 +109,11 @@ app.post('/api/auth/login', async (req, res) => {
 
   try {
     const users = await readUsers();
-    const user = users.find(u => u.userName === username && u.password === password);
+    // Allow login with username, mobileNo, or email
+    const user = users.find(u => 
+      (u.userName === username || u.mobileNo === username || u.email === username) && 
+      u.password === password
+    );
 
     if (user) {
       res.json({

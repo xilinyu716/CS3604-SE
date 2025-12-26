@@ -40,6 +40,7 @@ Registers a new user with a verification code.
     "password": "password123",  // Required
     "mobileNo": "13800138000",  // Required
     "code": "123456",           // Required (from send-code)
+    "email": "test@example.com",// Optional
     "name": "Real Name",        // Optional
     "idNo": "110...",           // Optional
     ...otherInfo
@@ -54,14 +55,14 @@ Registers a new user with a verification code.
   ```
 
 ### **1.3 Login**
-Authenticates a user and returns a token.
+Authenticates a user and returns a token. Supports login via username, mobile number, or email.
 
 - **URL**: `/api/auth/login`
 - **Method**: `POST`
 - **Request Body**:
   ```json
   {
-    "username": "testuser", // Required
+    "username": "testuser", // Required (Can be username, mobile number, or email)
     "password": "password"  // Required
   }
   ```

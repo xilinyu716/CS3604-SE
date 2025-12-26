@@ -22,7 +22,8 @@ const Schemas = {
     return item && 
            typeof item.userName === 'string' && 
            typeof item.password === 'string' && 
-           typeof item.mobileNo === 'string';
+           typeof item.mobileNo === 'string' &&
+           (item.email === undefined || typeof item.email === 'string');
   },
 
   /**
