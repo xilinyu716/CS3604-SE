@@ -2,21 +2,13 @@ import styles from './ContactsPanel.module.css'
 import SearchForm from './SearchForm'
 import ContactsTable from './ContactsTable'
 import IntegralTipsModal from '../IntegralTipsModal'
-import { useMemo, useState, useEffect } from 'react'
+import { useMemo, useState } from 'react'
 import data from '../../mock/passengers.json'
-import { loadPassengers, deleteByEncStr } from '../../store/passengerStore'
-import { useNavigate } from 'react-router-dom'
 
 export default function ContactsPanel() {
   const [keyword, setKeyword] = useState('')
   const [showTips, setShowTips] = useState(false)
-  const [items, setItems] = useState(loadPassengers(data))
-  const [selected, setSelected] = useState([])
-  const navigate = useNavigate()
-
-  useEffect(() => {
-    setItems(loadPassengers(data))
-  }, [])
+  const [items, setItems] = useState(data)
 
   const filtered = useMemo(() => {
     if (!keyword) return items
@@ -24,30 +16,7 @@ export default function ContactsPanel() {
   }, [keyword, items])
 
   const onDelete = (encStr) => {
-    deleteByEncStr([encStr])
     setItems(prev => prev.filter(x => x.allEncStr !== encStr))
-    setSelected(prev => prev.filter(e => e !== encStr))
-  }
-
-  const onToggle = (encStr, checked) => {
-    setSelected(prev => {
-      const set = new Set(prev)
-      if (checked) set.add(encStr)
-      else set.delete(encStr)
-      return Array.from(set)
-    })
-  }
-
-  const onBulkDelete = () => {
-    if (selected.length === 0) return
-    if (!window.confirm(`确认删除选中的 ${selected.length} 位乘车人？`)) return
-    deleteByEncStr(selected)
-    setItems(prev => prev.filter(x => !selected.includes(x.allEncStr)))
-    setSelected([])
-  }
-
-  const onAddClick = () => {
-    navigate('/center/passengers/add')
   }
 
   return (
@@ -61,14 +30,7 @@ export default function ContactsPanel() {
       <div className={`panel-border ${styles.panel}`}>
         <div className={`order-panel order-panel-contacts`}>
           <SearchForm onSearch={setKeyword} onClear={()=>setKeyword('')} />
-          <ContactsTable 
-            items={filtered} 
-            onDelete={onDelete} 
-            selected={selected}
-            onToggle={onToggle}
-            onBulkDelete={onBulkDelete}
-            onAddClick={onAddClick}
-          />
+          <ContactsTable items={filtered} onDelete={onDelete} />
         </div>
       </div>
       <div className={`pagination mt-lg`} style={{ display: (filtered.length > 10) ? 'block' : 'none' }}>
