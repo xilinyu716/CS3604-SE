@@ -1,0 +1,53 @@
+.section { padding: 24px 0 40px; }
+.box {
+  width: 820px;
+  margin: 0 auto;
+  background: #fff;
+  border: 1px solid #a8d3ff;
+  box-shadow: 0 8px 22px rgba(0,0,0,0.06);
+  min-height: 420px;
+}
+.tabs {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-bottom: 1px solid #a8d3ff;
+}
+.tab {
+  padding: 14px 18px;
+  cursor: pointer;
+  color: #fff;
+  font-weight: 600;
+  text-align: center;
+}
+.tabFace { background: #1f7bd9; }
+.tabMobile { background: #3bb2e6; }
+.tabEmail { background: #5ec3e6; }
+.active { box-shadow: inset 0 -3px 0 #0f5fb3; }
+.iconUser, .iconPhone, .iconMail { display:inline-block; width:16px; height:16px; margin-right:8px; vertical-align:-2px }
+.iconUser { background: radial-gradient(circle at 50% 40%, #fff 0, #fff 30%, #0f5fb3 31%, #0f5fb3 100%) }
+.iconPhone { background: linear-gradient(135deg,#0f5fb3 0,#0f5fb3 50%,transparent 51%) }
+.iconMail { background: linear-gradient(135deg,#0f5fb3 0,#0f5fb3 50%,transparent 51%), linear-gradient(45deg,#0f5fb3 0,#0f5fb3 50%,transparent 51%) }
+.panelBox { padding: 26px 28px }
+.faceTitle { font-size: 16px; color: #333; margin-bottom: 6px }
+.faceSub { color: #888; margin-bottom: 14px }
+.qrWrap { width: 180px; height: 180px; border: 1px solid #eaeaea; display: flex; align-items: center; justify-content: center }
+.qrWrap img { width: 160px; height: 160px }
+.steps { display:flex; align-items:center; justify-content: space-between; padding: 6px 10px 20px }
+.step { display:flex; align-items:center; color:#999; flex:1 }
+.stepDot { width:18px; height:18px; border-radius:50%; background:#cfe3ff; border:2px solid #9ec6ff }
+.stepActive .stepDot { background:#0f5fb3; border-color:#0f5fb3 }
+.stepTxt { margin:0 8px; font-size:13px }
+.stepLine { height:2px; background:#e6f0fb; flex:1 }
+.form { width: 600px; margin: 0 auto; }
+.formItem { display:flex; align-items:center; margin-bottom:14px; gap: 14px }
+.label { width:120px; color:#666; display:flex; align-items:center; gap:6px }
+.required { color:#ff6a00 }
+.inputGroup { display:flex; align-items:center; flex:1 }
+.prefix { height:36px; line-height:36px; border:1px solid #dbeaf8; padding:0 10px; background:#f6fbff; color:#3b99fc; border-right:none }
+.input { flex:1; height:36px; border:1px solid #dbeaf8; padding:0 10px; outline:none }
+.select { height:36px; border:1px solid #dbeaf8; padding:0 10px; outline:none; flex:1 }
+.hint { color:#ff8c00; white-space:nowrap }
+.actions { padding-left:120px; margin-top:10px }
+.primaryBtn { height:34px; padding:0 20px; background:#ff8c00; border:none; color:#fff; border-radius:2px; cursor:pointer }
+.tipLine { padding-left:120px; margin-top:10px; color:#888 }
+.link { color:#0f5fb3; cursor:pointer }

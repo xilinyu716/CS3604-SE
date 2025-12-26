@@ -77,7 +77,7 @@ export default function AccountLogin() {
       <div className={styles.links}>
         <Link className={styles.linkPrimary} to="/register">注册12306账号</Link>
         |
-        <a className={styles.linkLighter} href="#">忘记密码？</a>
+        <Link className={styles.linkLighter} to="/forgot">忘记密码？</Link>
       </div>
     </div>
   )
