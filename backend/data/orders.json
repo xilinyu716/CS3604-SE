@@ -2,6 +2,27 @@
   "unfinished": [],
   "nottrip": [
     {
+      "order_date": "2025-12-26",
+      "sequence_no": "E1766738821167",
+      "refund_serial": "",
+      "tickets": [
+        {
+          "from": "北京南",
+          "to": "上海虹桥",
+          "code": "G101",
+          "date": "06:43",
+          "passenger": "张三",
+          "idType": "居民身份证",
+          "seatType": "二等座",
+          "coach": "04",
+          "seat": "5C",
+          "ticketType": "成人票",
+          "price": "553.0",
+          "status": "待出行"
+        }
+      ]
+    },
+    {
       "order_date": "2025-12-22",
       "sequence_no": "E1766387303853",
       "refund_serial": "",
