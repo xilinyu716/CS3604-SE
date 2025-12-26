@@ -26,6 +26,7 @@ export default function RegisterForm({ onNext }) {
   const [mobileCode, setMobileCode] = useState('86')
   const [mobileNo, setMobileNo] = useState('')
   const [agree, setAgree] = useState(false)
+  const [mobileAlert, setMobileAlert] = useState(false)
 
   const [errors, setErrors] = useState({})
 
@@ -76,6 +77,9 @@ export default function RegisterForm({ onNext }) {
         mobileCode,
         mobileNo
       })
+    } else {
+      const msg = validateMobile(mobileCode, mobileNo)
+      if (msg) setMobileAlert(true)
     }
   }
 
@@ -239,6 +243,23 @@ export default function RegisterForm({ onNext }) {
 
   return (
     <div className={styles.block}>
+      {mobileAlert && (
+        <div style={{ position:'fixed', inset:0, background:'rgba(0,0,0,0.45)', display:'flex', alignItems:'center', justifyContent:'center', zIndex:1000 }} role="dialog" aria-label="提示">
+          <div style={{ width: 520, background:'#fff', borderRadius:6, boxShadow:'0 8px 24px rgba(0,0,0,0.2)' }}>
+            <div style={{ display:'flex', alignItems:'center', justifyContent:'space-between', padding:'10px 14px', background:'#1e90ff', color:'#fff', borderTopLeftRadius:6, borderTopRightRadius:6 }}>
+              <strong>提示</strong>
+              <a onClick={()=>setMobileAlert(false)} aria-label="关闭" style={{ cursor:'pointer', color:'#fff' }}>×</a>
+            </div>
+            <div style={{ padding:'24px 20px', textAlign:'center' }}>
+              <div style={{ display:'flex', alignItems:'center', justifyContent:'center', gap:12, marginBottom:18 }}>
+                <svg width="38" height="38" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10" fill="#ff8d2b"></circle><circle cx="12" cy="7" r="2" fill="#fff"></circle><rect x="11" y="10" width="2" height="7" fill="#fff" rx="1"></rect></svg>
+                <span style={{ fontSize:18, color:'#333' }}>请输入手机号，以完成用户校验。</span>
+              </div>
+              <a onClick={()=>setMobileAlert(false)} aria-label="确定" style={{ display:'inline-block', width:120, height:40, lineHeight:'40px', background:'#ff8d2b', color:'#fff', borderRadius:4, cursor:'pointer' }}>确定</a>
+            </div>
+          </div>
+        </div>
+      )}
       <ul className={styles.regList}>
         <li className={styles.item}>
           <div className={styles.labelCol}><span className={styles.required}>*</span>用 户 名：</div>

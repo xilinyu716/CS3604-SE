@@ -13,17 +13,16 @@ const TRAIN_TYPES = [
 ]
 
 const SEAT_OPTIONS = [
-  { key: 'business', label: '商务座/特等座' },
-  { key: 'prefer', label: '优选/一等座' },
+  { key: 'business', label: '商务座' },
+  { key: 'prefer', label: '优选一等座' },
   { key: 'first', label: '一等座' },
-  { key: 'second', label: '二等座/二等包座' },
-  { key: 'softSleeper', label: '高级软卧' },
-  { key: 'dynSleeper', label: '软卧/动卧/一等卧' },
-  { key: 'hardSleeper', label: '硬卧/二等卧' },
-  { key: 'softSeat', label: '软座' },
+  { key: 'second', label: '二等座' },
+  { key: 'dynSleeper', label: '一等卧' },
+  { key: 'hardSleeper', label: '二等卧' },
+  { key: 'softSleeper', label: '软卧' },
+  { key: 'hardSleeperAlias', seatKey: 'hardSleeper', label: '硬卧' },
   { key: 'hardSeat', label: '硬座' },
-  { key: 'noSeat', label: '无座' },
-  { key: 'other', label: '其他' }
+  { key: 'noSeatAlias', seatKey: 'noSeat', label: '座席' }
 ]
 
 export default function FilterPanel({ filters, onFilterChange, trains = [] }) {
@@ -63,8 +62,9 @@ export default function FilterPanel({ filters, onFilterChange, trains = [] }) {
     onFilterChange({ ...filters, arriveStations: next })
   }
 
-  const handleSeatChange = (key) => {
-    const next = { ...filters.seatTypes, [key]: !filters.seatTypes[key] }
+  const handleSeatChange = (key, seatKey) => {
+    const dataKey = seatKey || key
+    const next = { ...filters.seatTypes, [dataKey]: !filters.seatTypes[dataKey] }
     onFilterChange({ ...filters, seatTypes: next })
   }
 
@@ -144,7 +144,7 @@ export default function FilterPanel({ filters, onFilterChange, trains = [] }) {
               {SEAT_OPTIONS.map(opt => (
                 <li key={opt.key} className={styles.checkItem}>
                   <label className={styles.checkLabel}>
-                    <input type="checkbox" className={styles.checkbox} checked={!!filters.seatTypes[opt.key]} onChange={() => handleSeatChange(opt.key)} aria-label={opt.label} />
+                    <input type="checkbox" className={styles.checkbox} checked={!!filters.seatTypes[opt.seatKey || opt.key]} onChange={() => handleSeatChange(opt.key, opt.seatKey)} aria-label={opt.label} />
                     {opt.label}
                   </label>
                 </li>
