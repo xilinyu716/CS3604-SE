@@ -1,4 +1,4 @@
 .wrapper { width: 1200px; margin: 0 auto; padding: 10px 0 20px; }
-.notice { display: flex; align-items: flex-start; gap: 10px; background: #fff8e6; border: 1px solid #ffd39b; color: #333; padding: 8px 12px; border-radius: 3px; margin-top: 10px; }
+.notice { display: flex; align-items: center; gap: 10px; background: #fffdf5; border: 1px solid #ffd39b; color: #333; padding: 8px 12px; border-radius: 3px; margin-top: 10px; }
 .noticeLabel { width: 80px; color: #fb7403; font-weight: 600; }
 .noticeText { flex: 1; line-height: 1.6; }

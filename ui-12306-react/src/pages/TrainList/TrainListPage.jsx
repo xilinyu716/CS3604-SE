@@ -17,7 +17,10 @@ export default function TrainListPage() {
   // Filter states
   const [filters, setFilters] = useState({
     startTime: '00002400',
-    trainTypes: {} // { G: true, D: false }
+    trainTypes: {},
+    departStations: {},
+    arriveStations: {},
+    seatTypes: {}
   })
 
   const fetchTrains = async (params) => {
@@ -88,6 +91,36 @@ export default function TrainListPage() {
         if (!typeMatch) return false
       }
 
+      // 3. Depart Station Filter
+      const activeDepart = Object.keys(filters.departStations).filter(k => filters.departStations[k])
+      if (activeDepart.length > 0) {
+        if (!activeDepart.includes(t.from)) return false
+      }
+
+      // 4. Arrive Station Filter
+      const activeArrive = Object.keys(filters.arriveStations).filter(k => filters.arriveStations[k])
+      if (activeArrive.length > 0) {
+        if (!activeArrive.includes(t.to)) return false
+      }
+
+      // 5. Seat Types Filter
+      const activeSeats = Object.keys(filters.seatTypes).filter(k => filters.seatTypes[k])
+      if (activeSeats.length > 0) {
+        const seatAvailable = (val) => {
+          if (val === undefined || val === null) return false
+          if (typeof val === 'number') return val > 0
+          const s = String(val).trim()
+          if (s === '' || s === '-' || s === '—') return false
+          if (/无|不可|停|候补/.test(s)) return false
+          if (/有|余|可|充足/.test(s)) return true
+          const n = parseInt(s, 10)
+          if (!isNaN(n)) return n > 0
+          return s.length > 0
+        }
+        const matchSeat = activeSeats.some(k => seatAvailable(t.seats?.[k]))
+        if (!matchSeat) return false
+      }
+
       return true
     })
   }, [trains, filters])
@@ -102,7 +135,7 @@ export default function TrainListPage() {
         </div>
         <TrainSearchForm onSearch={handleSearch} />
         <DateQuickBar />
-        <FilterPanel filters={filters} onFilterChange={setFilters} />
+        <FilterPanel filters={filters} onFilterChange={setFilters} trains={trains} />
         <TrainTable data={filteredTrains} loading={loading} error={error} />
       </div>
       <Footer />

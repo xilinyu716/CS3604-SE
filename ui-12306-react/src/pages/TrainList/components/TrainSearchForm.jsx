@@ -54,8 +54,10 @@ export default function TrainSearchForm({ onSearch }) {
         </div>
       </div>
       <div className={styles.quickS}>
-        <label className={styles.radioLabel}><input type="radio" className={styles.radio} checked={identity === 'normal'} onChange={() => setIdentity('normal')} aria-label="普通" />普通</label>
-        <label className={styles.radioLabel}><input type="radio" className={styles.radio} checked={identity === 'student'} onChange={() => setIdentity('student')} aria-label="学生" />学生</label>
+        <div className={styles.identityCol}>
+          <label className={styles.radioLabel}><input type="radio" className={styles.radio} checked={identity === 'normal'} onChange={() => setIdentity('normal')} aria-label="普通" />普通</label>
+          <label className={styles.radioLabel}><input type="radio" className={styles.radio} checked={identity === 'student'} onChange={() => setIdentity('student')} aria-label="学生" />学生</label>
+        </div>
         <div className={styles.btnArea}>
           <button
             className={styles.btnPrimary}

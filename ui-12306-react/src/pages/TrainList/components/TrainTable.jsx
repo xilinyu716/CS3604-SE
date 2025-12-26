@@ -36,6 +36,21 @@ export default function TrainTable({ data = [], loading, error }) {
     return sortOrder === 'asc' ? <i className={styles.iconSortAsc} /> : <i className={styles.iconSortDesc} />
   }
 
+  const seatClass = (val) => {
+    if (val === undefined || val === null) return 'seatNone'
+    if (typeof val === 'number') return val > 0 ? 'seatOk' : 'seatNone'
+    const s = String(val).trim()
+    if (s === '' || s === '-' || s === '—') return 'seatDash'
+    if (/候补/.test(s)) return 'seatWait'
+    if (/无/.test(s)) return 'seatNone'
+    const n = parseInt(s, 10)
+    if (!isNaN(n)) return n > 0 ? 'seatOk' : 'seatNone'
+    if (/有|余|可|充足/.test(s)) return 'seatOk'
+    return 'seatNone'
+  }
+
+  const renderSeat = (val) => <span className={styles[seatClass(val)]}>{val}</span>
+
   if (loading) return <div className={styles.loading}>加载中...</div>
   if (error) return <div className={styles.error}>{error}</div>
   if (!data || data.length === 0) return <div className={styles.empty}>没有符合条件的车次</div>
@@ -75,33 +90,45 @@ export default function TrainTable({ data = [], loading, error }) {
             </tr>
           </thead>
           <tbody>
-            {sortedData.map(r => (
-              <tr key={r.code} className={styles.row}>
-                <td className={styles.cellCode}><div className={styles.trainCode}>{r.code}</div><button className={styles.btnBook} onClick={() => {
-                  const query = location.state || {}
-                  if (!auth.isLoggedIn()) {
-                    navigate('/login', { state: { redirect: '/trains', query, pick: { trainCode: r.code, seat: 'second' } } })
-                  } else {
-                    navigate('/order', { state: { train: { code: r.code, from: r.from, to: r.to, depart: r.depart, arrive: r.arrive }, query } })
-                  }
-                }}>预订</button></td>
+              {sortedData.map(r => (
+                <tr key={r.code} className={styles.row}>
+                <td className={styles.cellCode}>
+                  <div className={styles.typeTags}>
+                    <span className={styles.typeTag}>{r.code?.[0]}</span>
+                  </div>
+                  <div className={styles.trainCode}>{r.code}</div>
+                </td>
                 <td className={styles.cellStations}><div>{r.from}</div><div>{r.to}</div></td>
-                <td className={styles.cellTimes}><div className={styles.depart}>{r.depart}</div><div className={styles.arrive}>{r.arrive}</div></td>
+                <td className={styles.cellTimes}>
+                  <div className={styles.depart}>{r.depart}</div>
+                  <div className={styles.arrive}>{r.arrive}</div>
+                  <div className={styles.arriveDay}>{/次日到达/.test(r.remark || '') ? '次日到达' : '当日到达'}</div>
+                </td>
                 <td className={styles.cellDuration}><div>{r.duration}</div></td>
-                <td className={styles.cellSeat}>{r.seats.business}</td>
-                <td className={styles.cellSeat}>{r.seats.prefer}</td>
-                <td className={styles.cellSeat}>{r.seats.first}</td>
-                <td className={styles.cellSeat}>{r.seats.second}</td>
-                <td className={styles.cellSeat}>{r.seats.softSleeper}</td>
-                <td className={styles.cellSeat}>{r.seats.dynSleeper}</td>
-                <td className={styles.cellSeat}>{r.seats.hardSleeper}</td>
-                <td className={styles.cellSeat}>{r.seats.softSeat}</td>
-                <td className={styles.cellSeat}>{r.seats.hardSeat}</td>
-                <td className={styles.cellSeat}>{r.seats.noSeat}</td>
-                <td className={styles.cellSeat}>{r.seats.other}</td>
-                <td className={styles.cellRemark}>{r.remark}</td>
+                <td className={styles.cellSeat}>{renderSeat(r.seats.business)}</td>
+                <td className={styles.cellSeat}>{renderSeat(r.seats.prefer)}</td>
+                <td className={styles.cellSeat}>{renderSeat(r.seats.first)}</td>
+                <td className={styles.cellSeat}>{renderSeat(r.seats.second)}</td>
+                <td className={styles.cellSeat}>{renderSeat(r.seats.softSleeper)}</td>
+                <td className={styles.cellSeat}>{renderSeat(r.seats.dynSleeper)}</td>
+                <td className={styles.cellSeat}>{renderSeat(r.seats.hardSleeper)}</td>
+                <td className={styles.cellSeat}>{renderSeat(r.seats.softSeat)}</td>
+                <td className={styles.cellSeat}>{renderSeat(r.seats.hardSeat)}</td>
+                <td className={styles.cellSeat}>{renderSeat(r.seats.noSeat)}</td>
+                <td className={styles.cellSeat}>{renderSeat(r.seats.other)}</td>
+                <td className={styles.cellRemark}>
+                  <div>{r.remark}</div>
+                  <button className={styles.btnBook} onClick={() => {
+                    const query = location.state || {}
+                    if (!auth.isLoggedIn()) {
+                      navigate('/login', { state: { redirect: '/trains', query, pick: { trainCode: r.code, seat: 'second' } } })
+                    } else {
+                      navigate('/order', { state: { train: { code: r.code, from: r.from, to: r.to, depart: r.depart, arrive: r.arrive }, query } })
+                    }
+                  }}>预订</button>
+                </td>
               </tr>
-            ))}
+              ))}
           </tbody>
         </table>
       </div>

@@ -1,17 +1,20 @@
-.box { height: 48px; padding: 7px 10px; background: #eef1f8; border: 1px solid #298cce; margin-top: 10px; border-radius: 3px; display: grid; grid-template-columns: 1fr; gap: 6px; }
-.boxLg { min-height: 120px; }
-.tripType { display: flex; gap: 8px; align-items: center; }
+.box { padding: 4px 8px; background: #eef6ff; border: 1px solid #2e7bc7; margin-top: 10px; border-radius: 3px; display: grid; grid-template-columns: 130px 1fr 180px; gap: 4px; align-items: center; }
+.boxLg { min-height: 80px; }
+.tripType { display: flex; flex-direction: column; gap: 3px; align-items: flex-start; justify-content: center; border-right: 1px solid #cfe0f5; padding-right: 6px; }
 .radioLabel { display: inline-flex; align-items: center; gap: 6px; color: #333; }
 .radio { vertical-align: middle; }
-.sInfo { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
-.field { display: inline-flex; align-items: center; gap: 6px; height: 30px; }
-.label { width: 48px; text-align: right; color: #666; }
-.inpW { position: relative; width: 180px; height: 30px; }
-.inpTxt { width: 100%; height: 30px; border: 1px solid #cfcdc7; padding: 0 8px; background: #fff; }
-.inpSelected { width: 100%; height: 30px; border: 1px solid #ff8000; padding: 0 8px; background: #fff; }
-.switch { width: 16px; height: 16px; background: url('/assets/reflash2.png') no-repeat -107px -96px; margin-top: 8px; }
+.sInfo { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
+.sInfo { flex-wrap: nowrap; }
+.field { display: inline-flex; align-items: center; gap: 4px; height: 22px; }
+.label { width: 50px; text-align: right; color: #666; }
+.inpW { position: relative; width: 90px; height: 22px; }
+.inpTxt { width: 100%; height: 22px; border: 1px solid #cfd7e3; padding: 0 5px; background: #fff; }
+.inpSelected { width: 100%; height: 22px; border: 1px solid #ff8000; padding: 0 5px; background: #fff; }
+.inpTxt:disabled, .inpSelected:disabled { background: #f5f7fb; border-color: #cfd7e3; color: #999; }
+.switch { width: 16px; height: 16px; background: url('/assets/reflash2.png') no-repeat -107px -96px; margin-top: 1px; }
 .noChange {}
-.quickS { display: flex; align-items: center; gap: 12px; justify-content: space-between; }
-.btnArea { display: flex; justify-content: flex-end; width: 220px; }
-.btnPrimary { height: 30px; padding: 0 24px; border-radius: 2px; border: 0; background: #ff8000; color: #fff; font-weight: 600; cursor: pointer; }
+.quickS { display: flex; align-items: center; gap: 6px; justify-content: space-between; border-left: 1px solid #cfe0f5; padding-left: 8px; }
+.identityCol { display: flex; flex-direction: column; gap: 3px; }
+.btnArea { display: flex; justify-content: flex-end; width: 150px; }
+.btnPrimary { height: 26px; padding: 0 16px; border-radius: 2px; border: 1px solid #e07200; background: #ff8000; color: #fff; font-weight: 600; cursor: pointer; box-shadow: inset 0 -1px 0 rgba(0,0,0,.1); }
 .btnPrimary:disabled { background: #ffd2a8; cursor: not-allowed; }
