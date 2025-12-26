@@ -2,7 +2,7 @@
   background: #f5f9fc;
  }
  .wrapper {
-  width: 1200px;
+  width: 1000px;
   margin: 0 auto;
  }
  .crumbs {
@@ -10,23 +10,32 @@
   color: #666;
   padding: 12px 0;
  }
- .content {
+.content {
   background: #fff;
-  border: 1px solid #e6eef5;
+  border: 1px solid #2e7bc7;
   box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+  border-radius: 10px;
  }
- .section {
-  padding: 20px 40px;
- }
- .title {
-  font-size: 18px;
-  color: #333;
-  line-height: 48px;
-  border-bottom: 1px solid #e6eef5;
- }
- .step {
-  padding: 20px 40px 0;
- }
+.section {
+  width: 998px;
+  margin: 0 auto;
+  padding: 0 0 20px;
+}
+.inner {
+  width: 100%;
+  margin: 0 auto;
+}
+.title {
+  font-size: 16px;
+  color: #fff;
+  height: 42px;
+  line-height: 42px;
+  padding: 0 16px;
+  background: linear-gradient(180deg, #2da1e6 0%, #1b7ac7 100%);
+  border-radius: 8px 8px 0 0;
+  border-bottom: 2px solid #9fd8f9;
+}
+ .step { display: none; }
  .success {
   padding: 40px;
   text-align: center;

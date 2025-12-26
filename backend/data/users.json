@@ -1,0 +1,34 @@
+[
+  {
+    "id": "1766380441514",
+    "userName": "xilinyu",
+    "password": "Enggok@126",
+    "mobileNo": "18930470875",
+    "cardType": "1",
+    "name": "郁熙临",
+    "idNo": "310113200507160019",
+    "bornDate": "2005-07-16",
+    "sex": "M",
+    "nation": "CHN",
+    "passengerType": "ADULT",
+    "email": "yuxilin2023@sjtu.edu.cn",
+    "mobileCode": "86",
+    "createdAt": "2025-12-22T05:14:01.514Z"
+  },
+  {
+    "id": "1766651125444",
+    "userName": "daniel",
+    "password": "qazwsxedc123",
+    "mobileNo": "13031183890",
+    "cardType": "1",
+    "name": "邓熙涵",
+    "idNo": "110114200608307517",
+    "bornDate": "2006-08-30",
+    "sex": "M",
+    "nation": "CHN",
+    "passengerType": "ADULT",
+    "email": "",
+    "mobileCode": "86",
+    "createdAt": "2025-12-25T08:25:25.444Z"
+  }
+]

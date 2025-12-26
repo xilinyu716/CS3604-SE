@@ -21,7 +21,7 @@ export default function CenterMenuOrders() {
       <li className="menu-item" role="menuitem">
         <h2 className="menu-tit">个人信息<i className="icon icon-switch"></i></h2>
         <ul className="menu-sub" role="menubar">
-          <li role="menuitem"><a href="#">查看个人信息</a></li>
+          <li role="menuitem"><Link to="/center/profile">查看个人信息</Link></li>
           <li role="menuitem"><a href="#">账号安全</a></li>
           <li role="menuitem"><a href="#">手机核验</a></li>
           <li role="menuitem"><a href="#">账号注销</a></li>

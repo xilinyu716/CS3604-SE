@@ -1,16 +1,16 @@
 .footer { background: #fff; }
 .wrapper { width: 1200px; padding: 0 5px; margin: 0 auto; }
-.footerCon { padding: 20px 0; display: flex; }
-.links { width: 420px; margin-left: 60px; margin-right: 195px; }
-.tit { height: 54px; line-height: 54px; font-size: 14px; }
-.linksList { height: 100px; display: flex; flex-wrap: wrap; }
-.linksList li { margin: 0 10px 10px 0; }
+.footerCon { padding: 32px 0 40px; display: flex; align-items: flex-start; }
+.links { width: 460px; margin-left: 0; margin-right: 80px; }
+.tit { height: 40px; line-height: 40px; font-size: 14px; }
+.linksList { display: grid; grid-template-columns: repeat(2, 200px); grid-auto-rows: 34px; gap: 8px; }
+.linksList li { margin: 0; }
 .linksList img { width: 200px; height: 34px; border: 1px solid #efefef; }
-.codes { display: flex; }
-.codes li { width: 140px; text-align: center; }
+.codes { display: flex; gap: 0px; }
+.codes li { width: 130px; text-align: center; }
 .codePic { width: 80px; height: 80px; background: #fff; margin: 0 auto; position: relative; }
 .codePic img { width: 80px; height: 80px; border: 1px solid #efefef; }
-.codeTips { position: absolute; top: 0; left: 96px; width: 190px; height: 80px; border: 1px solid #efefef; background: #fff; line-height: 18px; padding: 12px 10px; font-size: 12px; text-align: left; }
+.codeTips { position: absolute; top: 0; left: 90px; width: 180px; height: 80px; border: 1px solid #efefef; background: #fff; line-height: 18px; padding: 10px 8px; font-size: 12px; text-align: left; }
 .footerTxt { text-align: center; padding: 10px 0; background: #666; color: #c1c1c1; position: relative; }
 .footerTxt p { line-height: 30px; }
 .mr { margin-right: 10px; }

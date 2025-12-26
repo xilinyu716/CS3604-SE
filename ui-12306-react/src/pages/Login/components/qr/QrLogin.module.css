@@ -1,12 +1,11 @@
-.con { height: 270px; padding: 0 30px; }
-.main { height: 200px; position: relative; }
-.pic { position: absolute; top: 20px; left: 80px; width: 160px; height: 160px; border: 1px solid #dedede; }
-.pic img { display: block; width: 158px; height: 158px; }
-.tips { position: absolute; top: 8px; right: -175px; width: 155px; height: 180px; }
-.tips img { display: block; width: 155px; height: 180px; }
+.con { height: 320px; padding: 0 30px; }
+.main { height: 240px; position: relative; display: flex; align-items: center; justify-content: center; }
+.qrPic { width: 240px; height: 240px; border: 1px solid #dedede; background: #fff; }
+.qrPic img { display: block; width: 238px; height: 238px; }
 .txt { height: 30px; line-height: 30px; text-align: center; }
 .primary { color: #3b99fc; }
-.ft { padding: 16px 0 16px 30px; }
-.ft li { float: left; height: 28px; line-height: 28px; margin-right: 40px; color: #999; }
+.ft { padding: 12px 30px; display: flex; align-items: center; gap: 24px; }
+.ft li { display: flex; align-items: center; height: 28px; line-height: 28px; color: #999; }
 .last { margin-right: 0; }
-.circle { float: left; width: 28px; height: 28px; border-radius: 14px; border: 1px solid #dedede; margin-right: 10px; }
+.circle { display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 16px; border: 1px solid #dedede; margin-right: 8px; background: #fff; }
+.circle svg { width: 18px; height: 18px; fill: #cfcfcf; stroke: #cfcfcf; }

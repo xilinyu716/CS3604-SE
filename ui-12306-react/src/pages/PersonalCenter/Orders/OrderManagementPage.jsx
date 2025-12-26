@@ -14,12 +14,26 @@ import NotTravelSearch from './components/NotTravelSearch'
 import NotTravelList from './components/NotTravelList'
 import HistorySearch from './components/HistorySearch'
 import HistoryList from './components/HistoryList'
-import ordersData from './mock/orders.json'
+import { useState, useEffect } from 'react'
 
 export default function OrderManagementPage() {
-  const sampleOrders = []
-  const notTripOrders = ordersData.nottrip
-  const historyOrders = ordersData.history
+  const [orders, setOrders] = useState({ unfinished: [], nottrip: [], history: [] })
+
+  const fetchOrders = () => {
+    fetch('/api/user/orders')
+      .then(res => res.json())
+      .then(res => {
+        if (res.code === 0 && res.data) {
+          setOrders(res.data)
+        }
+      })
+      .catch(console.error)
+  }
+
+  useEffect(() => {
+    fetchOrders()
+  }, [])
+
   return (
     <div className={styles.page}>
       <Header />
@@ -32,20 +46,20 @@ export default function OrderManagementPage() {
               children={{
                 unfinished: (
                   <div>
-                    <UnfinishedEmpty />
-                    <UnfinishedList orders={sampleOrders} />
+                    {orders.unfinished && orders.unfinished.length > 0 ? 
+                      <UnfinishedList orders={orders.unfinished} /> : <UnfinishedEmpty />}
                   </div>
                 ),
                 nottrip: (
                   <div>
                     <NotTravelSearch onSearch={() => {}} />
-                    <NotTravelList orders={notTripOrders} />
+                    <NotTravelList orders={orders.nottrip || []} onRefresh={fetchOrders} />
                   </div>
                 ),
                 history: (
                   <div>
                     <HistorySearch onSearch={() => {}} />
-                    <HistoryList orders={historyOrders} />
+                    <HistoryList orders={orders.history || []} />
                   </div>
                 ),
               }}

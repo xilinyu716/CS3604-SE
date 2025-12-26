@@ -1,15 +1,17 @@
-.panel { position: relative; margin-top: 10px; }
-.toggleWrap { position: absolute; right: 12px; top: -18px; }
-.toggle { background: #ff8000; color: #fff; border: 0; border-radius: 3px; padding: 4px 12px; cursor: pointer; }
-.body { border: 1px solid #298cce; border-top: 0; background: #fff; overflow: hidden; transition: height .2s ease; }
+.panel { position: relative; margin-top: 0px; }
+.toggleWrap { position: absolute; right: 5px; bottom: 10px; }
+.toggle { background: #ff8000; color: #fff; border: 1px solid #e07200; border-radius: 3px; padding: 4px 12px; cursor: pointer; box-shadow: inset 0 -1px 0 rgba(0,0,0,.1); }
+.body { border: 1px solid #2e7bc7; border-top: 0; background: #fff; overflow: hidden; transition: height .2s ease; }
 .topRow { display: flex; align-items: center; gap: 8px; padding: 8px 12px; }
 .topLabel { color: #333; }
 .select { height: 28px; border: 1px solid #999; }
-.section { display: flex; padding: 8px 12px; }
-.sectionHd { width: 96px; color: #333; }
+.section { display: flex; padding: 4px 12px; }
+.sectionHd { width: 90px; color: #333; }
 .sectionBd { flex: 1; }
-.btnAll { display: inline-block; background: #f5f7fb; border: 1px solid #d4e6f5; color: #333; border-radius: 3px; padding: 4px 10px; margin-right: 8px; }
+.btnAll { display: inline-block; background: #f5f7fb; border: 1px solid #cfd7e3; color: #333; border-radius: 3px; padding: 4px 4px; margin-right: 8px; }
 .checkList { display: inline-flex; gap: 12px; flex-wrap: wrap; vertical-align: top; }
 .checkItem {}
 .checkLabel { display: inline-flex; align-items: center; gap: 6px; color: #333; }
 .checkbox { vertical-align: middle; }
+/* collapse behavior */
+.body[data-expanded="false"] { height: 0; padding: 0; border: 0; }

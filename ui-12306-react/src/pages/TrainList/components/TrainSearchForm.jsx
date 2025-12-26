@@ -2,7 +2,7 @@ import { useMemo, useState, useEffect } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import styles from './TrainSearchForm.module.css'
 
-export default function TrainSearchForm() {
+export default function TrainSearchForm({ onSearch }) {
   const location = useLocation()
   const navigate = useNavigate()
   const init = (location.state || {})
@@ -54,15 +54,20 @@ export default function TrainSearchForm() {
         </div>
       </div>
       <div className={styles.quickS}>
-        <label className={styles.radioLabel}><input type="radio" className={styles.radio} checked={identity === 'normal'} onChange={() => setIdentity('normal')} aria-label="普通" />普通</label>
-        <label className={styles.radioLabel}><input type="radio" className={styles.radio} checked={identity === 'student'} onChange={() => setIdentity('student')} aria-label="学生" />学生</label>
+        <div className={styles.identityCol}>
+          <label className={styles.radioLabel}><input type="radio" className={styles.radio} checked={identity === 'normal'} onChange={() => setIdentity('normal')} aria-label="普通" />普通</label>
+          <label className={styles.radioLabel}><input type="radio" className={styles.radio} checked={identity === 'student'} onChange={() => setIdentity('student')} aria-label="学生" />学生</label>
+        </div>
         <div className={styles.btnArea}>
           <button
             className={styles.btnPrimary}
             disabled={queryDisabled}
             aria-label="查询"
             onClick={() => {
-              navigate('/trains', { state: { tripType, from: fromStation, to: toStation, date: trainDate, backDate, isStudent: identity === 'student' } })
+              const params = { tripType, from: fromStation, to: toStation, date: trainDate, backDate, isStudent: identity === 'student' }
+              navigate('/trains', { state: params })
+              // Also trigger onSearch directly if provided (optional, but good for immediate feedback)
+              if (onSearch) onSearch(params)
             }}
           >查询</button>
         </div>

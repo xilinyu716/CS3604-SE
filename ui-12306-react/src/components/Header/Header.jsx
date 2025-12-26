@@ -1,7 +1,32 @@
 import { Link, useNavigate } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+import * as auth from '../../utils/auth'
+
+function goWithLogin(navigate, path) {
+  if (!auth.isLoggedIn()) {
+    navigate('/login?redirect=' + encodeURIComponent(path))
+  } else {
+    navigate(path)
+  }
+}
 
 export default function Header() {
   const navigate = useNavigate()
+  const [user, setUser] = useState(auth.currentUser())
+
+  useEffect(() => {
+    const handleAuthChange = () => {
+      setUser(auth.currentUser())
+    }
+    window.addEventListener('auth-change', handleAuthChange)
+    return () => window.removeEventListener('auth-change', handleAuthChange)
+  }, [])
+
+  const handleLogout = () => {
+    auth.logout()
+    navigate('/login')
+  }
+
   return (
     <header className="header" role="banner">
       <div className="wrapper">
@@ -16,8 +41,11 @@ export default function Header() {
               <div className="search-bd" style={{ width: 350 }}>
                 <input type="text" className="search-input" placeholder="搜索车票、餐饮、常旅客、相关规章" />
               </div>
-              <a className="search-btn" href="#" aria-label="点击搜索">
-                <i className="icon icon-search"></i>
+              <a className="search-btn" href="#" aria-label="点击搜索" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2">
+                  <circle cx="11" cy="11" r="7" />
+                  <line x1="16.5" y1="16.5" x2="22" y2="22" />
+                </svg>
               </a>
             </div>
             <ul className="header-menu" role="menubar">
@@ -26,17 +54,25 @@ export default function Header() {
               <li className="menu-item"><a href="#" className="menu-nav-hd">敬老版</a></li>
               <li className="menu-item menu-line">|</li>
               <li className="menu-item menu-nav" role="menuitem">
-                <a href="#" className="menu-nav-hd item">English<i className="icon icon-down"></i></a>
-                <ul className="menu-nav-bd" role="menu">
+                <a href="#" className="menu-nav-hd item">English
+                  <svg className="dropdown-arrow dropdown-arrow-static" width="10" height="10" viewBox="0 0 10 10" style={{ marginLeft: 4, display: 'inline-block' }}>
+                    <polygon points="5,7 2,4 8,4" fill="#9ec6ff" />
+                  </svg>
+                </a>
+              <ul className="menu-nav-bd" role="menu">
                   <li><a href="#">简体中文</a></li>
                   <li><a href="#">English</a></li>
                 </ul>
               </li>
               <li className="menu-item menu-line">|</li>
               <li className="menu-item menu-nav" role="menuitem">
-                <Link to="/login" className="menu-nav-hd item">我的12306<i className="icon icon-down"></i></Link>
+                <Link to={user ? "/center/profile" : "/login?redirect=%2Fcenter%2Fprofile"} className="menu-nav-hd item">我的12306
+                  <svg className="dropdown-arrow dropdown-arrow-static" width="10" height="10" viewBox="0 0 10 10" style={{ marginLeft: 4, display: 'inline-block' }}>
+                    <polygon points="5,7 2,4 8,4" fill="#9ec6ff" />
+                  </svg>
+                </Link>
                 <ul className="menu-nav-bd" role="menu">
-                  <li><a href="#">火车票订单</a></li>
+                  <li><Link to={user ? "/center/orders" : "/login?redirect=%2Fcenter%2Forders"}>火车票订单</Link></li>
                   <li><a href="#">候补订单</a></li>
                   <li><a href="#">计次•定期票订单</a></li>
                   <li><a href="#">约号订单</a></li>
@@ -47,20 +83,27 @@ export default function Header() {
                   <li><a href="#">我的保险</a></li>
                   <li><a href="#">我的会员</a></li>
                   <li className="nav-line"></li>
-                  <li><a href="#">查看个人信息</a></li>
+                  <li><Link to={user ? "/center/profile" : "/login?redirect=%2Fcenter%2Fprofile"}>查看个人信息</Link></li>
                   <li><a href="#">账户安全</a></li>
                   <li className="nav-line"></li>
-                  <li><a href="#">乘车人</a></li>
+                  <li><Link to={user ? "/center/passengers" : "/login?redirect=%2Fcenter%2Fpassengers"}>乘车人</Link></li>
                   <li><a href="#">地址管理</a></li>
                   <li className="nav-line"></li>
                   <li><a href="#">温馨服务查询</a></li>
                 </ul>
               </li>
               <li className="menu-item menu-line">|</li>
-              <li className="menu-item menu-login" role="menuitem">
-                <Link to="/login">登录</Link>
-                <Link to="/register" className="ml">注册</Link>
-              </li>
+              {user ? (
+                <li className="menu-item menu-login" role="menuitem">
+                  <span style={{color:'#666'}}>欢迎您，{user.username || user}</span>
+                  <a onClick={handleLogout} className="ml" style={{cursor:'pointer'}}>退出</a>
+                </li>
+              ) : (
+                <li className="menu-item menu-login" role="menuitem">
+                  <Link to="/login">登录</Link>
+                  <Link to="/register" className="ml">注册</Link>
+                </li>
+              )}
             </ul>
           </div>
         </div>
@@ -79,23 +122,27 @@ function Nav() {
           <Link to="/" className="nav-hd">首页</Link>
         </li>
         <li className="nav-item nav-item-w1" role="menuitem">
-          <a href="#" className="nav-hd item">车票<i className="icon icon-down"></i></a>
+          <a href="#" className="nav-hd item">车票
+            <svg className="dropdown-arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2" style={{ marginLeft: 6, display: 'inline-block' }}>
+              <polyline points="6 9 12 15 18 9" />
+            </svg>
+          </a>
           <div className="nav-bd">
             <div className="nav-bd-item nav-col2">
               <h3 className="nav-tit">购买</h3>
               <ul className="nav-con" role="menu">
-                <li><a onClick={() => navigate('/trains', { state: { tripType: 'dc' } })}>单程</a></li>
-                <li><a onClick={() => navigate('/trains', { state: { tripType: 'wf' } })}>往返</a></li>
-                <li><a href="#">中转换乘</a></li>
-                <li><a href="#">计次•定期票</a></li>
+                <li><a onClick={() => navigate('/trains', { state: { tripType: 'dc' } })} style={{cursor:'pointer'}}>单程</a></li>
+                <li><a onClick={() => navigate('/trains', { state: { tripType: 'wf' } })} style={{cursor:'pointer'}}>往返</a></li>
+                <li><a onClick={() => navigate('/trains')} style={{cursor:'pointer'}}>中转换乘</a></li>
+                <li><a onClick={() => goWithLogin(navigate, '/center/orders')} style={{cursor:'pointer'}}>计次•定期票</a></li>
               </ul>
             </div>
             <div className="nav-bd-item nav-col2">
               <h3 className="nav-tit">变更</h3>
               <ul className="nav-con" role="menu">
-                <li><a href="#">退票</a></li>
-                <li><a href="#">改签</a></li>
-                <li><a href="#">变更到站</a></li>
+                <li><a onClick={() => goWithLogin(navigate, '/center/orders')} style={{cursor:'pointer'}}>退票</a></li>
+                <li><a onClick={() => goWithLogin(navigate, '/center/orders')} style={{cursor:'pointer'}}>改签</a></li>
+                <li><a onClick={() => goWithLogin(navigate, '/center/orders')} style={{cursor:'pointer'}}>变更到站</a></li>
               </ul>
             </div>
             <div className="nav-bd-item nav-col2">
@@ -108,7 +155,11 @@ function Nav() {
           </div>
         </li>
         <li className="nav-item" role="menuitem">
-          <a href="#" className="nav-hd item">团购服务<i className="icon icon-down"></i></a>
+          <a href="#" className="nav-hd item">团购服务
+            <svg className="dropdown-arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2" style={{ marginLeft: 6, display: 'inline-block' }}>
+              <polyline points="6 9 12 15 18 9" />
+            </svg>
+          </a>
           <div className="nav-bd">
             <div className="nav-bd-item nav-col6">
               <ul className="nav-con" role="menu">
@@ -119,7 +170,11 @@ function Nav() {
           </div>
         </li>
         <li className="nav-item" role="menuitem">
-          <a href="#" className="nav-hd item">会员服务<i className="icon icon-down"></i></a>
+          <a href="#" className="nav-hd item">会员服务
+            <svg className="dropdown-arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2" style={{ marginLeft: 6, display: 'inline-block' }}>
+              <polyline points="6 9 12 15 18 9" />
+            </svg>
+          </a>
           <div className="nav-bd">
             <div className="nav-bd-item nav-col6">
               <ul className="nav-con" role="menu">
@@ -133,7 +188,11 @@ function Nav() {
           </div>
         </li>
         <li className="nav-item" role="menuitem">
-          <a href="#" className="nav-hd item">站车服务<i className="icon icon-down"></i></a>
+          <a href="#" className="nav-hd item">站车服务
+            <svg className="dropdown-arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2" style={{ marginLeft: 6, display: 'inline-block' }}>
+              <polyline points="6 9 12 15 18 9" />
+            </svg>
+          </a>
           <div className="nav-bd">
             <div className="nav-bd-item nav-col4">
               <ul className="nav-con" role="menu">
@@ -150,7 +209,11 @@ function Nav() {
           </div>
         </li>
         <li className="nav-item" role="menuitem">
-          <a href="#" className="nav-hd item">商旅服务<i className="icon icon-down"></i></a>
+          <a href="#" className="nav-hd item">商旅服务
+            <svg className="dropdown-arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2" style={{ marginLeft: 6, display: 'inline-block' }}>
+              <polyline points="6 9 12 15 18 9" />
+            </svg>
+          </a>
           <div className="nav-bd">
             <div className="nav-bd-item nav-col6">
               <ul className="nav-con" role="menu">
@@ -162,7 +225,11 @@ function Nav() {
           </div>
         </li>
         <li className="nav-item" role="menuitem">
-          <a href="#" className="nav-hd item">出行指南<i className="icon icon-down"></i></a>
+          <a href="#" className="nav-hd item">出行指南
+            <svg className="dropdown-arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2" style={{ marginLeft: 6, display: 'inline-block' }}>
+              <polyline points="6 9 12 15 18 9" />
+            </svg>
+          </a>
           <div className="nav-bd">
             <div className="nav-bd-item nav-col2">
               <h3 className="nav-tit">常见问题</h3>
@@ -193,7 +260,11 @@ function Nav() {
           </div>
         </li>
         <li className="nav-item last" role="menuitem">
-          <a href="#" className="nav-hd item">信息查询<i className="icon icon-down"></i></a>
+          <a href="#" className="nav-hd item">信息查询
+            <svg className="dropdown-arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2" style={{ marginLeft: 6, display: 'inline-block' }}>
+              <polyline points="6 9 12 15 18 9" />
+            </svg>
+          </a>
           <div className="nav-bd">
             <div className="nav-bd-item nav-col5">
               <h3 className="nav-tit border-none">常用查询</h3>
