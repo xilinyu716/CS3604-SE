@@ -1,10 +1,16 @@
 import styles from './PassengerSection.module.css'
+import { useState } from 'react'
 
 function PassengerHeader() {
+  const [self, setSelf] = useState(true)
+  const [student, setStudent] = useState(false)
   return (
     <div className={styles.header}>
-      <h2 className={styles.title}>乘客信息</h2>
-      <p className={styles.tips}>成人携带未满6周岁且不占座儿童可在购票成功后添加。</p>
+      <h2 className={styles.title}>乘客信息（按车次购票）</h2>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+        <label className={styles.tag}><input type="checkbox" checked={self} onChange={e=>setSelf(e.target.checked)} aria-label="本人" /> 本人</label>
+        <label className={styles.tagChild}><input type="checkbox" checked={student} onChange={e=>setStudent(e.target.checked)} aria-label="可购买学生" /> 可能需学生</label>
+      </div>
       <div className={styles.search}>
         <input className={styles.searchInput} placeholder="输入乘客姓名" aria-label="输入乘客姓名" />
         <button className={styles.searchBtn} aria-label="搜索">查询</button>
@@ -30,7 +36,7 @@ function PassengerTable({ passengers, selectedPassengers, onCheck, onUpdate }) {
     <table className={styles.table} aria-label="乘客列表">
       <thead>
         <tr>
-          <th>选择</th>
+          <th>序号</th>
           <th>票种</th>
           <th>姓名</th>
           <th>证件类型</th>
@@ -41,24 +47,18 @@ function PassengerTable({ passengers, selectedPassengers, onCheck, onUpdate }) {
       </thead>
       <tbody>
         {passengers.length === 0 && <tr><td colSpan="7" style={{textAlign:'center', padding: 20}}>暂无常用联系人，请新增</td></tr>}
-        {passengers.map(p => {
+        {passengers.map((p, idx) => {
           const selected = isSelected(p)
           const details = getSelectedDetails(p)
           
           return (
             <tr key={p.passenger_id_no}>
-              <td>
-                <input 
-                  type="checkbox" 
-                  checked={selected} 
-                  onChange={(e) => onCheck(p, e.target.checked)}
-                />
-              </td>
+              <td>{idx + 1}</td>
               <td>
                 <select 
                   className={styles.select} 
                   value={selected ? details.ticketType : (p.passenger_type_name || '成人')}
-                  disabled={!selected}
+                  onFocus={() => { if (!selected) onCheck(p, true) }}
                   onChange={(e) => onUpdate(p.passenger_id_no, 'ticketType', e.target.value)}
                 >
                   <option value="成人">成人票</option>
@@ -73,7 +73,7 @@ function PassengerTable({ passengers, selectedPassengers, onCheck, onUpdate }) {
                 <select 
                   className={styles.select} 
                   value={selected ? details.seatType : '二等座'}
-                  disabled={!selected}
+                  onFocus={() => { if (!selected) onCheck(p, true) }}
                   onChange={(e) => onUpdate(p.passenger_id_no, 'seatType', e.target.value)}
                   aria-label="席别"
                 >
@@ -104,7 +104,9 @@ export default function PassengerSection({ passengers = [], selectedPassengers =
         onCheck={onCheck}
         onUpdate={onUpdate}
       />
+      <div style={{ marginTop: 10, border: '1px solid #dbeaf8', borderRadius: 3, overflow: 'hidden' }}>
+        <img src="/assets/banner12.jpg" alt="中国铁路宣传" style={{ display: 'block', width: '100%', height: '90px', objectFit: 'cover' }} />
+      </div>
     </section>
   )
 }
-

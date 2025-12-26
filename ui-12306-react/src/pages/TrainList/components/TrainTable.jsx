@@ -123,7 +123,7 @@ export default function TrainTable({ data = [], loading, error }) {
                     if (!auth.isLoggedIn()) {
                       navigate('/login', { state: { redirect: '/trains', query, pick: { trainCode: r.code, seat: 'second' } } })
                     } else {
-                      navigate('/order', { state: { train: { code: r.code, from: r.from, to: r.to, depart: r.depart, arrive: r.arrive }, query } })
+                      navigate('/order', { state: { train: { code: r.code, from: r.from, to: r.to, depart: r.depart, arrive: r.arrive, seats: r.seats }, query } })
                     }
                   }}>预订</button>
                 </td>

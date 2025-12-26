@@ -1,2 +1,5 @@
 .page {}
-
+.warmTips { margin-top: 12px; border: 1px solid #ffe58f; background: #fffbe6; color: #614700; border-radius: 3px; }
+.warmTipsHd { padding: 8px 12px; font-weight: 700; border-bottom: 1px solid #ffe58f; display: flex; justify-content: space-between; align-items: center; }
+.warmTipsBd { padding: 10px 12px; }
+.warmTipsBd p { margin: 6px 0; line-height: 1.6; }
