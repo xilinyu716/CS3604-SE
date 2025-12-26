@@ -1,7 +1,13 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const { readJson, writeJson } = require('./utils/fileStorage');
+const { 
+  readUsers, writeUsers, 
+  readProfile, writeProfile, 
+  readPassengers, writePassengers, 
+  readTrains, 
+  readOrders, writeOrders 
+} = require('./utils/schema');
 
 const app = express();
 const PORT = 3000;
@@ -60,7 +66,7 @@ app.post('/api/auth/register', async (req, res) => {
   }
 
   try {
-    const users = (await readJson('users.json')) || [];
+    const users = await readUsers();
 
     // 2. Check duplicates
     if (users.find(u => u.userName === userName)) {
@@ -81,7 +87,7 @@ app.post('/api/auth/register', async (req, res) => {
     };
 
     users.push(newUser);
-    await writeJson('users.json', users);
+    await writeUsers(users);
 
     // Clear used code
     verificationCodes.delete(mobileNo);
@@ -102,7 +108,7 @@ app.post('/api/auth/login', async (req, res) => {
   }
 
   try {
-    const users = (await readJson('users.json')) || [];
+    const users = await readUsers();
     const user = users.find(u => u.userName === username && u.password === password);
 
     if (user) {
@@ -141,7 +147,7 @@ app.get('/api/user/profile', async (req, res) => {
     
     // If username is provided, try to find in registered users
     if (username) {
-      const users = (await readJson('users.json')) || [];
+      const users = await readUsers();
       const user = users.find(u => u.userName === username);
       
       if (user) {
@@ -184,7 +190,7 @@ app.get('/api/user/profile', async (req, res) => {
     }
 
     // Fallback to static profile.json if no username or user not found (for backward compatibility)
-    const profile = await readJson('profile.json');
+    const profile = await readProfile();
     res.json({ code: 0, data: profile });
   } catch (err) {
     console.error(err);
@@ -195,7 +201,7 @@ app.get('/api/user/profile', async (req, res) => {
 app.put('/api/user/profile', async (req, res) => {
   try {
     const updates = req.body;
-    let profile = await readJson('profile.json');
+    let profile = await readProfile();
     
     // Deep merge structure matching profileData.js
     const newProfile = {
@@ -205,7 +211,7 @@ app.put('/api/user/profile', async (req, res) => {
       extra: { ...profile.extra, ...(updates.extra || {}) }
     };
 
-    await writeJson('profile.json', newProfile);
+    await writeProfile(newProfile);
     res.json({ code: 0, msg: 'Updated successfully', data: newProfile });
   } catch (err) {
     console.error(err);
@@ -217,7 +223,7 @@ app.put('/api/user/profile', async (req, res) => {
 
 app.get('/api/user/orders', async (req, res) => {
   try {
-    const orders = await readJson('orders.json');
+    const orders = await readOrders();
     res.json({ code: 0, data: orders });
   } catch (err) {
     console.error(err);
@@ -229,7 +235,7 @@ app.get('/api/user/orders', async (req, res) => {
 
 app.get('/api/user/passengers', async (req, res) => {
   try {
-    const passengers = await readJson('passengers.json');
+    const passengers = await readPassengers();
     res.json({ code: 0, data: passengers });
   } catch (err) {
     console.error(err);
@@ -240,7 +246,7 @@ app.get('/api/user/passengers', async (req, res) => {
 app.post('/api/user/passengers', async (req, res) => {
   try {
     const newPassenger = req.body;
-    const passengers = await readJson('passengers.json');
+    const passengers = await readPassengers();
     
     // Add generated fields
     newPassenger.allEncStr = 'enc-' + Date.now();
@@ -250,7 +256,7 @@ app.post('/api/user/passengers', async (req, res) => {
     newPassenger.delete_time = "";
     
     passengers.push(newPassenger);
-    await writeJson('passengers.json', passengers);
+    await writePassengers(passengers);
     
     res.json({ code: 0, msg: 'Added successfully', data: newPassenger });
   } catch (err) {
@@ -263,12 +269,12 @@ app.put('/api/user/passengers/:id', async (req, res) => {
   try {
     const { id } = req.params;
     const updates = req.body;
-    const passengers = await readJson('passengers.json');
+    const passengers = await readPassengers();
     
     const index = passengers.findIndex(p => p.allEncStr === id);
     if (index !== -1) {
       passengers[index] = { ...passengers[index], ...updates };
-      await writeJson('passengers.json', passengers);
+      await writePassengers(passengers);
       res.json({ code: 0, msg: 'Updated successfully', data: passengers[index] });
     } else {
       res.status(404).json({ code: 404, msg: 'Passenger not found' });
@@ -282,11 +288,11 @@ app.put('/api/user/passengers/:id', async (req, res) => {
 app.delete('/api/user/passengers/:id', async (req, res) => {
   try {
     const { id } = req.params;
-    let passengers = await readJson('passengers.json');
+    let passengers = await readPassengers();
     
     const newPassengers = passengers.filter(p => p.allEncStr !== id);
     if (newPassengers.length !== passengers.length) {
-      await writeJson('passengers.json', newPassengers);
+      await writePassengers(newPassengers);
       res.json({ code: 0, msg: 'Deleted successfully' });
     } else {
       res.status(404).json({ code: 404, msg: 'Passenger not found' });
@@ -300,16 +306,35 @@ app.delete('/api/user/passengers/:id', async (req, res) => {
 app.get('/api/trains/query', async (req, res) => {
   const { from, to, date } = req.query;
   try {
-    const allTrains = (await readJson('trains.json')) || [];
+    const allTrains = await readTrains();
     
     // Filter trains based on from/to
     // Note: In real world, we check station alias, date validity, etc.
     // Here we do simple exact match or partial match if needed.
-    const filteredTrains = allTrains.filter(t => {
+    let filteredTrains = allTrains.filter(t => {
       // Basic from/to matching
       const fromMatch = !from || t.from.includes(from);
       const toMatch = !to || t.to.includes(to);
-      return fromMatch && toMatch;
+      
+      // If train has a specific date (legacy support or specific schedule), match it.
+      // Otherwise, assume daily train (match any date query).
+      const dateMatch = !t.date || !date || t.date === date;
+      
+      return fromMatch && toMatch && dateMatch;
+    });
+
+    // Enhance train data with query date and calculated price
+    filteredTrains = filteredTrains.map(t => {
+      const trainCode = t.code || '';
+      // Determine base price: G=553, D=300, else=150
+      // If price already exists in DB, use it, otherwise calculate default
+      const defaultPrice = trainCode.startsWith('G') ? 553 : (trainCode.startsWith('D') ? 300 : 150);
+      
+      return {
+        ...t,
+        date: t.date || date || new Date().toISOString().split('T')[0], // Use train date, query date or today
+        price: t.price !== undefined ? t.price : defaultPrice
+      };
     });
 
     // If no trains found in static DB, maybe return empty or mock some if it's "unknown" route?
@@ -331,11 +356,7 @@ app.post('/api/order/submit', async (req, res) => {
     const orderId = 'E' + Date.now();
     
     // Read existing orders
-    let orders = await readJson('orders.json');
-    if (!orders) {
-      // Init structure if empty
-      orders = { unfinished: [], nottrip: [], history: [] };
-    }
+    let orders = await readOrders();
 
     // Construct new order object
     // Assuming "nottrip" (Paid/Ready to travel) for now, or "unfinished" (Unpaid).
@@ -371,7 +392,7 @@ app.post('/api/order/submit', async (req, res) => {
 
     orders.nottrip.unshift(newOrder); // Add to top
     
-    await writeJson('orders.json', orders);
+    await writeOrders(orders);
     
     res.json({ 
       code: 0, 
@@ -390,8 +411,7 @@ app.post('/api/order/submit', async (req, res) => {
 app.post('/api/order/cancel', async (req, res) => {
   try {
     const { sequence_no } = req.body;
-    let orders = await readJson('orders.json');
-    if (!orders) return res.status(500).json({ code: 500, msg: 'Database error' });
+    let orders = await readOrders();
 
     // Find in nottrip
     const index = orders.nottrip.findIndex(o => o.sequence_no === sequence_no);
@@ -406,7 +426,7 @@ app.post('/api/order/cancel', async (req, res) => {
       
       orders.history.unshift(order);
       
-      await writeJson('orders.json', orders);
+      await writeOrders(orders);
       res.json({ code: 0, msg: 'Order cancelled successfully' });
     } else {
       res.status(404).json({ code: 404, msg: 'Order not found' });
@@ -417,6 +437,10 @@ app.post('/api/order/cancel', async (req, res) => {
   }
 });
 
-app.listen(PORT, () => {
-  console.log(`Backend server running on http://localhost:${PORT}`);
-});
+if (require.main === module) {
+  app.listen(PORT, () => {
+    console.log(`Backend server running on http://localhost:${PORT}`);
+  });
+}
+
+module.exports = app;
