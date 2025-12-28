@@ -9,6 +9,7 @@ import AddPassengerPage from './pages/PersonalCenter/Passengers/AddPassengerPage
 import OrderManagementPage from './pages/PersonalCenter/Orders/OrderManagementPage'
 import ProfilePage from './pages/PersonalCenter/Profile/ProfilePage'
 import ForgotPage from './pages/Forgot/ForgotPage'
+import CenterHomePage from './pages/PersonalCenter/CenterHomePage'
 
 export default function App() {
   return (
@@ -20,6 +21,7 @@ export default function App() {
         <Route path="/forgot" element={<ForgotPage />} />
         <Route path="/trains" element={<TrainListPage />} />
         <Route path="/order" element={<OrderFillPage />} />
+        <Route path="/center" element={<CenterHomePage />} />
         <Route path="/center/passengers" element={<PassengersPage />} />
         <Route path="/center/passengers/add" element={<AddPassengerPage />} />
         <Route path="/center/orders" element={<OrderManagementPage />} />

@@ -1,8 +1,8 @@
-.table td { padding: 15px 6px; }
+.table { width: 100%; border-collapse: collapse; }
+.table td { padding: 12px 10px; border-bottom: 1px solid #f0f0f0; }
 .name { width: 90px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; display: block; }
 .table :global(.col-name) { width: 140px; }
 .table :global(.col-cardtype) { width: 160px; }
 .table :global(.col-cardnum) { width: 200px; }
 .table :global(.col-tel) { width: 190px; }
 .table :global(.col-state) { width: 120px; }
-

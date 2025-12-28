@@ -2,7 +2,7 @@ import Header from '../../../components/Header/Header'
 import Footer from '../../../components/Footer/Footer'
 import GoToTop from '../../../components/GoToTop/GoToTop'
 import CenterLayout from './components/CenterLayout'
-import CenterSidebar from './components/CenterSidebar'
+import CenterMenuOrders from '../Orders/components/CenterMenuOrders'
 import Breadcrumb from './components/Breadcrumb'
 import BasicInfoSection from './sections/BasicInfoSection'
 import ContactSection from './sections/ContactSection'
@@ -50,7 +50,7 @@ export default function ProfilePage() {
         <Breadcrumb items={['个人中心', '查看个人信息']} />
         <div className={styles.centerBox}>
           <div className={styles.centerSide}>
-            <CenterSidebar activeKey="profile" />
+            <CenterMenuOrders activeGroup="profile" activeItem="view" />
           </div>
           <div className={styles.centerMain}>
             <BasicInfoSection initial={profile.basic} onSaving={() => { setSaving(true); setTimeout(() => setSaving(false), 800) }} />

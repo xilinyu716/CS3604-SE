@@ -5,7 +5,7 @@ export default function CenterMenu() {
   return (
     <ul className={`center-menu ${styles.menu}`} role="menubar">
       <li className={`menu-item`} role="menuitem">
-        <h2 className={`menu-tit`}><a href="#">个人中心</a></h2>
+        <h2 className={`menu-tit`}><Link to="/center">个人中心</Link></h2>
       </li>
       <li className={`menu-item`} role="menuitem">
         <h2 className={`menu-tit`}>订单中心<i className={`icon icon-switch`}></i></h2>
@@ -52,4 +52,3 @@ export default function CenterMenu() {
     </ul>
   )
 }
-

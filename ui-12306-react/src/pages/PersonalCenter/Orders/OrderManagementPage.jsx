@@ -40,7 +40,7 @@ export default function OrderManagementPage() {
       <div className={`wrapper content ${styles.content}`}>
         <OrdersBreadcrumb />
         <div className={styles.centerBox}>
-          <CenterMenuOrders />
+          <CenterMenuOrders activeGroup="orders" activeItem="train" />
           <div className={styles.mainPlaceholder}>
             <OrdersTabs
               children={{

@@ -1,7 +1,7 @@
 import Header from '../../../components/Header/Header'
 import Footer from '../../../components/Footer/Footer'
 import GoToTop from '../../../components/GoToTop/GoToTop'
-import CenterMenu from './components/CenterMenu'
+import CenterMenuOrders from '../Orders/components/CenterMenuOrders'
 import styles from './PassengersPage.module.css'
 import addStyles from './AddPassengerPage.module.css'
 import { useNavigate } from 'react-router-dom'
@@ -78,7 +78,7 @@ export default function AddPassengerPage() {
           <span className="active">添加乘车人</span>
         </div>
         <div className={`center-box ${addStyles.layout}`}>
-          <CenterMenu />
+          <CenterMenuOrders activeGroup="common" activeItem="passengers" />
           <div className={`center-main ${addStyles.wrap} ${addStyles.right}`}>
             <div className={`panel-border ${addStyles.frame}`}>
               <div className={`order-panel`}>

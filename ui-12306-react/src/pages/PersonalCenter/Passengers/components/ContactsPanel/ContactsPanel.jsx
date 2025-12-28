@@ -68,28 +68,13 @@ export default function ContactsPanel() {
     })
   }
 
-  const formatDeleteTip = (iso) => {
-    if (!iso) return ''
-    const y = iso.slice(0,4), m = iso.slice(5,7), d = iso.slice(8,10)
-    return `${y}年${m}月${d}日前不能删除`
-  }
-
-  const canDeleteItem = (p) => {
-    const isSelf = p.isUserSelf === 'Y'
-    const canDeleteAfter = p.delete_time ? new Date(p.delete_time) : null
-    return !isSelf && (!canDeleteAfter || new Date() >= canDeleteAfter)
-  }
+  
 
   const onBatchDelete = async () => {
     const toDelete = items.filter(p => selectedIds.has(p.allEncStr))
     if (toDelete.length === 0) return
-    const allowed = toDelete.filter(canDeleteItem)
-    const blocked = toDelete.filter(p => !canDeleteItem(p))
-    if (blocked.length > 0) {
-      alert(blocked.map(p => `${p.passenger_name}${formatDeleteTip(p.delete_time) ? `（${formatDeleteTip(p.delete_time)}）` : '（本人不可删除）'}`).join('、'))
-    }
-    await Promise.all(allowed.map(p => fetch(`/api/user/passengers/${p.allEncStr}`, { method: 'DELETE' }).catch(()=>{})))
-    setItems(prev => prev.filter(x => !allowed.find(a => a.allEncStr === x.allEncStr)))
+    await Promise.all(toDelete.map(p => fetch(`/api/user/passengers/${p.allEncStr}`, { method: 'DELETE' }).catch(()=>{})))
+    setItems(prev => prev.filter(x => !toDelete.find(a => a.allEncStr === x.allEncStr)))
     setSelectedIds(new Set())
   }
 
@@ -97,7 +82,14 @@ export default function ContactsPanel() {
     <div className={`center-main ${styles.main}`}>
       <div className={`tips-box tips-box-mini`} style={{ marginBottom: 5 }}>
         <p className={`txt-md`}>
-          <i className={`icon icon-tips txt-second mr-sm`}></i>为感谢对联系方式核验工作的支持和配合，12306网站将符合条件的用户和旅客分别赠送铁路常旅客积分。
+          <span className={`txt-second mr-sm`} aria-hidden="true" style={{ display: 'inline-flex', verticalAlign: 'middle' }}>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#7aaefb" strokeWidth="2">
+              <circle cx="12" cy="12" r="9" fill="#e9f3ff" stroke="none"></circle>
+              <path d="M12 8v8" stroke="#7aaefb" />
+              <circle cx="12" cy="6" r="1" fill="#7aaefb" />
+            </svg>
+          </span>
+          为感谢对联系方式核验工作的支持和配合，12306网站将符合条件的用户和旅客分别赠送铁路常旅客积分。
           <a href="#" className={`txt-primary`} onClick={(e)=>{e.preventDefault(); setShowTips(true)}}>查看详情</a>
         </p>
       </div>

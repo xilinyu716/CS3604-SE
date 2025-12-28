@@ -14,33 +14,33 @@
     "is_active": "Y"
   },
   {
-    "passenger_name": "张三",
     "passenger_id_type_code": "1",
     "passenger_id_type_name": "居民身份证",
-    "passenger_id_no": "3102***********123",
+    "passenger_name": "张玲",
+    "passenger_id_no": "310113200507160018",
     "mobile_code": "86",
-    "mobile_no": "138****0001",
+    "mobile_no": "18930470876",
     "isUserSelf": "N",
-    "allEncStr": "enc-001",
-    "delete_time": "2026-01-01T00:00:00.000Z",
-    "total_times": "95",
-    "if_receive": "Y",
-    "is_active": "N"
+    "discount_type": "成人",
+    "allEncStr": "enc-1766914731914",
+    "total_times": "0",
+    "if_receive": "N",
+    "is_active": "Y",
+    "delete_time": ""
   },
   {
-    "passenger_name": "李四",
     "passenger_id_type_code": "1",
     "passenger_id_type_name": "居民身份证",
-    "passenger_id_no": "3103***********456",
+    "passenger_name": "李无",
+    "passenger_id_no": "310113200507160020",
     "mobile_code": "86",
-    "mobile_no": "139****0002",
+    "mobile_no": "18930470899",
     "isUserSelf": "N",
-    "allEncStr": "enc-002",
-    "delete_time": "2024-01-01T00:00:00.000Z",
-    "total_times": "93",
+    "discount_type": "成人",
+    "allEncStr": "enc-1766914754525",
+    "total_times": "0",
     "if_receive": "N",
-    "is_active": "N"
-  }
-]_time": ""
+    "is_active": "Y",
+    "delete_time": ""
   }
 ]

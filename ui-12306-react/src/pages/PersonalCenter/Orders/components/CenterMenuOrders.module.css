@@ -5,6 +5,13 @@
   padding: 12px 16px;
   font-size: 16px;
 }
+.activeTit {
+  background: #3b99fc;
+  color: #fff;
+}
+.activeTit :global(a) {
+  color: #fff;
+}
 .menu :global(.menu-sub) {
   padding: 6px 0 12px 0;
 }

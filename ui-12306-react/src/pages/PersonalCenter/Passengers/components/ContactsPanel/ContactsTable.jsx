@@ -43,8 +43,24 @@ export default function ContactsTable({ items, onDelete, selectedIds, onToggleSe
       </table>
       <div className={`order-item`}>
         <div className={`order-item-hd`}>
-          <div className={`order-hd-info`}><Link to="/center/passengers/add"><i className={`icon icon-add-fill txt-success mr-sm`}></i>添加</Link></div>
-          <div className={`order-hd-info`}><a href="#" onClick={(e)=>{ e.preventDefault(); onBatchDelete?.() }}><i className={`icon icon-del txt-error mr-sm`}></i>批量删除</a></div>
+          <div className={`order-hd-info`}><Link to="/center/passengers/add">
+            <span className={`txt-success mr-sm`} aria-hidden="true" style={{ display: 'inline-flex', verticalAlign: 'middle' }}>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1aad19" strokeWidth="2">
+                <circle cx="12" cy="12" r="9" fill="#e8f6e8" stroke="none"></circle>
+                <path d="M12 8v8M8 12h8" stroke="#1aad19" />
+              </svg>
+            </span>
+            添加
+          </Link></div>
+          <div className={`order-hd-info`}><a href="#" onClick={(e)=>{ e.preventDefault(); onBatchDelete?.() }}>
+            <span className={`txt-error mr-sm`} aria-hidden="true" style={{ display: 'inline-flex', verticalAlign: 'middle' }}>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ff4d4f" strokeWidth="2">
+                <rect x="6" y="8" width="12" height="12" rx="2" fill="#fdecec" stroke="none"></rect>
+                <path d="M6 8h12M10 5h4M9 12v6M15 12v6" stroke="#ff4d4f" />
+              </svg>
+            </span>
+            批量删除
+          </a></div>
         </div>
         <div className={`order-item-bd`} style={{ maxHeight: '100%' }}>
           <table className={`order-item-table ${styles.table}`}>
@@ -100,11 +116,25 @@ export default function ContactsTable({ items, onDelete, selectedIds, onToggleSe
                       <div className={`list-operation`}>
                         {!isSelf && (
                           <a href="#" onClick={(e)=>{ e.preventDefault(); if(canDelete){ onDelete(p.allEncStr) } }} title={canDelete ? '' : formatDeleteTip(p.delete_time)}>
-                            <i className={`icon icon-del`} style={{ color: canDelete ? undefined : '#999' }}></i>
+                            <span aria-hidden="true" style={{ display: 'inline-flex', verticalAlign: 'middle' }}>
+                              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={canDelete ? '#ff4d4f' : '#999'} strokeWidth="2">
+                                <path d="M3 6h18" />
+                                <path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6" />
+                                <path d="M10 11v6M14 11v6" />
+                                <path d="M9 6l1-2h4l1 2" />
+                              </svg>
+                            </span>
                           </a>
                         )}
                         {!isSelf && (
-                          <a href="#"><i className={`icon icon-edit`}></i></a>
+                          <a href="#">
+                            <span aria-hidden="true" style={{ display: 'inline-flex', verticalAlign: 'middle' }}>
+                              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#3b99fc" strokeWidth="2">
+                                <rect x="4" y="4" width="16" height="16" rx="2" />
+                                <path d="M8 16l8-8M10 8h6v6" />
+                              </svg>
+                            </span>
+                          </a>
                         )}
                       </div>
                     </td>

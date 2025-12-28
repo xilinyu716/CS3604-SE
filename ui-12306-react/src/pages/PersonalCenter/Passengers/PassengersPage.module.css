@@ -1,10 +1,10 @@
 .page {
   background: #fff;
 }
-.content {
-  min-height: 600px;
-}
-.center-box {
+.centerBox {
   display: flex;
+  gap: 12px;
 }
-
+.centerSide {
+  width: 200px;
+}

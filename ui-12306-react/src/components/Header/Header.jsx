@@ -66,7 +66,7 @@ export default function Header() {
               </li>
               <li className="menu-item menu-line">|</li>
               <li className="menu-item menu-nav" role="menuitem">
-                <Link to={user ? "/center/profile" : "/login?redirect=%2Fcenter%2Fprofile"} className="menu-nav-hd item">我的12306
+                <Link to={user ? "/center" : "/login?redirect=%2Fcenter"} className="menu-nav-hd item">我的12306
                   <svg className="dropdown-arrow dropdown-arrow-static" width="10" height="10" viewBox="0 0 10 10" style={{ marginLeft: 4, display: 'inline-block' }}>
                     <polygon points="5,7 2,4 8,4" fill="#9ec6ff" />
                   </svg>
